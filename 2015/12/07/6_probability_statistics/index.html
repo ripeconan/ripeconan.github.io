@@ -1,0 +1,838 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>概率统计 | ripeconan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="ripeconan">
+    
+
+    
+    <meta name="description" content="内容提要
+概率
+参数估计
+假设检验
+方差分析
+回归分析
+
+概率计算排列组合
+choose(n,k)
+factorial(n)
+
+1choose(5,2)
+1## [1] 10
+1factorial(5)
+1## [1] 120
+生成随机数1rnorm(3, mean = c(-10,0,10), sd = 1)
+1## [1] -10.7509913   0.9316995  10.5312236">
+<meta property="og:type" content="article">
+<meta property="og:title" content="概率统计">
+<meta property="og:url" content="http://ripeconan.com/2015/12/07/6_probability_statistics/index.html">
+<meta property="og:site_name" content="ripeconan">
+<meta property="og:description" content="内容提要
+概率
+参数估计
+假设检验
+方差分析
+回归分析
+
+概率计算排列组合
+choose(n,k)
+factorial(n)
+
+1choose(5,2)
+1## [1] 10
+1factorial(5)
+1## [1] 120
+生成随机数1rnorm(3, mean = c(-10,0,10), sd = 1)
+1## [1] -10.7509913   0.9316995  10.5312236">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-15-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-22-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-26-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-34-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-35-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-36-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-38-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-39-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-41-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-43-1.png">
+<meta property="og:updated_time" content="2015-12-14T10:54:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="概率统计">
+<meta name="twitter:description" content="内容提要
+概率
+参数估计
+假设检验
+方差分析
+回归分析
+
+概率计算排列组合
+choose(n,k)
+factorial(n)
+
+1choose(5,2)
+1## [1] 10
+1factorial(5)
+1## [1] 120
+生成随机数1rnorm(3, mean = c(-10,0,10), sd = 1)
+1## [1] -10.7509913   0.9316995  10.5312236">
+
+    
+    <link rel="alternative" href="/atom.xml" title="ripeconan" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="ripeconan" title="ripeconan"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:ripeconan.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/12/07/6_probability_statistics/" title="概率统计" itemprop="url">概率统计</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
+		
+  <p class="article-time">
+    <time datetime="2015-12-06T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-12-07</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u63D0_u8981"><span class="toc-number">1.</span> <span class="toc-text">内容提要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6982_u7387"><span class="toc-number">2.</span> <span class="toc-text">概率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BA1_u7B97_u6392_u5217_u7EC4_u5408"><span class="toc-number">2.1.</span> <span class="toc-text">计算排列组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u968F_u673A_u6570"><span class="toc-number">2.2.</span> <span class="toc-text">生成随机数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u968F_u673A_u6837_u672C"><span class="toc-number">2.3.</span> <span class="toc-text">生成随机样本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u968F_u673A_u6392_u5217"><span class="toc-number">2.4.</span> <span class="toc-text">向量随机排列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528summary_u6C47_u603B_u6570_u636E"><span class="toc-number">3.</span> <span class="toc-text">使用summary汇总数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5206_u7C7B_u53D8_u91CF_u8BA1_u7B97_u9891_u6570_3Atable"><span class="toc-number">3.1.</span> <span class="toc-text">分类变量计算频数:table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u5206_u7C7B_u53D8_u91CF_u7684_u5217_u8054_u5206_u6790"><span class="toc-number">3.2.</span> <span class="toc-text">两个分类变量的列联分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u6570_u4F30_u8BA1"><span class="toc-number">4.</span> <span class="toc-text">参数估计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5355_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_2C__5Csigma_5E2_29_24"><span class="toc-number">4.1.</span> <span class="toc-text">单个正态总体 $N(\mu, \sigma^2)$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u65B9_u5DEE__24_5Csigma_5E2_24__u5DF2_u77E5"><span class="toc-number">4.2.</span> <span class="toc-text">方差 $\sigma^2$ 已知</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u65B9_u5DEE__24_5Csigma_5E2_24__u672A_u77E5"><span class="toc-number">5.</span> <span class="toc-text">方差 $\sigma^2$ 未知</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_1_2C__5Csigma_1_5E2_29_2C_N_28_5Cmu_2_2C__5Csigma_2_5E2_29_24"><span class="toc-number">5.1.</span> <span class="toc-text">两个正态总体 $N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u65B9_u5DEE__24_5Csigma_1_5E2_2C__5Csigma_2_5E2_24__u5DF2_u77E5"><span class="toc-number">5.2.</span> <span class="toc-text">方差 $\sigma_1^2, \sigma_2^2$ 已知</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u65B9_u5DEE__24_5Csigma_1_5E2_2C__5Csigma_2_5E2_24__u672A_u77E5_u5374_u76F8_u7B49"><span class="toc-number">5.3.</span> <span class="toc-text">方差 $\sigma_1^2, \sigma_2^2$ 未知却相等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7528_u6A21_u62DF_u9A8C_u8BC1_u7F6E_u4FE1_u533A_u95F4_u7684_u542B_u4E49"><span class="toc-number">5.4.</span> <span class="toc-text">用模拟验证置信区间的含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7528_u6A21_u62DF_u56FE_u5F62_u9A8C_u8BC1_u7F6E_u4FE1_u533A_u95F4"><span class="toc-number">5.5.</span> <span class="toc-text">用模拟图形验证置信区间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5047_u8BBE_u68C0_u9A8C"><span class="toc-number">6.</span> <span class="toc-text">假设检验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5355_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_2C__5Csigma_5E2_29_24_u5747_u503C_24_5Cmu_24_u7684_u68C0_u9A8C"><span class="toc-number">6.1.</span> <span class="toc-text">单个正态总体 $N(\mu, \sigma^2)$均值$\mu$的检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#t-test__u8FDB_u884C_u5355_u6B63_u6001_u603B_u4F53_t_u68C0_u9A8C"><span class="toc-number">6.2.</span> <span class="toc-text">t.test 进行单正态总体 t检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_1_2C__5Csigma_1_5E2_29_2C_N_28_5Cmu_2_2C__5Csigma_2_5E2_29_24_u5747_u503C_u5DEE_u7684_u68C0_u9A8C"><span class="toc-number">6.3.</span> <span class="toc-text">两个正态总体 $N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$均值差的检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#t-test__u8FDB_u884C_u4E24_u6B63_u6001_u603B_u4F53_u5747_u503C_u5DEE_t_u68C0_u9A8C"><span class="toc-number">6.4.</span> <span class="toc-text">t.test 进行两正态总体均值差 t检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6210_u5BF9_u6570_u636E_u914D_u5BF9_t_u68C0_u9A8C"><span class="toc-number">6.5.</span> <span class="toc-text">成对数据配对 t检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#t-test__u8FDB_u884C__u6210_u5BF9_u6570_u636E_u914D_u5BF9_t_u68C0_u9A8C"><span class="toc-number">6.6.</span> <span class="toc-text">t.test 进行 成对数据配对 t检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#t-test__u7684_u5176_u4ED6_u53C2_u6570"><span class="toc-number">6.7.</span> <span class="toc-text">t.test 的其他参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F6E_u4FE1_u533A_u95F4_u548C_u5047_u8BBE_u68C0_u9A8C_u4E2D_u5FFD_u7565_u4E86_u7684_u5185_u5BB9"><span class="toc-number">6.8.</span> <span class="toc-text">置信区间和假设检验中忽略了的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F6E_u4FE1_u533A_u95F4_u548C_u5047_u8BBE_u68C0_u9A8C_u7684_u5173_u7CFB"><span class="toc-number">6.9.</span> <span class="toc-text">置信区间和假设检验的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F6E_u4FE1_u533A_u95F4_u4E0A_u4E0B_u9650_u548C_u5047_u8BBE_u68C0_u9A8C_u7684_u7ED3_u679C"><span class="toc-number">6.10.</span> <span class="toc-text">置信区间上下限和假设检验的结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u65B9_u5DEE_u5206_u6790"><span class="toc-number">7.</span> <span class="toc-text">方差分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5355_u56E0_u7D20_u65B9_u5DEE_u5206_u6790"><span class="toc-number">7.1.</span> <span class="toc-text">单因素方差分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5355_u56E0_u7D20_u65B9_u5DEE_u5206_u6790_u7684_u6570_u636E_u5F62_u5F0F"><span class="toc-number">7.2.</span> <span class="toc-text">单因素方差分析的数据形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7BB1_u7EBF_u56FE_u67E5_u770B_u6570_u636E_u5747_u503C_u662F_u5426_u6709_u5DEE_u5F02"><span class="toc-number">7.3.</span> <span class="toc-text">箱线图查看数据均值是否有差异</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528oneway-test_u51FD_u6570_u8FDB_u884C_u65B9_u5DEE_u5206_u6790"><span class="toc-number">7.4.</span> <span class="toc-text">使用oneway.test函数进行方差分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.</span> <span class="toc-text">线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5E38_u89C1_u7684_u7EBF_u6027_u56DE_u5F52_u6A21_u578B"><span class="toc-number">8.1.</span> <span class="toc-text">常见的线性回归模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EBF_u6027_u6A21_u578B_u2014_u2014_u6700_u5C0F_u4E8C_u4E58_u4F30_u8BA1"><span class="toc-number">8.2.</span> <span class="toc-text">线性模型——最小二乘估计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u5143_u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.3.</span> <span class="toc-text">一元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u516C_u5F0F_u7684_u57FA_u672C_u7528_u6CD5"><span class="toc-number">8.4.</span> <span class="toc-text">公式的基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7528_u56FE_u5F62_u5C55_u793A_u4E00_u5143_u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.5.</span> <span class="toc-text">用图形展示一元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0D_u5E26_u622A_u8DDD_u9879_u7684_u4E00_u5143_u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.6.</span> <span class="toc-text">不带截距项的一元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u591A_u5143_u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.7.</span> <span class="toc-text">多元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u591A_u5143_u7EBF_u6027_u56DE_u5F52-1"><span class="toc-number">8.8.</span> <span class="toc-text">多元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u83B7_u53D6_u56DE_u5F52_u7EDF_u8BA1_u91CF"><span class="toc-number">8.9.</span> <span class="toc-text">获取回归统计量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u56DE_u5F52_u7EDF_u8BA1_u91CF_u63D0_u53D6"><span class="toc-number">8.10.</span> <span class="toc-text">回归统计量提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8FD0_u884C_u6709_u4EA4_u4E92_u9879_u7684_u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.11.</span> <span class="toc-text">运行有交互项的线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u4E92_u9879_u4E3E_u4F8B"><span class="toc-number">8.12.</span> <span class="toc-text">交互项举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9009_u62E9_u6700_u5408_u9002_u7684_u56DE_u5F52_u53D8_u91CF"><span class="toc-number">8.13.</span> <span class="toc-text">选择最合适的回归变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5728_u56DE_u5F52_u516C_u5F0F_u4E2D_u4F7F_u7528_u8868_u8FBE_u5F0F"><span class="toc-number">8.14.</span> <span class="toc-text">在回归公式中使用表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E3E_u4F8B"><span class="toc-number">8.15.</span> <span class="toc-text">举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u591A_u9879_u5F0F_u56DE_u5F52"><span class="toc-number">8.16.</span> <span class="toc-text">多项式回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u8F6C_u6362"><span class="toc-number">8.17.</span> <span class="toc-text">数据转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7ED8_u5236_u6B8B_u5DEE_u56FE"><span class="toc-number">8.18.</span> <span class="toc-text">绘制残差图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EBF_u6027_u56DE_u5F52_u6A21_u578B_u8BCA_u65AD"><span class="toc-number">8.19.</span> <span class="toc-text">线性回归模型诊断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7528_u7EBF_u6027_u6A21_u578B_u8FDB_u884C_u9884_u6D4B"><span class="toc-number">8.20.</span> <span class="toc-text">用线性模型进行预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6A21_u578B_u9884_u6D4B_u4E3E_u4F8B"><span class="toc-number">8.21.</span> <span class="toc-text">模型预测举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9884_u6D4B_u6548_u679C"><span class="toc-number">8.22.</span> <span class="toc-text">预测效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6B63_u6001_u6027_u68C0_u9A8C"><span class="toc-number">8.23.</span> <span class="toc-text">正态性检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528qq_u56FE_u67E5_u770B_u6B63_u6001_u6027"><span class="toc-number">8.24.</span> <span class="toc-text">使用qq图查看正态性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5176_u4ED6_u5185_u5BB9"><span class="toc-number">9.</span> <span class="toc-text">其他内容</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="u5185_u5BB9_u63D0_u8981"><a href="#u5185_u5BB9_u63D0_u8981" class="headerlink" title="内容提要"></a>内容提要</h2><ul>
+<li>概率</li>
+<li>参数估计</li>
+<li>假设检验</li>
+<li>方差分析</li>
+<li>回归分析</li>
+</ul>
+<h2 id="u6982_u7387"><a href="#u6982_u7387" class="headerlink" title="概率"></a>概率</h2><h3 id="u8BA1_u7B97_u6392_u5217_u7EC4_u5408"><a href="#u8BA1_u7B97_u6392_u5217_u7EC4_u5408" class="headerlink" title="计算排列组合"></a>计算排列组合</h3><ul>
+<li>choose(n,k)</li>
+<li>factorial(n)</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choose(<span class="number">5</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">10</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">factorial(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">120</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u751F_u6210_u968F_u673A_u6570"><a href="#u751F_u6210_u968F_u673A_u6570" class="headerlink" title="生成随机数"></a>生成随机数</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rnorm(<span class="number">3</span>, mean = c(-<span class="number">10</span>,<span class="number">0</span>,<span class="number">10</span>), sd = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] -<span class="number">10.7509913</span>   <span class="number">0.9316995</span>  <span class="number">10.5312236</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u751F_u6210_u968F_u673A_u6837_u672C"><a href="#u751F_u6210_u968F_u673A_u6837_u672C" class="headerlink" title="生成随机样本"></a>生成随机样本</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sample(<span class="number">1</span>:<span class="number">10</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">9</span> <span class="number">2</span> <span class="number">4</span> <span class="number">7</span> <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sample(c(<span class="string">"H"</span>,<span class="string">"T"</span>), <span class="number">5</span>, replace = <span class="literal">T</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"H"</span> <span class="string">"H"</span> <span class="string">"H"</span> <span class="string">"T"</span> <span class="string">"T"</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sample(c(<span class="string">"H"</span>,<span class="string">"T"</span>), <span class="number">10</span>, replace = <span class="literal">T</span>, prob = c(<span class="number">0.2</span>,<span class="number">0.8</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>] <span class="string">"T"</span> <span class="string">"T"</span> <span class="string">"H"</span> <span class="string">"T"</span> <span class="string">"T"</span> <span class="string">"T"</span> <span class="string">"T"</span> <span class="string">"H"</span> <span class="string">"H"</span> <span class="string">"T"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5411_u91CF_u968F_u673A_u6392_u5217"><a href="#u5411_u91CF_u968F_u673A_u6392_u5217" class="headerlink" title="向量随机排列"></a>向量随机排列</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sample(<span class="number">1</span>:<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>]  <span class="number">6</span>  <span class="number">7</span>  <span class="number">2</span>  <span class="number">1</span> <span class="number">10</span>  <span class="number">9</span>  <span class="number">3</span>  <span class="number">5</span>  <span class="number">4</span>  <span class="number">8</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="u4F7F_u7528summary_u6C47_u603B_u6570_u636E"><a href="#u4F7F_u7528summary_u6C47_u603B_u6570_u636E" class="headerlink" title="使用summary汇总数据"></a>使用summary汇总数据</h2><p>summary对向量, 矩阵, 因子, 数据框都可以汇总</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary(<span class="number">1</span>:<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##    Min. <span class="number">1</span>st Qu.  Median    Mean <span class="number">3</span>rd Qu.    Max. </span></span><br><span class="line"><span class="preprocessor">##    <span class="number">1.00</span>   <span class="number">25.75</span>   <span class="number">50.50</span>   <span class="number">50.50</span>   <span class="number">75.25</span>  <span class="number">100.00</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">summary(mtcars[,<span class="number">1</span>:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">##       <span class="tag">mpg</span>             <span class="tag">cyl</span>             <span class="tag">disp</span>      </span><br><span class="line">##  <span class="tag">Min</span>.   <span class="pseudo">:10</span><span class="class">.40</span>   <span class="tag">Min</span>.   <span class="pseudo">:4</span><span class="class">.000</span>   <span class="tag">Min</span>.   : 71<span class="class">.1</span>  </span><br><span class="line">##  1<span class="tag">st</span> <span class="tag">Qu</span>.<span class="pseudo">:15</span><span class="class">.43</span>   1<span class="tag">st</span> <span class="tag">Qu</span>.<span class="pseudo">:4</span><span class="class">.000</span>   1<span class="tag">st</span> <span class="tag">Qu</span>.<span class="pseudo">:120</span><span class="class">.8</span>  </span><br><span class="line">##  <span class="tag">Median</span> <span class="pseudo">:19</span><span class="class">.20</span>   <span class="tag">Median</span> <span class="pseudo">:6</span><span class="class">.000</span>   <span class="tag">Median</span> <span class="pseudo">:196</span><span class="class">.3</span>  </span><br><span class="line">##  <span class="tag">Mean</span>   <span class="pseudo">:20</span><span class="class">.09</span>   <span class="tag">Mean</span>   <span class="pseudo">:6</span><span class="class">.188</span>   <span class="tag">Mean</span>   <span class="pseudo">:230</span><span class="class">.7</span>  </span><br><span class="line">##  3<span class="tag">rd</span> <span class="tag">Qu</span>.<span class="pseudo">:22</span><span class="class">.80</span>   3<span class="tag">rd</span> <span class="tag">Qu</span>.<span class="pseudo">:8</span><span class="class">.000</span>   3<span class="tag">rd</span> <span class="tag">Qu</span>.<span class="pseudo">:326</span><span class="class">.0</span>  </span><br><span class="line">##  <span class="tag">Max</span>.   <span class="pseudo">:33</span><span class="class">.90</span>   <span class="tag">Max</span>.   <span class="pseudo">:8</span><span class="class">.000</span>   <span class="tag">Max</span>.   <span class="pseudo">:472</span><span class="class">.0</span></span><br></pre></td></tr></table></figure>
+<h3 id="u5206_u7C7B_u53D8_u91CF_u8BA1_u7B97_u9891_u6570_3Atable"><a href="#u5206_u7C7B_u53D8_u91CF_u8BA1_u7B97_u9891_u6570_3Atable" class="headerlink" title="分类变量计算频数:table"></a>分类变量计算频数:table</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table(rep(<span class="number">1</span>:<span class="number">3</span>, <span class="number">30</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">##  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span> </span></span><br><span class="line"><span class="preprocessor">## <span class="number">30</span> <span class="number">30</span> <span class="number">30</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table(sample(c(<span class="string">"m"</span>,<span class="string">"f"</span>), <span class="number">19</span>, replace = <span class="literal">T</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">##  f  m </span></span><br><span class="line"><span class="preprocessor">## 10  9</span></span><br></pre></td></tr></table></figure>
+<h3 id="u4E24_u4E2A_u5206_u7C7B_u53D8_u91CF_u7684_u5217_u8054_u5206_u6790"><a href="#u4E24_u4E2A_u5206_u7C7B_u53D8_u91CF_u7684_u5217_u8054_u5206_u6790" class="headerlink" title="两个分类变量的列联分析"></a>两个分类变量的列联分析</h3><p>使用table之后, 再进行summary</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gender &lt;- rep(c(<span class="string">"m"</span>,<span class="string">"f"</span>), each = <span class="number">10</span>)</span><br><span class="line">answer &lt;- rep(c(<span class="string">"Yes"</span>,<span class="string">"No"</span>,<span class="string">"Yes"</span>), c(<span class="number">8</span>,<span class="number">10</span>,<span class="number">2</span>))</span><br><span class="line">summary(table(gender, answer))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## Number of cases in table: <span class="number">20</span> </span></span><br><span class="line"><span class="preprocessor">## Number of factors: <span class="number">2</span> </span></span><br><span class="line"><span class="preprocessor">## Test for independence of all factors:</span></span><br><span class="line"><span class="preprocessor">## 	Chisq = <span class="number">7.2</span>, df = <span class="number">1</span>, p-value = <span class="number">0.00729</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="u53C2_u6570_u4F30_u8BA1"><a href="#u53C2_u6570_u4F30_u8BA1" class="headerlink" title="参数估计"></a>参数估计</h2><ul>
+<li>点估计: mean, var, sd</li>
+<li>估计量的评选标准: 无偏性, 有效性, 相合性 </li>
+<li>区间估计</li>
+<li>正态总体均值与方差的区间估计</li>
+</ul>
+<h3 id="u5355_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_2C__5Csigma_5E2_29_24"><a href="#u5355_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_2C__5Csigma_5E2_29_24" class="headerlink" title="单个正态总体 $N(\mu, \sigma^2)$"></a>单个正态总体 $N(\mu, \sigma^2)$</h3><p>问题提法:</p>
+<ul>
+<li>单个正态总体 $N(\mu, \sigma^2)$</li>
+<li>置信水平 $1 - \alpha$</li>
+<li>样本 $x_1, \cdots, x_n$</li>
+<li>样本均值 $\bar{x}$, 样本方差 $S^2$</li>
+<li>按$\sigma^2$是否已知的不同情况, 求总体均值 $\mu$ 的$1 - \alpha$置信区间</li>
+</ul>
+<h3 id="u65B9_u5DEE__24_5Csigma_5E2_24__u5DF2_u77E5"><a href="#u65B9_u5DEE__24_5Csigma_5E2_24__u5DF2_u77E5" class="headerlink" title="方差 $\sigma^2$ 已知"></a>方差 $\sigma^2$ 已知</h3><p>当方差 $\sigma^2$ 已知时, $\mu$ 的$1 - \alpha$置信区间为<br>$$\bar{x} \pm \frac{\sigma}{\sqrt n}z_{\alpha/2}$$</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>, mean = <span class="number">2</span>, sd = <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>练习: 如果方差已知为25, 给定上述100个随机数, 求该正态总体均值的90%置信区间</p>
+<p>练习答案:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x1 &lt;- mean(x) - <span class="number">5</span>/sqrt(length(x))*qnorm(<span class="number">0.95</span>)</span><br><span class="line">x2 &lt;- mean(x) + <span class="number">5</span>/sqrt(length(x))*qnorm(<span class="number">0.95</span>)</span><br><span class="line">cat(<span class="string">"("</span>, x1,<span class="string">","</span>, x2,<span class="string">")"</span>, sep = <span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## (<span class="number">0.3937645</span>,<span class="number">2.038618</span>)</span></span><br></pre></td></tr></table></figure>
+<h2 id="u65B9_u5DEE__24_5Csigma_5E2_24__u672A_u77E5"><a href="#u65B9_u5DEE__24_5Csigma_5E2_24__u672A_u77E5" class="headerlink" title="方差 $\sigma^2$ 未知"></a>方差 $\sigma^2$ 未知</h2><p>当方差 $\sigma^2$ 未知时, $\mu$ 的$1 - \alpha$置信区间为<br>$$\bar{x} \pm \frac{S}{\sqrt n}t_{\alpha/2}(n-1)$$</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>, mean = <span class="number">2</span>, sd = <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>练习: 如果方差未知, 给定上述100个随机数, 求该正态总体均值的90%置信区间</p>
+<p>练习答案</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">df &lt;- length(x) - <span class="number">1</span></span><br><span class="line">x3 &lt;- mean(x) - sd(x)/sqrt(length(x))*qt(<span class="number">0.95</span>, df)</span><br><span class="line">x4 &lt;- mean(x) + sd(x)/sqrt(length(x))*qt(<span class="number">0.95</span>, df)</span><br><span class="line">cat(<span class="string">"("</span>, x3,<span class="string">","</span>, x4,<span class="string">")"</span>, sep = <span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## (<span class="number">0.3823384</span>,<span class="number">2.050044</span>)</span></span><br></pre></td></tr></table></figure>
+<h3 id="u4E24_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_1_2C__5Csigma_1_5E2_29_2C_N_28_5Cmu_2_2C__5Csigma_2_5E2_29_24"><a href="#u4E24_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_1_2C__5Csigma_1_5E2_29_2C_N_28_5Cmu_2_2C__5Csigma_2_5E2_29_24" class="headerlink" title="两个正态总体 $N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$"></a>两个正态总体 $N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$</h3><p>问题提法:</p>
+<ul>
+<li>两个正态总体 $N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$</li>
+<li>置信水平 $1 - \alpha$</li>
+<li>样本$x<em>1, \cdots, x</em>{n_1}$和$y<em>1, \cdots, y</em>{n_2}$分别来自两个总体</li>
+<li>样本均值 $\bar{x}, \bar{y}$, 样本方差 $S_1^2, S_2^2$</li>
+<li>按$\sigma^2$的不同情况, 求总体均值 $\mu_1 - \mu_2$ 的$1 - \alpha$置信区间</li>
+</ul>
+<h3 id="u65B9_u5DEE__24_5Csigma_1_5E2_2C__5Csigma_2_5E2_24__u5DF2_u77E5"><a href="#u65B9_u5DEE__24_5Csigma_1_5E2_2C__5Csigma_2_5E2_24__u5DF2_u77E5" class="headerlink" title="方差 $\sigma_1^2, \sigma_2^2$ 已知"></a>方差 $\sigma_1^2, \sigma_2^2$ 已知</h3><p>当方差 $\sigma_1^2, \sigma_2^2$ 已知时, $\mu_1 - \mu<em>2$ 的$1 - \alpha$置信区间为<br>$$\bar{x}-\bar{y} \pm z</em>{\alpha/2}{\sqrt {\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}$$</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>, mean = <span class="number">2</span>, sd = <span class="number">3</span>)</span><br><span class="line">y &lt;- rnorm(<span class="number">80</span>, mean = <span class="number">3</span>, sd = <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>练习: 如果上述两个总体方差已知分别为9和25, 给定上述两组随机数, 求这两个正态总体均值差的90%置信区间</p>
+<p>练习答案:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mean.diff &lt;- mean(x) - mean(y)</span><br><span class="line">new.sd &lt;- sqrt(<span class="number">9</span>/length(x) + <span class="number">25</span>/length(y))</span><br><span class="line">x5 &lt;- mean.diff - qnorm(<span class="number">0.95</span>)*new.sd</span><br><span class="line">x6 &lt;- mean.diff + qnorm(<span class="number">0.95</span>)*new.sd</span><br><span class="line">cat(<span class="string">"("</span>, x5,<span class="string">","</span>, x6,<span class="string">")"</span>, sep = <span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## (-<span class="number">2.813356</span>,-<span class="number">0.7262706</span>)</span></span><br></pre></td></tr></table></figure>
+<h3 id="u65B9_u5DEE__24_5Csigma_1_5E2_2C__5Csigma_2_5E2_24__u672A_u77E5_u5374_u76F8_u7B49"><a href="#u65B9_u5DEE__24_5Csigma_1_5E2_2C__5Csigma_2_5E2_24__u672A_u77E5_u5374_u76F8_u7B49" class="headerlink" title="方差 $\sigma_1^2, \sigma_2^2$ 未知却相等"></a>方差 $\sigma_1^2, \sigma_2^2$ 未知却相等</h3><p>当方差 $\sigma_1^2, \sigma_2^2$ 未知但 $\sigma_1^2 = \sigma_2^2 = \sigma^2$ 时, $\mu_1 - \mu<em>2$ 的$1 - \alpha$置信区间为<br>$$\bar{x}-\bar{y} \pm t</em>{\alpha/2}(n_1 + n_2 - 2)S_w{\sqrt {\frac{1}{n_1}+\frac{1}{n_2}}}$$<br>其中<br>$$S_w = \frac{(n_1 -1)S_1^2 + (n_2 -1)S_2^2}{n_1 + n_2 - 2}$$</p>
+<h3 id="u7528_u6A21_u62DF_u9A8C_u8BC1_u7F6E_u4FE1_u533A_u95F4_u7684_u542B_u4E49"><a href="#u7528_u6A21_u62DF_u9A8C_u8BC1_u7F6E_u4FE1_u533A_u95F4_u7684_u542B_u4E49" class="headerlink" title="用模拟验证置信区间的含义"></a>用模拟验证置信区间的含义</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">n &lt;- <span class="number">100</span></span><br><span class="line">x1 &lt;- numeric(<span class="number">0</span>)</span><br><span class="line">x2 &lt;- numeric(<span class="number">0</span>)</span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:n)&#123;</span><br><span class="line">  x &lt;- rnorm(n, mean = <span class="number">2</span>, sd = <span class="number">5</span>)</span><br><span class="line">  x1[i] &lt;- mean(x) - <span class="number">5</span>/sqrt(length(x))*qnorm(<span class="number">0.95</span>)</span><br><span class="line">  x2[i] &lt;- mean(x) + <span class="number">5</span>/sqrt(length(x))*qnorm(<span class="number">0.95</span>)</span><br><span class="line">&#125;</span><br><span class="line">sum(x1 &gt; <span class="number">2</span>) + sum(x2 &lt; <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">10</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u7528_u6A21_u62DF_u56FE_u5F62_u9A8C_u8BC1_u7F6E_u4FE1_u533A_u95F4"><a href="#u7528_u6A21_u62DF_u56FE_u5F62_u9A8C_u8BC1_u7F6E_u4FE1_u533A_u95F4" class="headerlink" title="用模拟图形验证置信区间"></a>用模拟图形验证置信区间</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">plot(<span class="number">0</span>:(n+<span class="number">1</span>),<span class="number">0</span>:(n+<span class="number">1</span>),type = <span class="string">"n"</span>, ylim = c(-<span class="number">1</span>,<span class="number">5</span>))</span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:n)&#123;</span><br><span class="line">  segments(i,x1[i],i,x2[i])</span><br><span class="line">  <span class="keyword">if</span>(x1[i] &gt; <span class="number">2</span>)&#123;points(i,x1[i],pch = <span class="number">20</span>, col = <span class="string">"red"</span>, cex = <span class="number">2</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span> points(i,x1[i],pch = <span class="number">20</span>)</span><br><span class="line">  <span class="keyword">if</span>(x2[i] &lt; <span class="number">2</span>)&#123;points(i,x2[i],pch = <span class="number">20</span>, col = <span class="string">"red"</span>, cex = <span class="number">2</span>)</span><br><span class="line">    &#125;<span class="keyword">else</span> points(i,x2[i],pch = <span class="number">20</span>)  </span><br><span class="line">&#125;</span><br><span class="line">segments(<span class="number">0</span>,<span class="number">2</span>,n+<span class="number">1</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-15-1.png" alt=""> </p>
+<h2 id="u5047_u8BBE_u68C0_u9A8C"><a href="#u5047_u8BBE_u68C0_u9A8C" class="headerlink" title="假设检验"></a>假设检验</h2><ul>
+<li>原假设$H_0$, 备择假设$H_1$</li>
+<li>单侧假设, 双侧假设</li>
+<li>检验统计量</li>
+<li>显著性水平(置信水平)</li>
+<li>临界值</li>
+<li>拒绝域</li>
+</ul>
+<h3 id="u5355_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_2C__5Csigma_5E2_29_24_u5747_u503C_24_5Cmu_24_u7684_u68C0_u9A8C"><a href="#u5355_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_2C__5Csigma_5E2_29_24_u5747_u503C_24_5Cmu_24_u7684_u68C0_u9A8C" class="headerlink" title="单个正态总体 $N(\mu, \sigma^2)$均值$\mu$的检验"></a>单个正态总体 $N(\mu, \sigma^2)$均值$\mu$的检验</h3><p>问题提法:</p>
+<ul>
+<li>单个正态总体, 抽取$n$个样本, 检验总体均值是否为某个常数$\mu_0$</li>
+<li>总体方差$\sigma^2$已知时, 检验统计量$\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}$服从正态分布</li>
+<li>总体方差$\sigma^2$未知时, 检验统计量$\frac{\bar{x}-\mu_0}{s/\sqrt{n}}$服从$t$分布</li>
+</ul>
+<p>实际中, 正态总体方差经常为未知, 所以t检验用的更多</p>
+<h3 id="t-test__u8FDB_u884C_u5355_u6B63_u6001_u603B_u4F53_t_u68C0_u9A8C"><a href="#t-test__u8FDB_u884C_u5355_u6B63_u6001_u603B_u4F53_t_u68C0_u9A8C" class="headerlink" title="t.test 进行单正态总体 t检验"></a>t.test 进行单正态总体 t检验</h3><p>检验以下样本所属总体的均值是否为2, 显著性水平为$\alpha = 0.1$</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>, mean = <span class="number">2</span>, sd = <span class="number">5</span>)</span><br><span class="line">t.test(x, mu = <span class="number">2</span>, conf.level = <span class="number">0.9</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## 	One Sample t-test</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## data:  x</span></span><br><span class="line"><span class="preprocessor">## t = -1.5607, df = 99, p-value = 0.1218</span></span><br><span class="line"><span class="preprocessor">## alternative hypothesis: true mean is not equal to 2</span></span><br><span class="line"><span class="preprocessor">## 90 percent confidence interval:</span></span><br><span class="line"><span class="preprocessor">##  0.3823384 2.0500441</span></span><br><span class="line"><span class="preprocessor">## sample estimates:</span></span><br><span class="line"><span class="preprocessor">## mean of x </span></span><br><span class="line"><span class="preprocessor">##  1.216191</span></span><br></pre></td></tr></table></figure>
+<h3 id="u4E24_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_1_2C__5Csigma_1_5E2_29_2C_N_28_5Cmu_2_2C__5Csigma_2_5E2_29_24_u5747_u503C_u5DEE_u7684_u68C0_u9A8C"><a href="#u4E24_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_1_2C__5Csigma_1_5E2_29_2C_N_28_5Cmu_2_2C__5Csigma_2_5E2_29_24_u5747_u503C_u5DEE_u7684_u68C0_u9A8C" class="headerlink" title="两个正态总体 $N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$均值差的检验"></a>两个正态总体 $N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$均值差的检验</h3><p>问题提法:</p>
+<ul>
+<li>两正态总体, 分别抽取$n_1$和$n_2$个样本, 检验均值差是否为某个常数</li>
+<li>总体方差$\sigma_1^2, \sigma_2^2$已知时, 检验统计量服从正态分布</li>
+<li>总体方差未知但相等($=\sigma^2$)时, 检验统计量服从$t$分布</li>
+</ul>
+<p>实际中, 正态总体方差经常为未知, 所以t检验用的更多</p>
+<h3 id="t-test__u8FDB_u884C_u4E24_u6B63_u6001_u603B_u4F53_u5747_u503C_u5DEE_t_u68C0_u9A8C"><a href="#t-test__u8FDB_u884C_u4E24_u6B63_u6001_u603B_u4F53_u5747_u503C_u5DEE_t_u68C0_u9A8C" class="headerlink" title="t.test 进行两正态总体均值差 t检验"></a>t.test 进行两正态总体均值差 t检验</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>, mean = <span class="number">2</span>, sd = <span class="number">3</span>)</span><br><span class="line">y &lt;- rnorm(<span class="number">80</span>, mean = <span class="number">3</span>, sd = <span class="number">3</span>)</span><br><span class="line">t.test(x,y, var.equal = <span class="literal">T</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## 	Two Sample t-test</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## data:  x and y</span></span><br><span class="line"><span class="preprocessor">## t = -3.7543, df = 178, p-value = 0.0002352</span></span><br><span class="line"><span class="preprocessor">## alternative hypothesis: true difference in means is not equal to 0</span></span><br><span class="line"><span class="preprocessor">## 95 percent confidence interval:</span></span><br><span class="line"><span class="preprocessor">##  -2.5172894 -0.7827147</span></span><br><span class="line"><span class="preprocessor">## sample estimates:</span></span><br><span class="line"><span class="preprocessor">## mean of x mean of y </span></span><br><span class="line"><span class="preprocessor">##  1.529715  3.179717</span></span><br></pre></td></tr></table></figure>
+<h3 id="u6210_u5BF9_u6570_u636E_u914D_u5BF9_t_u68C0_u9A8C"><a href="#u6210_u5BF9_u6570_u636E_u914D_u5BF9_t_u68C0_u9A8C" class="headerlink" title="成对数据配对 t检验"></a>成对数据配对 t检验</h3><p>问题提法:</p>
+<ul>
+<li>一般出现于药物测试等数据中(用药前, 用药后)</li>
+<li>假设配对数据做差之后满足正态分布$N(\mu, \sigma^2)$(但方差未知)</li>
+<li>检验药效如何($\mu$和0的大小关系)</li>
+<li>总体方差未知, 检验统计量服从$t$分布</li>
+</ul>
+<h3 id="t-test__u8FDB_u884C__u6210_u5BF9_u6570_u636E_u914D_u5BF9_t_u68C0_u9A8C"><a href="#t-test__u8FDB_u884C__u6210_u5BF9_u6570_u636E_u914D_u5BF9_t_u68C0_u9A8C" class="headerlink" title="t.test 进行 成对数据配对 t检验"></a>t.test 进行 成对数据配对 t检验</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">50</span>, mean = <span class="number">130</span>, sd = <span class="number">10</span>)</span><br><span class="line">y &lt;- rnorm(<span class="number">50</span>, mean = <span class="number">120</span>, sd = <span class="number">8</span>)</span><br><span class="line">t.test(x,y,paired = <span class="literal">T</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## 	Paired t-test</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## data:  x and y</span></span><br><span class="line"><span class="preprocessor">## t = 2.4616, df = 49, p-value = 0.0174</span></span><br><span class="line"><span class="preprocessor">## alternative hypothesis: true difference in means is not equal to 0</span></span><br><span class="line"><span class="preprocessor">## 95 percent confidence interval:</span></span><br><span class="line"><span class="preprocessor">##  0.7994091 7.9070582</span></span><br><span class="line"><span class="preprocessor">## sample estimates:</span></span><br><span class="line"><span class="preprocessor">## mean of the differences </span></span><br><span class="line"><span class="preprocessor">##                4.353234</span></span><br></pre></td></tr></table></figure>
+<h3 id="t-test__u7684_u5176_u4ED6_u53C2_u6570"><a href="#t-test__u7684_u5176_u4ED6_u53C2_u6570" class="headerlink" title="t.test 的其他参数"></a>t.test 的其他参数</h3><ul>
+<li>?t.test</li>
+<li>单侧双侧: alternative = c(“two.sided”, “less”, “greater”)</li>
+<li>var.equal = FALSE, 两总体时方差是否按相等处理</li>
+<li>conf.level = 0.95</li>
+</ul>
+<h3 id="u7F6E_u4FE1_u533A_u95F4_u548C_u5047_u8BBE_u68C0_u9A8C_u4E2D_u5FFD_u7565_u4E86_u7684_u5185_u5BB9"><a href="#u7F6E_u4FE1_u533A_u95F4_u548C_u5047_u8BBE_u68C0_u9A8C_u4E2D_u5FFD_u7565_u4E86_u7684_u5185_u5BB9" class="headerlink" title="置信区间和假设检验中忽略了的内容"></a>置信区间和假设检验中忽略了的内容</h3><ul>
+<li>单个总体方差的置信区间和假设检验</li>
+<li>两个总体方差比的置信区间和假设检验</li>
+</ul>
+<p>以上内容可自行编程解决</p>
+<h3 id="u7F6E_u4FE1_u533A_u95F4_u548C_u5047_u8BBE_u68C0_u9A8C_u7684_u5173_u7CFB"><a href="#u7F6E_u4FE1_u533A_u95F4_u548C_u5047_u8BBE_u68C0_u9A8C_u7684_u5173_u7CFB" class="headerlink" title="置信区间和假设检验的关系"></a>置信区间和假设检验的关系</h3><p>置信区间上下限可以从假设检验的结果中获得, 如上例的90%置信区间</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>, mean = <span class="number">2</span>, sd = <span class="number">5</span>)</span><br><span class="line">df &lt;- length(x) - <span class="number">1</span></span><br><span class="line">x3 &lt;- mean(x) - sd(x)/sqrt(length(x))*qt(<span class="number">0.95</span>, df)</span><br><span class="line">x4 &lt;- mean(x) + sd(x)/sqrt(length(x))*qt(<span class="number">0.95</span>, df)</span><br><span class="line">cat(<span class="string">"("</span>, x3,<span class="string">","</span>, x4,<span class="string">")"</span>, sep = <span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## (<span class="number">0.3823384</span>,<span class="number">2.050044</span>)</span></span><br></pre></td></tr></table></figure>
+<h3 id="u7F6E_u4FE1_u533A_u95F4_u4E0A_u4E0B_u9650_u548C_u5047_u8BBE_u68C0_u9A8C_u7684_u7ED3_u679C"><a href="#u7F6E_u4FE1_u533A_u95F4_u4E0A_u4E0B_u9650_u548C_u5047_u8BBE_u68C0_u9A8C_u7684_u7ED3_u679C" class="headerlink" title="置信区间上下限和假设检验的结果"></a>置信区间上下限和假设检验的结果</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.test(x, conf.level = <span class="number">0.9</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## 	One Sample t-test</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## data:  x</span></span><br><span class="line"><span class="preprocessor">## t = 2.4217, df = 99, p-value = 0.01727</span></span><br><span class="line"><span class="preprocessor">## alternative hypothesis: true mean is not equal to 0</span></span><br><span class="line"><span class="preprocessor">## 90 percent confidence interval:</span></span><br><span class="line"><span class="preprocessor">##  0.3823384 2.0500441</span></span><br><span class="line"><span class="preprocessor">## sample estimates:</span></span><br><span class="line"><span class="preprocessor">## mean of x </span></span><br><span class="line"><span class="preprocessor">##  1.216191</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.test(x, conf.level = <span class="number">0.9</span>)$conf.int[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.3823384</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t.test(x, conf.level = <span class="number">0.9</span>)$conf.int[<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">2.050044</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="u65B9_u5DEE_u5206_u6790"><a href="#u65B9_u5DEE_u5206_u6790" class="headerlink" title="方差分析"></a>方差分析</h2><ul>
+<li>单因素方差分析</li>
+<li>双因素方差分析</li>
+</ul>
+<h3 id="u5355_u56E0_u7D20_u65B9_u5DEE_u5206_u6790"><a href="#u5355_u56E0_u7D20_u65B9_u5DEE_u5206_u6790" class="headerlink" title="单因素方差分析"></a>单因素方差分析</h3><p>问题和解法:</p>
+<ul>
+<li>多个正态总体的均值是否相等的比较</li>
+<li>$H_0:$ 相等, $H_1:$ 不相等</li>
+<li>平方和分解: 组内平方和+组间平方和</li>
+<li>检验统计量服从$F$分布</li>
+<li>当$F$值过大时, 拒绝$H_0$, 认为各组均值不全相等</li>
+</ul>
+<h3 id="u5355_u56E0_u7D20_u65B9_u5DEE_u5206_u6790_u7684_u6570_u636E_u5F62_u5F0F"><a href="#u5355_u56E0_u7D20_u65B9_u5DEE_u5206_u6790_u7684_u6570_u636E_u5F62_u5F0F" class="headerlink" title="单因素方差分析的数据形式"></a>单因素方差分析的数据形式</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">n1 &lt;- <span class="number">30</span>; n2 &lt;- <span class="number">40</span>; n3 &lt;- <span class="number">35</span></span><br><span class="line">x1 &lt;- rnorm(n1, mean = <span class="number">1</span>)</span><br><span class="line">x2 &lt;- rnorm(n2, mean = <span class="number">2</span>)</span><br><span class="line">x3 &lt;- rnorm(n3, mean = <span class="number">0</span>)</span><br><span class="line">group &lt;- c(rep(<span class="number">1</span>, n1),rep(<span class="number">2</span>, n2),rep(<span class="number">3</span>, n3))</span><br><span class="line">anova.data &lt;- data.frame(x = c(x1,x2,x3), group)</span><br></pre></td></tr></table></figure>
+<h3 id="u7BB1_u7EBF_u56FE_u67E5_u770B_u6570_u636E_u5747_u503C_u662F_u5426_u6709_u5DEE_u5F02"><a href="#u7BB1_u7EBF_u56FE_u67E5_u770B_u6570_u636E_u5747_u503C_u662F_u5426_u6709_u5DEE_u5F02" class="headerlink" title="箱线图查看数据均值是否有差异"></a>箱线图查看数据均值是否有差异</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boxplot(x ~ group, anova.data)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-22-1.png" alt=""> </p>
+<h3 id="u4F7F_u7528oneway-test_u51FD_u6570_u8FDB_u884C_u65B9_u5DEE_u5206_u6790"><a href="#u4F7F_u7528oneway-test_u51FD_u6570_u8FDB_u884C_u65B9_u5DEE_u5206_u6790" class="headerlink" title="使用oneway.test函数进行方差分析"></a>使用oneway.test函数进行方差分析</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">oneway.test(x ~ group, anova.data)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## 	One-way analysis of means (not assuming equal variances)</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## data:  x and group</span></span><br><span class="line"><span class="preprocessor">## F = 26.281, num df = 2.000, denom df = 66.962, p-value = 3.762e-09</span></span><br></pre></td></tr></table></figure>
+<p>双因素和单因素的区别只在于formula(见线性回归部分)</p>
+<h2 id="u7EBF_u6027_u56DE_u5F52"><a href="#u7EBF_u6027_u56DE_u5F52" class="headerlink" title="线性回归"></a>线性回归</h2><ul>
+<li>一元线性回归</li>
+<li>多元线性回归</li>
+<li>模型检验(模型, 单个系数, 残差)</li>
+</ul>
+<h3 id="u5E38_u89C1_u7684_u7EBF_u6027_u56DE_u5F52_u6A21_u578B"><a href="#u5E38_u89C1_u7684_u7EBF_u6027_u56DE_u5F52_u6A21_u578B" class="headerlink" title="常见的线性回归模型"></a>常见的线性回归模型</h3><ul>
+<li>$y = \alpha + \beta x + \epsilon$</li>
+<li>$y = \beta x + \epsilon$</li>
+<li>$y = \alpha + \beta_1 x_1 + \beta_2 x_2 + \epsilon$</li>
+<li>$y = \alpha + \beta_1 x_1 + \beta_2 x_2 + \beta_3 x_1x_2 + \epsilon$</li>
+</ul>
+<h3 id="u7EBF_u6027_u6A21_u578B_u2014_u2014_u6700_u5C0F_u4E8C_u4E58_u4F30_u8BA1"><a href="#u7EBF_u6027_u6A21_u578B_u2014_u2014_u6700_u5C0F_u4E8C_u4E58_u4F30_u8BA1" class="headerlink" title="线性模型——最小二乘估计"></a>线性模型——最小二乘估计</h3><p>线性模型 $y = 3 + 2x + e$ 的数据准备：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- runif(<span class="number">50</span>, <span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line">e &lt;-  rnorm(<span class="number">50</span>)</span><br><span class="line">y &lt;-  <span class="number">3</span> + <span class="number">2</span> * x + e</span><br><span class="line">lm.data &lt;- data.frame(x, y, e)</span><br></pre></td></tr></table></figure>
+<p>注意：一定要将所有变量的数据放到数据框中, 并命名</p>
+<h3 id="u4E00_u5143_u7EBF_u6027_u56DE_u5F52"><a href="#u4E00_u5143_u7EBF_u6027_u56DE_u5F52" class="headerlink" title="一元线性回归"></a>一元线性回归</h3><p>对上述模型进行线性回归分析：</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lm(y ~ x, data = lm.data)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Call:</span></span><br><span class="line"><span class="preprocessor">## lm(formula = y ~ x, data = lm.data)</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Coefficients:</span></span><br><span class="line"><span class="preprocessor">## (Intercept)            x  </span></span><br><span class="line"><span class="preprocessor">##       2.572        2.104</span></span><br></pre></td></tr></table></figure>
+<h3 id="u516C_u5F0F_u7684_u57FA_u672C_u7528_u6CD5"><a href="#u516C_u5F0F_u7684_u57FA_u672C_u7528_u6CD5" class="headerlink" title="公式的基本用法"></a>公式的基本用法</h3><ul>
+<li>?lm, ?formula</li>
+<li>y ~ x 表示 y 是因变量, x 是自变量</li>
+<li>y 对 x 做线性回归分析, 默认是带有截距项的</li>
+<li>y ~ x + 1, 结论和 y ~ x 是一样的, 只是将截距项显式表示了出来</li>
+<li>y ~ x - 1, 是不带有截距项的回归</li>
+<li>如果有两个自变量 x1 和 x2, 则写为 y ~ x1 + x2</li>
+<li>交互项的公式见后面, 其他formula用法见帮助文档</li>
+</ul>
+<h3 id="u7528_u56FE_u5F62_u5C55_u793A_u4E00_u5143_u7EBF_u6027_u56DE_u5F52"><a href="#u7528_u56FE_u5F62_u5C55_u793A_u4E00_u5143_u7EBF_u6027_u56DE_u5F52" class="headerlink" title="用图形展示一元线性回归"></a>用图形展示一元线性回归</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">linear.model &lt;- lm(y ~ x, data = lm.data)</span><br><span class="line">plot(x,y)</span><br><span class="line">abline(linear.model$coefficients)</span><br><span class="line">abline(<span class="number">3</span>,<span class="number">2</span>, col = <span class="string">"red"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-26-1.png" alt=""> </p>
+<p>估计值和真实值的差别</p>
+<h3 id="u4E0D_u5E26_u622A_u8DDD_u9879_u7684_u4E00_u5143_u7EBF_u6027_u56DE_u5F52"><a href="#u4E0D_u5E26_u622A_u8DDD_u9879_u7684_u4E00_u5143_u7EBF_u6027_u56DE_u5F52" class="headerlink" title="不带截距项的一元线性回归"></a>不带截距项的一元线性回归</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">y &lt;- <span class="number">2</span> * x + e</span><br><span class="line">no.intercept &lt;- data.frame(x, y, e)</span><br><span class="line">lm(y ~ x - <span class="number">1</span>, no.intercept)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Call:</span></span><br><span class="line"><span class="preprocessor">## lm(formula = y ~ x - 1, data = no.intercept)</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Coefficients:</span></span><br><span class="line"><span class="preprocessor">##     x  </span></span><br><span class="line"><span class="preprocessor">## 1.898</span></span><br></pre></td></tr></table></figure>
+<h3 id="u591A_u5143_u7EBF_u6027_u56DE_u5F52"><a href="#u591A_u5143_u7EBF_u6027_u56DE_u5F52" class="headerlink" title="多元线性回归"></a>多元线性回归</h3><p>数据准备:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- runif(<span class="number">50</span>, <span class="number">1</span>, <span class="number">3</span>)</span><br><span class="line">y &lt;-  rnorm(<span class="number">50</span>, <span class="number">3</span>, <span class="number">2</span>)</span><br><span class="line">z &lt;-  <span class="number">10</span> + <span class="number">2</span>*x + <span class="number">5</span>*y + e</span><br><span class="line">multilinear &lt;- data.frame(x, y, z, e)</span><br></pre></td></tr></table></figure>
+<h3 id="u591A_u5143_u7EBF_u6027_u56DE_u5F52-1"><a href="#u591A_u5143_u7EBF_u6027_u56DE_u5F52-1" class="headerlink" title="多元线性回归"></a>多元线性回归</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lm(z ~ x + y, multilinear)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Call:</span></span><br><span class="line"><span class="preprocessor">## lm(formula = z ~ x + y, data = multilinear)</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Coefficients:</span></span><br><span class="line"><span class="preprocessor">## (Intercept)            x            y  </span></span><br><span class="line"><span class="preprocessor">##         8.5          2.0          5.5</span></span><br></pre></td></tr></table></figure>
+<h3 id="u83B7_u53D6_u56DE_u5F52_u7EDF_u8BA1_u91CF"><a href="#u83B7_u53D6_u56DE_u5F52_u7EDF_u8BA1_u91CF" class="headerlink" title="获取回归统计量"></a>获取回归统计量</h3><p>将线性模型赋值给一个变量, 然后对其运行以下函数</p>
+<ul>
+<li>anova 方差分析表</li>
+<li>coefficients(coef) 回归系数</li>
+<li>confint 给出回归系数的置信区间</li>
+<li>deviance 残差平方和</li>
+<li>fitted 给出拟合y值的向量</li>
+<li>residuals(resid) 给出模型残差</li>
+<li>summary 重要统计量</li>
+</ul>
+<h3 id="u56DE_u5F52_u7EDF_u8BA1_u91CF_u63D0_u53D6"><a href="#u56DE_u5F52_u7EDF_u8BA1_u91CF_u63D0_u53D6" class="headerlink" title="回归统计量提取"></a>回归统计量提取</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m &lt;- lm(y ~ x, data = lm.data)</span><br><span class="line">coef(m);confint(m);</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## (Intercept)           x </span></span><br><span class="line"><span class="preprocessor">##    <span class="number">2.571960</span>    <span class="number">2.103918</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##                <span class="number">2.5</span> %   <span class="number">97.5</span> %</span></span><br><span class="line"><span class="preprocessor">## (Intercept) <span class="number">1.369816</span> <span class="number">3.774104</span></span></span><br><span class="line"><span class="preprocessor">## x           <span class="number">1.505274</span> <span class="number">2.702562</span></span></span><br></pre></td></tr></table></figure>
+<p>请自行尝试其他函数, 尤其是 <strong>summary</strong></p>
+<h3 id="u8FD0_u884C_u6709_u4EA4_u4E92_u9879_u7684_u7EBF_u6027_u56DE_u5F52"><a href="#u8FD0_u884C_u6709_u4EA4_u4E92_u9879_u7684_u7EBF_u6027_u56DE_u5F52" class="headerlink" title="运行有交互项的线性回归"></a>运行有交互项的线性回归</h3><ul>
+<li>带有交互项的回归模型: $y = \beta_0 + \beta_1 u + \beta_2 v + \beta_3 uv + \epsilon$</li>
+<li>lm(formula) 其中formula可以是以下三种等价情况<ul>
+<li>y ~ u*v</li>
+<li>y ~ u + v + u*v</li>
+<li>y ~ (u + v)^2</li>
+</ul>
+</li>
+</ul>
+<h3 id="u4EA4_u4E92_u9879_u4E3E_u4F8B"><a href="#u4EA4_u4E92_u9879_u4E3E_u4F8B" class="headerlink" title="交互项举例"></a>交互项举例</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- runif(<span class="number">100</span>, <span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line">y &lt;- runif(<span class="number">100</span>, <span class="number">3</span>, <span class="number">6</span>)</span><br><span class="line">z &lt;- <span class="number">1</span> + <span class="number">2</span>*x + <span class="number">3</span>*y + <span class="number">5</span>*x*y + rnorm(<span class="number">100</span>)</span><br><span class="line">lm(z ~ x*y)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Call:</span></span><br><span class="line"><span class="preprocessor">## lm(formula = z ~ x * y)</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Coefficients:</span></span><br><span class="line"><span class="preprocessor">## (Intercept)            x            y          x:y  </span></span><br><span class="line"><span class="preprocessor">##      -1.899        2.950        3.813        4.740</span></span><br></pre></td></tr></table></figure>
+<h3 id="u9009_u62E9_u6700_u5408_u9002_u7684_u56DE_u5F52_u53D8_u91CF"><a href="#u9009_u62E9_u6700_u5408_u9002_u7684_u56DE_u5F52_u53D8_u91CF" class="headerlink" title="选择最合适的回归变量"></a>选择最合适的回归变量</h3><p>如果数据可选择的变量太多, 则需要筛选一部分作为回归变量</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">full.model &lt;- lm(y ~ x1 + x2 + x3 + x4)</span><br><span class="line">reduced.model &lt;- step(full.model, direction = <span class="string">"backward"</span>)</span><br><span class="line"></span><br><span class="line">min.model &lt;- lm(y ~ <span class="number">1</span>)</span><br><span class="line">fwd.model &lt;- step(min.model, </span><br><span class="line">                  direction = <span class="string">"forward"</span>, </span><br><span class="line">                  scope = ( ~ x1 + x2 + x3 + x4))</span><br></pre></td></tr></table></figure>
+<h3 id="u5728_u56DE_u5F52_u516C_u5F0F_u4E2D_u4F7F_u7528_u8868_u8FBE_u5F0F"><a href="#u5728_u56DE_u5F52_u516C_u5F0F_u4E2D_u4F7F_u7528_u8868_u8FBE_u5F0F" class="headerlink" title="在回归公式中使用表达式"></a>在回归公式中使用表达式</h3><ul>
+<li>问题1: $y = \beta_0 + \beta_1(u + v) + \epsilon$ 如何建立回归模型?</li>
+<li>问题2: $y = \beta_0 + \beta_1 u + \beta_2 u^2 + \epsilon$ 如何建立回归模型?</li>
+<li>对问题1: lm(y ~ u + v) 可以吗</li>
+<li>对问题2: lm(y ~ u + u^2) 可以吗</li>
+</ul>
+<p>正确方法:</p>
+<ul>
+<li>问题1: lm(y ~ I(u + v))</li>
+<li>问题2: lm(y ~ u + I(u^2))</li>
+</ul>
+<h3 id="u4E3E_u4F8B"><a href="#u4E3E_u4F8B" class="headerlink" title="举例"></a>举例</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- runif(<span class="number">100</span>, <span class="number">1</span>, <span class="number">5</span>)</span><br><span class="line">y &lt;- <span class="number">3</span> + x + x^<span class="number">2</span> + rnorm(<span class="number">100</span>, sd = <span class="number">0.5</span>)</span><br><span class="line">lm(y ~ x + x^<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Call:</span></span><br><span class="line"><span class="preprocessor">## lm(formula = y ~ x + x^2)</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Coefficients:</span></span><br><span class="line"><span class="preprocessor">## (Intercept)            x  </span></span><br><span class="line"><span class="preprocessor">##      -4.055        6.777</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lm(y ~ x + I(x^<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Call:</span></span><br><span class="line"><span class="preprocessor">## lm(formula = y ~ x + I(x^2))</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Coefficients:</span></span><br><span class="line"><span class="preprocessor">## (Intercept)            x       I(x^2)  </span></span><br><span class="line"><span class="preprocessor">##      3.4047       0.7102       1.0492</span></span><br></pre></td></tr></table></figure>
+<h3 id="u591A_u9879_u5F0F_u56DE_u5F52"><a href="#u591A_u9879_u5F0F_u56DE_u5F52" class="headerlink" title="多项式回归"></a>多项式回归</h3><p>$y = \beta_0 + \beta_1 x_1 + \beta_2 x_1^2 + \beta_3 x_1^3 + \epsilon$</p>
+<ul>
+<li>错误写法: lm(y ~ x + x^2 + x^3)</li>
+<li>正确写法: lm(y ~ poly(x,3,raw = TRUE))</li>
+<li>也可以: lm(y ~ x + I(x^2) + I(x^3))</li>
+</ul>
+<h3 id="u6570_u636E_u8F6C_u6362"><a href="#u6570_u636E_u8F6C_u6362" class="headerlink" title="数据转换"></a>数据转换</h3><p>对下图, 应如何拟合? 是线性吗? </p>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-34-1.png" alt=""> </p>
+<p>以上直接用线性拟合显然不好</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot(x,y)</span><br><span class="line">abline(coef(lm(y ~ x)))</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-35-1.png" alt=""> </p>
+<p>对以上数据尝试取对数</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z &lt;- log(y)</span><br><span class="line">plot(x,z)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-36-1.png" alt=""> </p>
+<p>也可以在公式中直接对数据变换</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- runif(<span class="number">100</span>, -<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">y &lt;- exp(<span class="number">1</span> + x + rnorm(<span class="number">100</span>, sd = <span class="number">0.1</span>))</span><br><span class="line">lm(log(y) ~ x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Call:</span></span><br><span class="line"><span class="preprocessor">## lm(formula = log(y) ~ x)</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## Coefficients:</span></span><br><span class="line"><span class="preprocessor">## (Intercept)            x  </span></span><br><span class="line"><span class="preprocessor">##      1.0084       0.9985</span></span><br></pre></td></tr></table></figure>
+<h3 id="u7ED8_u5236_u6B8B_u5DEE_u56FE"><a href="#u7ED8_u5236_u6B8B_u5DEE_u56FE" class="headerlink" title="绘制残差图"></a>绘制残差图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">m &lt;- lm(log(y) ~ x)</span><br><span class="line">plot(m, which = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-38-1.png" alt=""> </p>
+<h3 id="u7EBF_u6027_u56DE_u5F52_u6A21_u578B_u8BCA_u65AD"><a href="#u7EBF_u6027_u56DE_u5F52_u6A21_u578B_u8BCA_u65AD" class="headerlink" title="线性回归模型诊断"></a>线性回归模型诊断</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">par(mfrow = c(<span class="number">2</span>,<span class="number">2</span>))</span><br><span class="line">plot(m)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-39-1.png" alt=""> </p>
+<h3 id="u7528_u7EBF_u6027_u6A21_u578B_u8FDB_u884C_u9884_u6D4B"><a href="#u7528_u7EBF_u6027_u6A21_u578B_u8FDB_u884C_u9884_u6D4B" class="headerlink" title="用线性模型进行预测"></a>用线性模型进行预测</h3><ul>
+<li>建立模型</li>
+<li>将需要预测的自变量放在一个数据框里</li>
+<li>使用predict函数进行预测</li>
+</ul>
+<h3 id="u6A21_u578B_u9884_u6D4B_u4E3E_u4F8B"><a href="#u6A21_u578B_u9884_u6D4B_u4E3E_u4F8B" class="headerlink" title="模型预测举例"></a>模型预测举例</h3><p>数据准备</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1234</span>)</span><br><span class="line">x &lt;- seq(<span class="number">1</span>,<span class="number">10</span>,by = <span class="number">0.5</span>)</span><br><span class="line">y &lt;- <span class="number">1</span> + <span class="number">2</span> * x + rnorm(length(x))</span><br><span class="line">data &lt;- data.frame(x,y)</span><br><span class="line">original &lt;- lm(y ~ x, data)</span><br><span class="line">preds &lt;- data.frame(x = c(<span class="number">1.7</span>, <span class="number">2.8</span>, <span class="number">5.4</span>))</span><br><span class="line">predict(original, newdata = preds)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##         <span class="number">1</span>         <span class="number">2</span>         <span class="number">3</span> </span></span><br><span class="line"><span class="preprocessor">##  <span class="number">4.068607</span>  <span class="number">6.251350</span> <span class="number">11.410563</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u9884_u6D4B_u6548_u679C"><a href="#u9884_u6D4B_u6548_u679C" class="headerlink" title="预测效果"></a>预测效果</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">new.y &lt;- predict(original, newdata = preds)</span><br><span class="line">plot(data)</span><br><span class="line">abline(coef(original), lwd = <span class="number">2</span>)</span><br><span class="line">points(c(<span class="number">1.7</span>, <span class="number">2.8</span>, <span class="number">5.4</span>), new.y, pch = <span class="number">20</span>, col = <span class="string">"red"</span>, cex = <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-41-1.png" alt=""> </p>
+<h3 id="u6B63_u6001_u6027_u68C0_u9A8C"><a href="#u6B63_u6001_u6027_u68C0_u9A8C" class="headerlink" title="正态性检验"></a>正态性检验</h3><p>检验单个变量是否服从正态分布, 使用 shapiro.test</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">123</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>, mean = <span class="number">5</span>, sd = <span class="number">3</span>)</span><br><span class="line">shapiro.test(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## 	Shapiro-Wilk normality test</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## data:  x</span></span><br><span class="line"><span class="preprocessor">## W = 0.99388, p-value = 0.9349</span></span><br></pre></td></tr></table></figure>
+<p>如果 p-value 太小，不是正态分布</p>
+<h3 id="u4F7F_u7528qq_u56FE_u67E5_u770B_u6B63_u6001_u6027"><a href="#u4F7F_u7528qq_u56FE_u67E5_u770B_u6B63_u6001_u6027" class="headerlink" title="使用qq图查看正态性"></a>使用qq图查看正态性</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">qqnorm(x)</span><br><span class="line">qqline(x)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/prob_stat/unnamed-chunk-43-1.png" alt=""> </p>
+<h2 id="u5176_u4ED6_u5185_u5BB9"><a href="#u5176_u4ED6_u5185_u5BB9" class="headerlink" title="其他内容"></a>其他内容</h2><ul>
+<li>Logistic回归(glm)</li>
+<li>聚类分析(dist, hclust, cutree)</li>
+<li>主成分分析(prcomp)</li>
+<li>因子分析(factanal)</li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/R/">R</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/R-programing/">R programing</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://ripeconan.com/2015/12/07/6_probability_statistics/" data-title="概率统计 | ripeconan" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/11/23/dplyr/"  title="数据处理之dplyr包">
+ <strong>下一篇：</strong><br/> 
+ <span>数据处理之dplyr包
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u63D0_u8981"><span class="toc-number">1.</span> <span class="toc-text">内容提要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6982_u7387"><span class="toc-number">2.</span> <span class="toc-text">概率</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BA1_u7B97_u6392_u5217_u7EC4_u5408"><span class="toc-number">2.1.</span> <span class="toc-text">计算排列组合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u968F_u673A_u6570"><span class="toc-number">2.2.</span> <span class="toc-text">生成随机数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u968F_u673A_u6837_u672C"><span class="toc-number">2.3.</span> <span class="toc-text">生成随机样本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u968F_u673A_u6392_u5217"><span class="toc-number">2.4.</span> <span class="toc-text">向量随机排列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528summary_u6C47_u603B_u6570_u636E"><span class="toc-number">3.</span> <span class="toc-text">使用summary汇总数据</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5206_u7C7B_u53D8_u91CF_u8BA1_u7B97_u9891_u6570_3Atable"><span class="toc-number">3.1.</span> <span class="toc-text">分类变量计算频数:table</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u5206_u7C7B_u53D8_u91CF_u7684_u5217_u8054_u5206_u6790"><span class="toc-number">3.2.</span> <span class="toc-text">两个分类变量的列联分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u53C2_u6570_u4F30_u8BA1"><span class="toc-number">4.</span> <span class="toc-text">参数估计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5355_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_2C__5Csigma_5E2_29_24"><span class="toc-number">4.1.</span> <span class="toc-text">单个正态总体 $N(\mu, \sigma^2)$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u65B9_u5DEE__24_5Csigma_5E2_24__u5DF2_u77E5"><span class="toc-number">4.2.</span> <span class="toc-text">方差 $\sigma^2$ 已知</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u65B9_u5DEE__24_5Csigma_5E2_24__u672A_u77E5"><span class="toc-number">5.</span> <span class="toc-text">方差 $\sigma^2$ 未知</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_1_2C__5Csigma_1_5E2_29_2C_N_28_5Cmu_2_2C__5Csigma_2_5E2_29_24"><span class="toc-number">5.1.</span> <span class="toc-text">两个正态总体 $N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u65B9_u5DEE__24_5Csigma_1_5E2_2C__5Csigma_2_5E2_24__u5DF2_u77E5"><span class="toc-number">5.2.</span> <span class="toc-text">方差 $\sigma_1^2, \sigma_2^2$ 已知</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u65B9_u5DEE__24_5Csigma_1_5E2_2C__5Csigma_2_5E2_24__u672A_u77E5_u5374_u76F8_u7B49"><span class="toc-number">5.3.</span> <span class="toc-text">方差 $\sigma_1^2, \sigma_2^2$ 未知却相等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7528_u6A21_u62DF_u9A8C_u8BC1_u7F6E_u4FE1_u533A_u95F4_u7684_u542B_u4E49"><span class="toc-number">5.4.</span> <span class="toc-text">用模拟验证置信区间的含义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7528_u6A21_u62DF_u56FE_u5F62_u9A8C_u8BC1_u7F6E_u4FE1_u533A_u95F4"><span class="toc-number">5.5.</span> <span class="toc-text">用模拟图形验证置信区间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5047_u8BBE_u68C0_u9A8C"><span class="toc-number">6.</span> <span class="toc-text">假设检验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5355_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_2C__5Csigma_5E2_29_24_u5747_u503C_24_5Cmu_24_u7684_u68C0_u9A8C"><span class="toc-number">6.1.</span> <span class="toc-text">单个正态总体 $N(\mu, \sigma^2)$均值$\mu$的检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#t-test__u8FDB_u884C_u5355_u6B63_u6001_u603B_u4F53_t_u68C0_u9A8C"><span class="toc-number">6.2.</span> <span class="toc-text">t.test 进行单正态总体 t检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u6B63_u6001_u603B_u4F53__24N_28_5Cmu_1_2C__5Csigma_1_5E2_29_2C_N_28_5Cmu_2_2C__5Csigma_2_5E2_29_24_u5747_u503C_u5DEE_u7684_u68C0_u9A8C"><span class="toc-number">6.3.</span> <span class="toc-text">两个正态总体 $N(\mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)$均值差的检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#t-test__u8FDB_u884C_u4E24_u6B63_u6001_u603B_u4F53_u5747_u503C_u5DEE_t_u68C0_u9A8C"><span class="toc-number">6.4.</span> <span class="toc-text">t.test 进行两正态总体均值差 t检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6210_u5BF9_u6570_u636E_u914D_u5BF9_t_u68C0_u9A8C"><span class="toc-number">6.5.</span> <span class="toc-text">成对数据配对 t检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#t-test__u8FDB_u884C__u6210_u5BF9_u6570_u636E_u914D_u5BF9_t_u68C0_u9A8C"><span class="toc-number">6.6.</span> <span class="toc-text">t.test 进行 成对数据配对 t检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#t-test__u7684_u5176_u4ED6_u53C2_u6570"><span class="toc-number">6.7.</span> <span class="toc-text">t.test 的其他参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F6E_u4FE1_u533A_u95F4_u548C_u5047_u8BBE_u68C0_u9A8C_u4E2D_u5FFD_u7565_u4E86_u7684_u5185_u5BB9"><span class="toc-number">6.8.</span> <span class="toc-text">置信区间和假设检验中忽略了的内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F6E_u4FE1_u533A_u95F4_u548C_u5047_u8BBE_u68C0_u9A8C_u7684_u5173_u7CFB"><span class="toc-number">6.9.</span> <span class="toc-text">置信区间和假设检验的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F6E_u4FE1_u533A_u95F4_u4E0A_u4E0B_u9650_u548C_u5047_u8BBE_u68C0_u9A8C_u7684_u7ED3_u679C"><span class="toc-number">6.10.</span> <span class="toc-text">置信区间上下限和假设检验的结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u65B9_u5DEE_u5206_u6790"><span class="toc-number">7.</span> <span class="toc-text">方差分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5355_u56E0_u7D20_u65B9_u5DEE_u5206_u6790"><span class="toc-number">7.1.</span> <span class="toc-text">单因素方差分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5355_u56E0_u7D20_u65B9_u5DEE_u5206_u6790_u7684_u6570_u636E_u5F62_u5F0F"><span class="toc-number">7.2.</span> <span class="toc-text">单因素方差分析的数据形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7BB1_u7EBF_u56FE_u67E5_u770B_u6570_u636E_u5747_u503C_u662F_u5426_u6709_u5DEE_u5F02"><span class="toc-number">7.3.</span> <span class="toc-text">箱线图查看数据均值是否有差异</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528oneway-test_u51FD_u6570_u8FDB_u884C_u65B9_u5DEE_u5206_u6790"><span class="toc-number">7.4.</span> <span class="toc-text">使用oneway.test函数进行方差分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.</span> <span class="toc-text">线性回归</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5E38_u89C1_u7684_u7EBF_u6027_u56DE_u5F52_u6A21_u578B"><span class="toc-number">8.1.</span> <span class="toc-text">常见的线性回归模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EBF_u6027_u6A21_u578B_u2014_u2014_u6700_u5C0F_u4E8C_u4E58_u4F30_u8BA1"><span class="toc-number">8.2.</span> <span class="toc-text">线性模型——最小二乘估计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u5143_u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.3.</span> <span class="toc-text">一元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u516C_u5F0F_u7684_u57FA_u672C_u7528_u6CD5"><span class="toc-number">8.4.</span> <span class="toc-text">公式的基本用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7528_u56FE_u5F62_u5C55_u793A_u4E00_u5143_u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.5.</span> <span class="toc-text">用图形展示一元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0D_u5E26_u622A_u8DDD_u9879_u7684_u4E00_u5143_u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.6.</span> <span class="toc-text">不带截距项的一元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u591A_u5143_u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.7.</span> <span class="toc-text">多元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u591A_u5143_u7EBF_u6027_u56DE_u5F52-1"><span class="toc-number">8.8.</span> <span class="toc-text">多元线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u83B7_u53D6_u56DE_u5F52_u7EDF_u8BA1_u91CF"><span class="toc-number">8.9.</span> <span class="toc-text">获取回归统计量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u56DE_u5F52_u7EDF_u8BA1_u91CF_u63D0_u53D6"><span class="toc-number">8.10.</span> <span class="toc-text">回归统计量提取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8FD0_u884C_u6709_u4EA4_u4E92_u9879_u7684_u7EBF_u6027_u56DE_u5F52"><span class="toc-number">8.11.</span> <span class="toc-text">运行有交互项的线性回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4EA4_u4E92_u9879_u4E3E_u4F8B"><span class="toc-number">8.12.</span> <span class="toc-text">交互项举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9009_u62E9_u6700_u5408_u9002_u7684_u56DE_u5F52_u53D8_u91CF"><span class="toc-number">8.13.</span> <span class="toc-text">选择最合适的回归变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5728_u56DE_u5F52_u516C_u5F0F_u4E2D_u4F7F_u7528_u8868_u8FBE_u5F0F"><span class="toc-number">8.14.</span> <span class="toc-text">在回归公式中使用表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E3E_u4F8B"><span class="toc-number">8.15.</span> <span class="toc-text">举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u591A_u9879_u5F0F_u56DE_u5F52"><span class="toc-number">8.16.</span> <span class="toc-text">多项式回归</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u8F6C_u6362"><span class="toc-number">8.17.</span> <span class="toc-text">数据转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7ED8_u5236_u6B8B_u5DEE_u56FE"><span class="toc-number">8.18.</span> <span class="toc-text">绘制残差图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EBF_u6027_u56DE_u5F52_u6A21_u578B_u8BCA_u65AD"><span class="toc-number">8.19.</span> <span class="toc-text">线性回归模型诊断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7528_u7EBF_u6027_u6A21_u578B_u8FDB_u884C_u9884_u6D4B"><span class="toc-number">8.20.</span> <span class="toc-text">用线性模型进行预测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6A21_u578B_u9884_u6D4B_u4E3E_u4F8B"><span class="toc-number">8.21.</span> <span class="toc-text">模型预测举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9884_u6D4B_u6548_u679C"><span class="toc-number">8.22.</span> <span class="toc-text">预测效果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6B63_u6001_u6027_u68C0_u9A8C"><span class="toc-number">8.23.</span> <span class="toc-text">正态性检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528qq_u56FE_u67E5_u770B_u6B63_u6001_u6027"><span class="toc-number">8.24.</span> <span class="toc-text">使用qq图查看正态性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5176_u4ED6_u5185_u5BB9"><span class="toc-number">9.</span> <span class="toc-text">其他内容</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Learning/" title="Learning">Learning<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/R/" title="R">R<sup>7</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/R-programing/" title="R programing">R programing<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/data-mining/" title="data mining">data mining<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-package/" title="R package">R package<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-函数/" title="R 函数">R 函数<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/To-Do/" title="To Do">To Do<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithms/" title="algorithms">algorithms<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://zjdian.com/" target="_blank" title="中继点">中继点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.fens.me/" target="_blank" title="粉丝日志">粉丝日志</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Design your life, Build your dream. <br/>
+			     </p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="ripeconan">ripeconan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe6d1f421bbc9962127a50488f9ed37d1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

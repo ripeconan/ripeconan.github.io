@@ -1,0 +1,762 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>R语言简介 | ripeconan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="ripeconan">
+    
+
+    
+    <meta name="description" content="R语言相关教材
+学习R
+统计建模与R软件
+R数据可视化手册
+R语言经典实例
+R语言实战
+R语言与统计分析
+R语言编程艺术
+ggplot2：数据分析与图形艺术
+
+内容架构
+R语言简介: 软件安装, 获取帮助, 包的安装
+数据类型
+数据结构: 向量, 矩阵, 数组, 数据框, 因子, 列表
+输入输出: 读取各种数据, 保存数据
+数据处理: dplyr包
+控制流
+函数
+统计分析
+作图: ggplot2包">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言简介">
+<meta property="og:url" content="http://ripeconan.com/2015/09/21/R_language_introduction/index.html">
+<meta property="og:site_name" content="ripeconan">
+<meta property="og:description" content="R语言相关教材
+学习R
+统计建模与R软件
+R数据可视化手册
+R语言经典实例
+R语言实战
+R语言与统计分析
+R语言编程艺术
+ggplot2：数据分析与图形艺术
+
+内容架构
+R语言简介: 软件安装, 获取帮助, 包的安装
+数据类型
+数据结构: 向量, 矩阵, 数组, 数据框, 因子, 列表
+输入输出: 读取各种数据, 保存数据
+数据处理: dplyr包
+控制流
+函数
+统计分析
+作图: ggplot2包">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/shinyintro.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/worldmap.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/usamap.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/statemap.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unemploymap.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-13-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-14-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-15-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-17-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-18-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-19-1.png">
+<meta property="og:updated_time" content="2015-11-07T03:55:29.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R语言简介">
+<meta name="twitter:description" content="R语言相关教材
+学习R
+统计建模与R软件
+R数据可视化手册
+R语言经典实例
+R语言实战
+R语言与统计分析
+R语言编程艺术
+ggplot2：数据分析与图形艺术
+
+内容架构
+R语言简介: 软件安装, 获取帮助, 包的安装
+数据类型
+数据结构: 向量, 矩阵, 数组, 数据框, 因子, 列表
+输入输出: 读取各种数据, 保存数据
+数据处理: dplyr包
+控制流
+函数
+统计分析
+作图: ggplot2包">
+
+    
+    <link rel="alternative" href="/atom.xml" title="ripeconan" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="ripeconan" title="ripeconan"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:ripeconan.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/09/21/R_language_introduction/" title="R语言简介" itemprop="url">R语言简介</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
+		
+  <p class="article-time">
+    <time datetime="2015-09-20T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-09-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u8BED_u8A00_u76F8_u5173_u6559_u6750"><span class="toc-number">1.</span> <span class="toc-text">R语言相关教材</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u67B6_u6784"><span class="toc-number">2.</span> <span class="toc-text">内容架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shiny"><span class="toc-number">2.1.</span> <span class="toc-text">shiny</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E16_u754C_u5730_u56FE"><span class="toc-number">2.2.</span> <span class="toc-text">世界地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F8E_u56FD_u5730_u56FE"><span class="toc-number">2.3.</span> <span class="toc-text">美国地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5404_u5DDE_u5730_u56FE"><span class="toc-number">2.4.</span> <span class="toc-text">各州地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5931_u4E1A_u5206_u5E03_u5730_u56FE"><span class="toc-number">2.5.</span> <span class="toc-text">失业分布地图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u5386_u53F2_u7B80_u4ECB"><span class="toc-number">3.</span> <span class="toc-text">R历史简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F00_u53D1_u5DE5_u5177"><span class="toc-number">4.</span> <span class="toc-text">开发工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684_u4E0B_u8F7D_u548C_u5B89_u88C5"><span class="toc-number">4.1.</span> <span class="toc-text">R的下载和安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684IDE_u4ECB_u7ECD_3A_RStudio"><span class="toc-number">4.2.</span> <span class="toc-text">R的IDE介绍: RStudio</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u7684_u57FA_u7840_u4F7F_u7528"><span class="toc-number">5.</span> <span class="toc-text">R的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u4F5C_u4E3A_u79D1_u5B66_u8BA1_u7B97_u5668"><span class="toc-number">5.1.</span> <span class="toc-text">R作为科学计算器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R__u4E2D_u7684_u5E38_u91CF_u548C_u53D8_u91CF"><span class="toc-number">5.2.</span> <span class="toc-text">R 中的常量和变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7ED9_u53D8_u91CF_u8D4B_u503C"><span class="toc-number">5.3.</span> <span class="toc-text">给变量赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u53D8_u91CF_u7A7A_u95F4"><span class="toc-number">5.4.</span> <span class="toc-text">变量空间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411_u91CF"><span class="toc-number">6.</span> <span class="toc-text">向量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u5411_u91CF"><span class="toc-number">6.1.</span> <span class="toc-text">生成向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BA1_u7B97_u57FA_u672C_u7EDF_u8BA1_u91CF"><span class="toc-number">6.2.</span> <span class="toc-text">计算基本统计量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u6570_u5217seq"><span class="toc-number">6.3.</span> <span class="toc-text">生成数列seq</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u6570_u5217rep"><span class="toc-number">6.4.</span> <span class="toc-text">生成数列rep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BF7_u5C1D_u8BD5_u751F_u6210_u4EE5_u4E0B_u6570_u5217"><span class="toc-number">6.5.</span> <span class="toc-text">请尝试生成以下数列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9009_u53D6_u5411_u91CF_u4E2D_u7684_u5143_u7D20"><span class="toc-number">6.6.</span> <span class="toc-text">选取向量中的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u5E38_u7528_u51FD_u6570"><span class="toc-number">6.7.</span> <span class="toc-text">向量常用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u7684_u5FAA_u73AF_u8BA1_u7B97"><span class="toc-number">6.8.</span> <span class="toc-text">向量的循环计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u7684_u51FD_u6570_u8BA1_u7B97"><span class="toc-number">6.9.</span> <span class="toc-text">向量的函数计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u903B_u8F91_u5411_u91CF_u548C_u6BD4_u8F83_u8FD0_u7B97_u7B26"><span class="toc-number">6.10.</span> <span class="toc-text">逻辑向量和比较运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_u903B_u8F91_u8868_u8FBE_u5F0F_u6765_u9009_u62E9_u5411_u91CF"><span class="toc-number">6.11.</span> <span class="toc-text">使用逻辑表达式来选择向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u903B_u8F91_u8868_u8FBE_u5F0F_u6D3B_u7528"><span class="toc-number">6.12.</span> <span class="toc-text">逻辑表达式活用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F5C_u56FE"><span class="toc-number">7.</span> <span class="toc-text">作图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u57FA_u7840_u4F5C_u56FE_u4ECB_u7ECD"><span class="toc-number">7.1.</span> <span class="toc-text">基础作图介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6563_u70B9_u56FE"><span class="toc-number">7.2.</span> <span class="toc-text">散点图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8FDE_u7EBF_u56FE"><span class="toc-number">7.3.</span> <span class="toc-text">连线图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E09_u7EF4_u56FE_uFF0C_u7B49_u503C_u7EBF_u56FE_uFF0C_u7B49_u503C_u8272_u56FE"><span class="toc-number">8.</span> <span class="toc-text">三维图，等值线图，等值色图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E09_u7EF4_u56FE"><span class="toc-number">8.1.</span> <span class="toc-text">三维图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7B49_u503C_u7EBF_u56FE"><span class="toc-number">8.2.</span> <span class="toc-text">等值线图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7B49_u503C_u8272_u56FE"><span class="toc-number">8.3.</span> <span class="toc-text">等值色图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5E2E_u52A9"><span class="toc-number">9.</span> <span class="toc-text">帮助</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R__u7684_u5E2E_u52A9_u6587_u6863"><span class="toc-number">9.1.</span> <span class="toc-text">R 的帮助文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u901A_u8FC7_u7F51_u7EDC_u83B7_u53D6_u5E2E_u52A9"><span class="toc-number">9.2.</span> <span class="toc-text">通过网络获取帮助</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_Package__u64CD_u4F5C"><span class="toc-number">9.3.</span> <span class="toc-text">R Package 操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Datacamp"><span class="toc-number">9.4.</span> <span class="toc-text">Datacamp</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="R_u8BED_u8A00_u76F8_u5173_u6559_u6750"><a href="#R_u8BED_u8A00_u76F8_u5173_u6559_u6750" class="headerlink" title="R语言相关教材"></a>R语言相关教材</h2><ol>
+<li>学习R</li>
+<li>统计建模与R软件</li>
+<li>R数据可视化手册</li>
+<li>R语言经典实例</li>
+<li>R语言实战</li>
+<li>R语言与统计分析</li>
+<li>R语言编程艺术</li>
+<li>ggplot2：数据分析与图形艺术</li>
+</ol>
+<h2 id="u5185_u5BB9_u67B6_u6784"><a href="#u5185_u5BB9_u67B6_u6784" class="headerlink" title="内容架构"></a>内容架构</h2><ol>
+<li>R语言简介: 软件安装, 获取帮助, 包的安装</li>
+<li>数据类型</li>
+<li>数据结构: 向量, 矩阵, 数组, 数据框, 因子, 列表</li>
+<li>输入输出: 读取各种数据, 保存数据</li>
+<li>数据处理: dplyr包</li>
+<li>控制流</li>
+<li>函数</li>
+<li>统计分析</li>
+<li>作图: ggplot2包(见pdf)</li>
+<li>knitr, markdown(本课件, 可重复性研究)</li>
+<li>shiny(安装shiny包, 初始文档)</li>
+<li>地图相关应用</li>
+<li>文本数据挖掘</li>
+</ol>
+<h3 id="shiny"><a href="#shiny" class="headerlink" title="shiny"></a>shiny</h3><p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/shinyintro.png" alt="shinyintro"> </p>
+<h3 id="u4E16_u754C_u5730_u56FE"><a href="#u4E16_u754C_u5730_u56FE" class="headerlink" title="世界地图"></a>世界地图</h3><p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/worldmap.png" alt="worldmap"></p>
+<h3 id="u7F8E_u56FD_u5730_u56FE"><a href="#u7F8E_u56FD_u5730_u56FE" class="headerlink" title="美国地图"></a>美国地图</h3><p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/usamap.png" alt="usamap"></p>
+<h3 id="u5404_u5DDE_u5730_u56FE"><a href="#u5404_u5DDE_u5730_u56FE" class="headerlink" title="各州地图"></a>各州地图</h3><p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/statemap.png" alt="statemap"></p>
+<h3 id="u5931_u4E1A_u5206_u5E03_u5730_u56FE"><a href="#u5931_u4E1A_u5206_u5E03_u5730_u56FE" class="headerlink" title="失业分布地图"></a>失业分布地图</h3><p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unemploymap.png" alt="unemploymap"></p>
+<h2 id="R_u5386_u53F2_u7B80_u4ECB"><a href="#R_u5386_u53F2_u7B80_u4ECB" class="headerlink" title="R历史简介"></a>R历史简介</h2><ul>
+<li>奥克兰大学Ross Ihaka, Robert Gentleman 在20世纪90年代初开发</li>
+<li>前身是20世纪70年代的S语言(贝尔实验室开发)</li>
+<li>免费, 开源, 由20人左右的核心团队维护</li>
+</ul>
+<h2 id="u5F00_u53D1_u5DE5_u5177"><a href="#u5F00_u53D1_u5DE5_u5177" class="headerlink" title="开发工具"></a>开发工具</h2><h3 id="R_u7684_u4E0B_u8F7D_u548C_u5B89_u88C5"><a href="#R_u7684_u4E0B_u8F7D_u548C_u5B89_u88C5" class="headerlink" title="R的下载和安装"></a>R的下载和安装</h3><ul>
+<li>下载: <a href="http://www.r-project.org" target="_blank" rel="external">http://www.r-project.org</a></li>
+<li>安装: 一般软件安装方式</li>
+<li>运行并简单操作</li>
+</ul>
+<h3 id="R_u7684IDE_u4ECB_u7ECD_3A_RStudio"><a href="#R_u7684IDE_u4ECB_u7ECD_3A_RStudio" class="headerlink" title="R的IDE介绍: RStudio"></a>R的IDE介绍: RStudio</h3><p>可用于编写R的集成开发环境:</p>
+<ul>
+<li>Emacs+ESS(快捷键多, 难度大)</li>
+<li>Eclipse/Architect(Java社区)</li>
+<li>RStudio</li>
+<li>Revolution-R</li>
+<li>Live-R</li>
+</ul>
+<p>我们主要使用 RStudio(界面介绍)</p>
+<h2 id="R_u7684_u57FA_u7840_u4F7F_u7528"><a href="#R_u7684_u57FA_u7840_u4F7F_u7528" class="headerlink" title="R的基础使用"></a>R的基础使用</h2><h3 id="R_u4F5C_u4E3A_u79D1_u5B66_u8BA1_u7B97_u5668"><a href="#R_u4F5C_u4E3A_u79D1_u5B66_u8BA1_u7B97_u5668" class="headerlink" title="R作为科学计算器"></a>R作为科学计算器</h3><ul>
+<li>加减乘除: +, -, *, /, %/%, %%</li>
+<li>平方, 开方: ^, **, sqrt</li>
+<li>指数, 对数: exp, log</li>
+<li>三角函数: sin, cos, tan</li>
+<li>排列组合: choose</li>
+</ul>
+<h3 id="R__u4E2D_u7684_u5E38_u91CF_u548C_u53D8_u91CF"><a href="#R__u4E2D_u7684_u5E38_u91CF_u548C_u53D8_u91CF" class="headerlink" title="R 中的常量和变量"></a>R 中的常量和变量</h3><p>R中变量名命名规则：</p>
+<ul>
+<li>数字、字母、句点组成</li>
+<li>首字符不能是数字</li>
+<li>区分大小写</li>
+</ul>
+<p>三种常量：逻辑型、数值型、字符型。</p>
+<ul>
+<li>逻辑型：TRUE，FALSE。</li>
+<li>数值型：123，123.45，1.234e10，2.1-3.5i</li>
+<li>字符型：”小明”，”Weight”</li>
+<li>缺失值：NA</li>
+</ul>
+<h3 id="u7ED9_u53D8_u91CF_u8D4B_u503C"><a href="#u7ED9_u53D8_u91CF_u8D4B_u503C" class="headerlink" title="给变量赋值"></a>给变量赋值</h3><p>无需声明, 直接赋值即可</p>
+<ul>
+<li>&lt;- 最常用</li>
+<li>= 不建议使用, 和假设检验的等号容易混淆</li>
+<li>-&gt; 不建议使用, 改变方向会降低代码可读性</li>
+<li>assign 函数, 很少使用</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">1</span>; y &lt;- <span class="number">2</span>; z &lt;- x + y; z</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u53D8_u91CF_u7A7A_u95F4"><a href="#u53D8_u91CF_u7A7A_u95F4" class="headerlink" title="变量空间"></a>变量空间</h3><ul>
+<li>列出已经定义的所有变量: ls(), ls.str()</li>
+<li>删除变量: rm()</li>
+<li>限制使用: rm(list = ls())</li>
+</ul>
+<h2 id="u5411_u91CF"><a href="#u5411_u91CF" class="headerlink" title="向量"></a>向量</h2><h3 id="u751F_u6210_u5411_u91CF"><a href="#u751F_u6210_u5411_u91CF" class="headerlink" title="生成向量"></a>生成向量</h3><p>使用c()操作来生成向量</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>); x</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y &lt;- c(<span class="number">2</span>*<span class="number">5</span>, <span class="number">3</span>-<span class="number">4</span>, <span class="number">12</span>/<span class="number">5</span>, pi); y</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">10.000000</span> -<span class="number">1.000000</span>  <span class="number">2.400000</span>  <span class="number">3.141593</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z &lt;- c(x, y); z</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>]  <span class="number">1.000000</span>  <span class="number">2.000000</span>  <span class="number">3.000000</span> <span class="number">10.000000</span> -<span class="number">1.000000</span>  <span class="number">2.400000</span>  <span class="number">3.141593</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u8BA1_u7B97_u57FA_u672C_u7EDF_u8BA1_u91CF"><a href="#u8BA1_u7B97_u57FA_u672C_u7EDF_u8BA1_u91CF" class="headerlink" title="计算基本统计量"></a>计算基本统计量</h3><p>基本统计函数:(并非全部)</p>
+<ul>
+<li>min, max, range, sum</li>
+<li>mean, median, quantile</li>
+<li>sd, var, cor, cov </li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span><br><span class="line">c(min(x), max(x), mean(x), median(x), sd(x), var(x))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1.000000</span> <span class="number">5.000000</span> <span class="number">3.000000</span> <span class="number">3.000000</span> <span class="number">1.581139</span> <span class="number">2.500000</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u751F_u6210_u6570_u5217seq"><a href="#u751F_u6210_u6570_u5217seq" class="headerlink" title="生成数列seq"></a>生成数列seq</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>:<span class="number">5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">seq(from = <span class="number">4</span>, to = <span class="number">10</span>, by = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>]  <span class="number">4</span>  <span class="number">6</span>  <span class="number">8</span> <span class="number">10</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">seq(from = <span class="number">0</span>, to = <span class="number">2</span>, length.out = <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.0</span> <span class="number">0.5</span> <span class="number">1.0</span> <span class="number">1.5</span> <span class="number">2.0</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">seq(from = <span class="number">0</span>, to = <span class="number">2</span>, length.out = <span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.0</span> <span class="number">0.4</span> <span class="number">0.8</span> <span class="number">1.2</span> <span class="number">1.6</span> <span class="number">2.0</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u751F_u6210_u6570_u5217rep"><a href="#u751F_u6210_u6570_u5217rep" class="headerlink" title="生成数列rep"></a>生成数列rep</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rep(<span class="number">1</span>, times = <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rep(c(<span class="number">1</span>,<span class="number">2</span>), times = <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">1</span> <span class="number">2</span> <span class="number">1</span> <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rep(c(<span class="number">1</span>,<span class="number">2</span>), each = <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">2</span> <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u8BF7_u5C1D_u8BD5_u751F_u6210_u4EE5_u4E0B_u6570_u5217"><a href="#u8BF7_u5C1D_u8BD5_u751F_u6210_u4EE5_u4E0B_u6570_u5217" class="headerlink" title="请尝试生成以下数列"></a>请尝试生成以下数列</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>]  <span class="number">6.0</span>  <span class="number">5.5</span>  <span class="number">5.0</span>  <span class="number">4.5</span>  <span class="number">4.0</span>  <span class="number">3.5</span>  <span class="number">3.0</span>  <span class="number">2.5</span>  <span class="number">2.0</span>  <span class="number">1.5</span>  <span class="number">1.0</span>  <span class="number">0.5</span>  <span class="number">0.0</span> -<span class="number">0.5</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">15</span>] -<span class="number">1.0</span> -<span class="number">1.5</span> -<span class="number">2.0</span> -<span class="number">2.5</span> -<span class="number">3.0</span> -<span class="number">3.5</span> -<span class="number">4.0</span> -<span class="number">4.5</span> -<span class="number">5.0</span> -<span class="number">5.5</span> -<span class="number">6.0</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>]  <span class="number">1</span>  <span class="number">3</span>  <span class="number">5</span>  <span class="number">2</span>  <span class="number">4</span>  <span class="number">6</span>  <span class="number">3</span>  <span class="number">5</span>  <span class="number">7</span>  <span class="number">4</span>  <span class="number">6</span>  <span class="number">8</span>  <span class="number">5</span>  <span class="number">7</span>  <span class="number">9</span>  <span class="number">6</span>  <span class="number">8</span> <span class="number">10</span>  <span class="number">7</span>  <span class="number">9</span> <span class="number">11</span>  <span class="number">8</span> <span class="number">10</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">24</span>] <span class="number">12</span>  <span class="number">9</span> <span class="number">11</span> <span class="number">13</span> <span class="number">10</span> <span class="number">12</span> <span class="number">14</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>] -<span class="number">1</span>  <span class="number">0</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span> <span class="number">11</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u9009_u53D6_u5411_u91CF_u4E2D_u7684_u5143_u7D20"><a href="#u9009_u53D6_u5411_u91CF_u4E2D_u7684_u5143_u7D20" class="headerlink" title="选取向量中的元素"></a>选取向量中的元素</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">2</span>:<span class="number">5</span></span><br><span class="line">x[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x[c(<span class="number">1</span>,<span class="number">4</span>)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">2</span> <span class="number">5</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x[<span class="number">2</span>:<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3</span> <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x[-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3</span> <span class="number">4</span> <span class="number">5</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5411_u91CF_u5E38_u7528_u51FD_u6570"><a href="#u5411_u91CF_u5E38_u7528_u51FD_u6570" class="headerlink" title="向量常用函数"></a>向量常用函数</h3><p>length, sort, order</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- c(<span class="number">4</span>,<span class="number">6</span>,<span class="number">2</span>,<span class="number">7</span>,<span class="number">1</span>)</span><br><span class="line">length(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">5</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">6</span> <span class="number">7</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">order(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">5</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x[order(x)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">4</span> <span class="number">6</span> <span class="number">7</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5411_u91CF_u7684_u5FAA_u73AF_u8BA1_u7B97"><a href="#u5411_u91CF_u7684_u5FAA_u73AF_u8BA1_u7B97" class="headerlink" title="向量的循环计算"></a>向量的循环计算</h3><p>向量计算的循环法则</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">1</span>:<span class="number">5</span>; y &lt;- <span class="number">5</span>:<span class="number">1</span></span><br><span class="line">x + y</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">6</span> <span class="number">6</span> <span class="number">6</span> <span class="number">6</span> <span class="number">6</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x - <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x^<span class="number">2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>]  <span class="number">1</span>  <span class="number">4</span>  <span class="number">9</span> <span class="number">16</span> <span class="number">25</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5411_u91CF_u7684_u51FD_u6570_u8BA1_u7B97"><a href="#u5411_u91CF_u7684_u51FD_u6570_u8BA1_u7B97" class="headerlink" title="向量的函数计算"></a>向量的函数计算</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.0000000</span> <span class="number">0.6931472</span> <span class="number">1.0986123</span> <span class="number">1.3862944</span> <span class="number">1.6094379</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sin(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>]  <span class="number">0.8414710</span>  <span class="number">0.9092974</span>  <span class="number">0.1411200</span> -<span class="number">0.7568025</span> -<span class="number">0.9589243</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z &lt;- <span class="number">1</span>:<span class="number">3</span> </span><br><span class="line">x + z</span><br></pre></td></tr></table></figure>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## Warning <span class="keyword">in</span> x + z: longer <span class="keyword">object</span> length is <span class="keyword">not</span> a multiple <span class="keyword">of</span> shorter <span class="keyword">object</span></span><br><span class="line">## length</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">2</span> <span class="number">4</span> <span class="number">6</span> <span class="number">5</span> <span class="number">7</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u903B_u8F91_u5411_u91CF_u548C_u6BD4_u8F83_u8FD0_u7B97_u7B26"><a href="#u903B_u8F91_u5411_u91CF_u548C_u6BD4_u8F83_u8FD0_u7B97_u7B26" class="headerlink" title="逻辑向量和比较运算符"></a>逻辑向量和比较运算符</h3><ul>
+<li>逻辑值: TRUE(T), FALSE(F)</li>
+<li>比较运算符: ==, !=, &lt;, &gt;, &lt;=, &gt;=, &amp;, |, !</li>
+<li>all(), any() 函数</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> &lt; <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] TRUE</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x == <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [<span class="number">1</span>] <span class="literal">FALSE</span> <span class="literal">FALSE</span>  <span class="literal">TRUE</span> <span class="literal">FALSE</span> <span class="literal">FALSE</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">any(x == <span class="number">3</span>); all(x == <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] TRUE</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] FALSE</span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528_u903B_u8F91_u8868_u8FBE_u5F0F_u6765_u9009_u62E9_u5411_u91CF"><a href="#u4F7F_u7528_u903B_u8F91_u8868_u8FBE_u5F0F_u6765_u9009_u62E9_u5411_u91CF" class="headerlink" title="使用逻辑表达式来选择向量"></a>使用逻辑表达式来选择向量</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fib &lt;- c(<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">13</span>,<span class="number">21</span>,<span class="number">34</span>)</span><br><span class="line">fib[fib &lt; <span class="number">10</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">8</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fib[fib %% <span class="number">2</span> == <span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>]  <span class="number">0</span>  <span class="number">2</span>  <span class="number">8</span> <span class="number">34</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fib[fib &lt; mean(fib)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">5</span> <span class="number">8</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u903B_u8F91_u8868_u8FBE_u5F0F_u6D3B_u7528"><a href="#u903B_u8F91_u8868_u8FBE_u5F0F_u6D3B_u7528" class="headerlink" title="逻辑表达式活用"></a>逻辑表达式活用</h3><ol>
+<li>请写出1-100之间不能被3整除的数</li>
+<li>请写出1-100之间既不能被3整除也不能被5整除的数</li>
+<li>圆周上从0°开始逆时针均匀选取100个点, 其正弦值有多少小于0.5?</li>
+</ol>
+<h2 id="u4F5C_u56FE"><a href="#u4F5C_u56FE" class="headerlink" title="作图"></a>作图</h2><h3 id="u57FA_u7840_u4F5C_u56FE_u4ECB_u7ECD"><a href="#u57FA_u7840_u4F5C_u56FE_u4ECB_u7ECD" class="headerlink" title="基础作图介绍"></a>基础作图介绍</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- seq(from = -<span class="number">2</span>*pi, to = <span class="number">2</span>*pi, length.out = <span class="number">100</span>)</span><br><span class="line">y &lt;- sin(x)</span><br><span class="line">plot(x,y)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-13-1.png" alt=""> </p>
+<h3 id="u6563_u70B9_u56FE"><a href="#u6563_u70B9_u56FE" class="headerlink" title="散点图"></a>散点图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot( x, y, main = <span class="string">"scatter"</span>, xlab = <span class="string">"x-lab"</span>, ylab = <span class="string">"y-lab"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-14-1.png" alt=""> </p>
+<h3 id="u8FDE_u7EBF_u56FE"><a href="#u8FDE_u7EBF_u56FE" class="headerlink" title="连线图"></a>连线图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(((-<span class="number">50</span>):<span class="number">50</span>)/<span class="number">25</span>,(((-<span class="number">50</span>):<span class="number">50</span>)/<span class="number">25</span>)^<span class="number">3</span>,type = <span class="string">"l"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-15-1.png" alt=""> </p>
+<h2 id="u4E09_u7EF4_u56FE_uFF0C_u7B49_u503C_u7EBF_u56FE_uFF0C_u7B49_u503C_u8272_u56FE"><a href="#u4E09_u7EF4_u56FE_uFF0C_u7B49_u503C_u7EBF_u56FE_uFF0C_u7B49_u503C_u8272_u56FE" class="headerlink" title="三维图，等值线图，等值色图"></a>三维图，等值线图，等值色图</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- seq(-<span class="number">3</span>,<span class="number">3</span>, length=<span class="number">100</span>)</span><br><span class="line">y &lt;- x</span><br><span class="line">f &lt;- <span class="keyword">function</span>(x,y,ssq1=<span class="number">1</span>, ssq2=<span class="number">2</span>, rho=<span class="number">0.5</span>)&#123;</span><br><span class="line">det1 &lt;- ssq1*ssq2*(<span class="number">1</span> - rho^<span class="number">2</span>)</span><br><span class="line">s1 &lt;- sqrt(ssq1)</span><br><span class="line">s2 &lt;- sqrt(ssq2)</span><br><span class="line"><span class="number">1</span>/(<span class="number">2</span>*pi*sqrt(det1)) * exp(-<span class="number">0.5</span> / det1 * (</span><br><span class="line">ssq2*x^<span class="number">2</span> + ssq1*y^<span class="number">2</span> - <span class="number">2</span>*rho*s1*s2*x*y))</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">z&lt;- outer(x, y, f)</span><br></pre></td></tr></table></figure>
+<h3 id="u4E09_u7EF4_u56FE"><a href="#u4E09_u7EF4_u56FE" class="headerlink" title="三维图"></a>三维图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">persp(x, y, z)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-17-1.png" alt=""> </p>
+<h3 id="u7B49_u503C_u7EBF_u56FE"><a href="#u7B49_u503C_u7EBF_u56FE" class="headerlink" title="等值线图"></a>等值线图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">contour(x, y, z)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-18-1.png" alt=""> </p>
+<h3 id="u7B49_u503C_u8272_u56FE"><a href="#u7B49_u503C_u8272_u56FE" class="headerlink" title="等值色图"></a>等值色图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">image(x, y, z)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/unnamed-chunk-19-1.png" alt=""> </p>
+<h2 id="u5E2E_u52A9"><a href="#u5E2E_u52A9" class="headerlink" title="帮助"></a>帮助</h2><h3 id="R__u7684_u5E2E_u52A9_u6587_u6863"><a href="#R__u7684_u5E2E_u52A9_u6587_u6863" class="headerlink" title="R 的帮助文档"></a>R 的帮助文档</h3><ul>
+<li>help.start()</li>
+<li>help(mean)</li>
+<li>?mean</li>
+<li>example(mean), example(image)  </li>
+<li>??mean</li>
+<li>apropos(“glm”, mode = “function”)</li>
+</ul>
+<h3 id="u901A_u8FC7_u7F51_u7EDC_u83B7_u53D6_u5E2E_u52A9"><a href="#u901A_u8FC7_u7F51_u7EDC_u83B7_u53D6_u5E2E_u52A9" class="headerlink" title="通过网络获取帮助"></a>通过网络获取帮助</h3><ul>
+<li>RSiteSearch(“mean”)</li>
+<li>stackoverflow.com   search for [r] ggplot2</li>
+<li>google</li>
+</ul>
+<h3 id="R_Package__u64CD_u4F5C"><a href="#R_Package__u64CD_u4F5C" class="headerlink" title="R Package 操作"></a>R Package 操作</h3><ul>
+<li>install.packages(“ggplot2”)</li>
+<li>library(ggplot2)</li>
+<li>update.packages()</li>
+<li>installed.packages()</li>
+<li>remove.packages()</li>
+<li>help(package = “ggplot2”)</li>
+<li>packages on CRAN(in help.start()) </li>
+<li><a href="http://www.rdocumentation.org/" target="_blank" rel="external">Rdocumentation</a></li>
+<li><a href="https://cran.r-project.org/web/views/" target="_blank" rel="external">CRAN Task Views</a>.</li>
+</ul>
+<h3 id="Datacamp"><a href="#Datacamp" class="headerlink" title="Datacamp"></a>Datacamp</h3><ol>
+<li>注册: <a href="https://www.datacamp.com/" target="_blank" rel="external">https://www.datacamp.com</a></li>
+<li>参加group: <a href="https://www.datacamp.com/groups/stat_hdu" target="_blank" rel="external">https://www.datacamp.com/groups/stat_hdu</a></li>
+<li>邀请链接: <a href="https://www.datacamp.com/groups/750deb7ab588c92ae2a64e462c2a9d92ba131aa0/invite" target="_blank" rel="external">https://www.datacamp.com/groups/750deb7ab588c92ae2a64e462c2a9d92ba131aa0/invite</a></li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/R/">R</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/R-programing/">R programing</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://ripeconan.com/2015/09/21/R_language_introduction/" data-title="R语言简介 | ripeconan" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/10/12/data_structure/" title="R的数据结构">
+  <strong>上一篇：</strong><br/>
+  <span>
+  R的数据结构</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/11/13/breast_cancer/"  title="基于 knn 方法分析乳腺癌数据">
+ <strong>下一篇：</strong><br/> 
+ <span>基于 knn 方法分析乳腺癌数据
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u8BED_u8A00_u76F8_u5173_u6559_u6750"><span class="toc-number">1.</span> <span class="toc-text">R语言相关教材</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u67B6_u6784"><span class="toc-number">2.</span> <span class="toc-text">内容架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shiny"><span class="toc-number">2.1.</span> <span class="toc-text">shiny</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E16_u754C_u5730_u56FE"><span class="toc-number">2.2.</span> <span class="toc-text">世界地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F8E_u56FD_u5730_u56FE"><span class="toc-number">2.3.</span> <span class="toc-text">美国地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5404_u5DDE_u5730_u56FE"><span class="toc-number">2.4.</span> <span class="toc-text">各州地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5931_u4E1A_u5206_u5E03_u5730_u56FE"><span class="toc-number">2.5.</span> <span class="toc-text">失业分布地图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u5386_u53F2_u7B80_u4ECB"><span class="toc-number">3.</span> <span class="toc-text">R历史简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F00_u53D1_u5DE5_u5177"><span class="toc-number">4.</span> <span class="toc-text">开发工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684_u4E0B_u8F7D_u548C_u5B89_u88C5"><span class="toc-number">4.1.</span> <span class="toc-text">R的下载和安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684IDE_u4ECB_u7ECD_3A_RStudio"><span class="toc-number">4.2.</span> <span class="toc-text">R的IDE介绍: RStudio</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u7684_u57FA_u7840_u4F7F_u7528"><span class="toc-number">5.</span> <span class="toc-text">R的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u4F5C_u4E3A_u79D1_u5B66_u8BA1_u7B97_u5668"><span class="toc-number">5.1.</span> <span class="toc-text">R作为科学计算器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R__u4E2D_u7684_u5E38_u91CF_u548C_u53D8_u91CF"><span class="toc-number">5.2.</span> <span class="toc-text">R 中的常量和变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7ED9_u53D8_u91CF_u8D4B_u503C"><span class="toc-number">5.3.</span> <span class="toc-text">给变量赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u53D8_u91CF_u7A7A_u95F4"><span class="toc-number">5.4.</span> <span class="toc-text">变量空间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411_u91CF"><span class="toc-number">6.</span> <span class="toc-text">向量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u5411_u91CF"><span class="toc-number">6.1.</span> <span class="toc-text">生成向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BA1_u7B97_u57FA_u672C_u7EDF_u8BA1_u91CF"><span class="toc-number">6.2.</span> <span class="toc-text">计算基本统计量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u6570_u5217seq"><span class="toc-number">6.3.</span> <span class="toc-text">生成数列seq</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u6570_u5217rep"><span class="toc-number">6.4.</span> <span class="toc-text">生成数列rep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BF7_u5C1D_u8BD5_u751F_u6210_u4EE5_u4E0B_u6570_u5217"><span class="toc-number">6.5.</span> <span class="toc-text">请尝试生成以下数列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9009_u53D6_u5411_u91CF_u4E2D_u7684_u5143_u7D20"><span class="toc-number">6.6.</span> <span class="toc-text">选取向量中的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u5E38_u7528_u51FD_u6570"><span class="toc-number">6.7.</span> <span class="toc-text">向量常用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u7684_u5FAA_u73AF_u8BA1_u7B97"><span class="toc-number">6.8.</span> <span class="toc-text">向量的循环计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u7684_u51FD_u6570_u8BA1_u7B97"><span class="toc-number">6.9.</span> <span class="toc-text">向量的函数计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u903B_u8F91_u5411_u91CF_u548C_u6BD4_u8F83_u8FD0_u7B97_u7B26"><span class="toc-number">6.10.</span> <span class="toc-text">逻辑向量和比较运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_u903B_u8F91_u8868_u8FBE_u5F0F_u6765_u9009_u62E9_u5411_u91CF"><span class="toc-number">6.11.</span> <span class="toc-text">使用逻辑表达式来选择向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u903B_u8F91_u8868_u8FBE_u5F0F_u6D3B_u7528"><span class="toc-number">6.12.</span> <span class="toc-text">逻辑表达式活用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F5C_u56FE"><span class="toc-number">7.</span> <span class="toc-text">作图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u57FA_u7840_u4F5C_u56FE_u4ECB_u7ECD"><span class="toc-number">7.1.</span> <span class="toc-text">基础作图介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6563_u70B9_u56FE"><span class="toc-number">7.2.</span> <span class="toc-text">散点图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8FDE_u7EBF_u56FE"><span class="toc-number">7.3.</span> <span class="toc-text">连线图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E09_u7EF4_u56FE_uFF0C_u7B49_u503C_u7EBF_u56FE_uFF0C_u7B49_u503C_u8272_u56FE"><span class="toc-number">8.</span> <span class="toc-text">三维图，等值线图，等值色图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E09_u7EF4_u56FE"><span class="toc-number">8.1.</span> <span class="toc-text">三维图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7B49_u503C_u7EBF_u56FE"><span class="toc-number">8.2.</span> <span class="toc-text">等值线图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7B49_u503C_u8272_u56FE"><span class="toc-number">8.3.</span> <span class="toc-text">等值色图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5E2E_u52A9"><span class="toc-number">9.</span> <span class="toc-text">帮助</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R__u7684_u5E2E_u52A9_u6587_u6863"><span class="toc-number">9.1.</span> <span class="toc-text">R 的帮助文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u901A_u8FC7_u7F51_u7EDC_u83B7_u53D6_u5E2E_u52A9"><span class="toc-number">9.2.</span> <span class="toc-text">通过网络获取帮助</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_Package__u64CD_u4F5C"><span class="toc-number">9.3.</span> <span class="toc-text">R Package 操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Datacamp"><span class="toc-number">9.4.</span> <span class="toc-text">Datacamp</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Learning/" title="Learning">Learning<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/R/" title="R">R<sup>7</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/R-programing/" title="R programing">R programing<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/data-mining/" title="data mining">data mining<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-package/" title="R package">R package<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-函数/" title="R 函数">R 函数<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/To-Do/" title="To Do">To Do<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithms/" title="algorithms">algorithms<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://zjdian.com/" target="_blank" title="中继点">中继点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.fens.me/" target="_blank" title="粉丝日志">粉丝日志</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Design your life, Build your dream. <br/>
+			     </p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="ripeconan">ripeconan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe6d1f421bbc9962127a50488f9ed37d1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

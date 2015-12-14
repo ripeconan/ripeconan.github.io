@@ -1,0 +1,842 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>控制流和函数 | ripeconan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="ripeconan">
+    
+
+    
+    <meta name="description" content="内容提要
+控制流
+选择结构
+循环
+
+
+函数
+内置函数
+包函数
+自定义函数
+
+
+
+
+选择结构if使用方法: 如果cond为真, 则执行statement
+
+if (cond) statement
+
+12x &amp;lt;- 10if(x %% 2 == 0) print(&quot;Even&quot;)
+1## [1] &quot;Even&quot;
+if和else使用方法: 如果cond为真, 则执行statement1, 否则执行sta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="控制流和函数">
+<meta property="og:url" content="http://ripeconan.com/2015/11/15/control_flow_function/index.html">
+<meta property="og:site_name" content="ripeconan">
+<meta property="og:description" content="内容提要
+控制流
+选择结构
+循环
+
+
+函数
+内置函数
+包函数
+自定义函数
+
+
+
+
+选择结构if使用方法: 如果cond为真, 则执行statement
+
+if (cond) statement
+
+12x &amp;lt;- 10if(x %% 2 == 0) print(&quot;Even&quot;)
+1## [1] &quot;Even&quot;
+if和else使用方法: 如果cond为真, 则执行statement1, 否则执行sta">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/df1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/df2.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/control_flow16-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/control_flow17-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/control_flow18-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/control_flow19-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/control_flow21-1.png">
+<meta property="og:updated_time" content="2015-11-15T07:10:30.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="控制流和函数">
+<meta name="twitter:description" content="内容提要
+控制流
+选择结构
+循环
+
+
+函数
+内置函数
+包函数
+自定义函数
+
+
+
+
+选择结构if使用方法: 如果cond为真, 则执行statement
+
+if (cond) statement
+
+12x &amp;lt;- 10if(x %% 2 == 0) print(&quot;Even&quot;)
+1## [1] &quot;Even&quot;
+if和else使用方法: 如果cond为真, 则执行statement1, 否则执行sta">
+
+    
+    <link rel="alternative" href="/atom.xml" title="ripeconan" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="ripeconan" title="ripeconan"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:ripeconan.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/11/15/control_flow_function/" title="控制流和函数" itemprop="url">控制流和函数</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
+		
+  <p class="article-time">
+    <time datetime="2015-11-14T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-11-15</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u63D0_u8981"><span class="toc-number">1.</span> <span class="toc-text">内容提要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u9009_u62E9_u7ED3_u6784"><span class="toc-number">2.</span> <span class="toc-text">选择结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if"><span class="toc-number">2.1.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if_u548Celse"><span class="toc-number">2.2.</span> <span class="toc-text">if和else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if_u548Celse_u4E2D_u9700_u8981_u6CE8_u610F_u7684_u4E8B_u9879"><span class="toc-number">2.3.</span> <span class="toc-text">if和else中需要注意的事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ifelse"><span class="toc-number">2.4.</span> <span class="toc-text">ifelse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u591A_u4E2A_u5206_u652F_3A_switch"><span class="toc-number">2.5.</span> <span class="toc-text">多个分支: switch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5FAA_u73AF"><span class="toc-number">3.</span> <span class="toc-text">循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#while"><span class="toc-number">3.1.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repeat"><span class="toc-number">3.2.</span> <span class="toc-text">repeat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for"><span class="toc-number">3.3.</span> <span class="toc-text">for</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E60"><span class="toc-number">3.4.</span> <span class="toc-text">练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u51FD_u6570"><span class="toc-number">4.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u5B66_u51FD_u6570"><span class="toc-number">5.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7EDF_u8BA1_u51FD_u6570"><span class="toc-number">6.</span> <span class="toc-text">统计函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6982_u7387_u51FD_u6570"><span class="toc-number">7.</span> <span class="toc-text">概率函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6982_u7387_u5206_u5E03_u7F29_u5199"><span class="toc-number">7.1.</span> <span class="toc-text">概率分布缩写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5BC6_u5EA6_u51FD_u6570"><span class="toc-number">7.2.</span> <span class="toc-text">密度函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5206_u5E03_u51FD_u6570"><span class="toc-number">7.3.</span> <span class="toc-text">分布函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E60-1"><span class="toc-number">7.4.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5206_u4F4D_u6570_u51FD_u6570"><span class="toc-number">7.5.</span> <span class="toc-text">分位数函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u968F_u673A_u6570"><span class="toc-number">7.6.</span> <span class="toc-text">生成随机数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reproducible_Research"><span class="toc-number">7.7.</span> <span class="toc-text">Reproducible Research</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9A8C_u8BC1_u5206_u5E03_u6570_u5B57_u7279_u5F81"><span class="toc-number">7.8.</span> <span class="toc-text">验证分布数字特征</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B57_u7B26_u5904_u7406_u51FD_u6570"><span class="toc-number">8.</span> <span class="toc-text">字符处理函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nchar"><span class="toc-number">8.1.</span> <span class="toc-text">nchar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#substr"><span class="toc-number">8.2.</span> <span class="toc-text">substr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep"><span class="toc-number">8.3.</span> <span class="toc-text">grep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sub_u548Cgsub"><span class="toc-number">8.4.</span> <span class="toc-text">sub和gsub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strsplit"><span class="toc-number">8.5.</span> <span class="toc-text">strsplit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#paste"><span class="toc-number">8.6.</span> <span class="toc-text">paste</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5927_u5C0F_u5199_u8F6C_u6362"><span class="toc-number">8.7.</span> <span class="toc-text">大小写转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u81EA_u5B9A_u4E49_u51FD_u6570"><span class="toc-number">8.8.</span> <span class="toc-text">自定义函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u81EA_u5B9A_u4E49_u51FD_u6570_u4E3E_u4F8B"><span class="toc-number">8.9.</span> <span class="toc-text">自定义函数举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u51FD_u6570_u7684_u5D4C_u5957_u5B9A_u4E49"><span class="toc-number">8.10.</span> <span class="toc-text">函数的嵌套定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E60-2"><span class="toc-number">8.11.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E60-3"><span class="toc-number">8.12.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E60-4"><span class="toc-number">8.13.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u5143_u4E8C_u6B21_u65B9_u7A0B_u6C42_u89E3_u7A0B_u5E8F"><span class="toc-number">8.14.</span> <span class="toc-text">一元二次方程求解程序</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="u5185_u5BB9_u63D0_u8981"><a href="#u5185_u5BB9_u63D0_u8981" class="headerlink" title="内容提要"></a>内容提要</h2><ol>
+<li>控制流<ul>
+<li>选择结构</li>
+<li>循环</li>
+</ul>
+</li>
+<li>函数<ul>
+<li>内置函数</li>
+<li>包函数</li>
+<li>自定义函数</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="u9009_u62E9_u7ED3_u6784"><a href="#u9009_u62E9_u7ED3_u6784" class="headerlink" title="选择结构"></a>选择结构</h2><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><p>使用方法: 如果cond为真, 则执行statement</p>
+<blockquote>
+<p>if (cond) statement</p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">10</span></span><br><span class="line"><span class="keyword">if</span>(x %% <span class="number">2</span> == <span class="number">0</span>) print(<span class="string">"Even"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Even"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="if_u548Celse"><a href="#if_u548Celse" class="headerlink" title="if和else"></a>if和else</h3><p>使用方法: 如果cond为真, 则执行statement1, 否则执行statement2</p>
+<blockquote>
+<p>if (cond) statement1 else statement2</p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">9</span></span><br><span class="line"><span class="keyword">if</span>(x %% <span class="number">2</span> == <span class="number">0</span>) print(<span class="string">"Even"</span>) <span class="keyword">else</span> print(<span class="string">"Odd"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Odd"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="if_u548Celse_u4E2D_u9700_u8981_u6CE8_u610F_u7684_u4E8B_u9879"><a href="#if_u548Celse_u4E2D_u9700_u8981_u6CE8_u610F_u7684_u4E8B_u9879" class="headerlink" title="if和else中需要注意的事项"></a>if和else中需要注意的事项</h3><ol>
+<li>cond条件只能是长度为1的向量</li>
+<li>else必须和if在同一行(或和if的右大括号同一行)</li>
+</ol>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">1</span>:<span class="number">10</span></span><br><span class="line"><span class="keyword">if</span>(x %% <span class="number">2</span> == <span class="number">0</span>) print(<span class="string">"Even"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## Warning in <span class="keyword">if</span> (x%%<span class="number">2</span> == <span class="number">0</span>) print(<span class="string">"Even"</span>): the condition has length &gt; <span class="number">1</span> and</span></span><br><span class="line"><span class="preprocessor">## only the first element will be used</span></span><br></pre></td></tr></table></figure>
+<p><strong>if和else不在同一行时</strong></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">9</span></span><br><span class="line"><span class="keyword">if</span>(x %% <span class="number">2</span> == <span class="number">0</span>) print(<span class="string">"Even"</span>) </span><br><span class="line">  <span class="keyword">else</span> print(<span class="string">"Odd"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="ifelse"><a href="#ifelse" class="headerlink" title="ifelse"></a>ifelse</h3><p>为了解决if和else不能向量化的问题, 引入ifelse</p>
+<p>使用方法: 当cond为真时, 执行statement1, 否则执行statement2</p>
+<blockquote>
+<p>ifelse(cond,statement1,statement2)</p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">6</span>:-<span class="number">4</span></span><br><span class="line">ifelse(x &gt;= <span class="number">0</span>, x, -x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>] <span class="number">6</span> <span class="number">5</span> <span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u591A_u4E2A_u5206_u652F_3A_switch"><a href="#u591A_u4E2A_u5206_u652F_3A_switch" class="headerlink" title="多个分支: switch"></a>多个分支: switch</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">i &lt;- <span class="string">"gamma"</span></span><br><span class="line"><span class="keyword">switch</span>(i,</span><br><span class="line">       beta = <span class="string">"You typed beta"</span>,</span><br><span class="line">       alpha = <span class="string">"You typed alpha"</span>,</span><br><span class="line">       gamma = <span class="string">"You typed gamma"</span>,</span><br><span class="line">       delta = <span class="string">"You typed delta"</span> </span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"You typed gamma"</span></span></span><br></pre></td></tr></table></figure>
+<p>如果找不到任何值, 则switch返回NULL</p>
+<h2 id="u5FAA_u73AF"><a href="#u5FAA_u73AF" class="headerlink" title="循环"></a>循环</h2><ul>
+<li>while</li>
+<li>repeat</li>
+<li>for</li>
+</ul>
+<h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><p>使用方法: 重复执行statement, 直到cond不为真为止</p>
+<blockquote>
+<p>while(cond) statement</p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">i &lt;- <span class="number">5</span></span><br><span class="line"><span class="keyword">while</span>(i &gt; <span class="number">0</span>) &#123;print(<span class="string">"Hi"</span>); i &lt;- i - <span class="number">1</span>&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Hi"</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Hi"</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Hi"</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Hi"</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Hi"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="repeat"><a href="#repeat" class="headerlink" title="repeat"></a>repeat</h3><p>使用方法: 重复执行statement, 直到cond不为真为止</p>
+<blockquote>
+<p>repeat {statement if(cond) break}</p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">i &lt;- <span class="number">5</span></span><br><span class="line"><span class="keyword">repeat</span>&#123;</span><br><span class="line">  print(<span class="string">"Hi"</span>); i &lt;- i - <span class="number">1</span></span><br><span class="line">  <span class="keyword">if</span>(i &lt;= <span class="number">0</span>) <span class="keyword">break</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Hi"</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Hi"</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Hi"</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Hi"</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Hi"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="for"><a href="#for" class="headerlink" title="for"></a>for</h3><p>使用方法: 重复执行statement, 直到var不在seq中为止</p>
+<blockquote>
+<p>for(var in seq) statement</p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span>) x &lt;- x + i</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">55</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u7EC3_u4E60"><a href="#u7EC3_u4E60" class="headerlink" title="练习"></a>练习</h3><ol>
+<li>生成斐波那契数列的前10项</li>
+<li>生成斐波那契数列的所有不超过1000000的项</li>
+<li>生成前1000个质数</li>
+<li>找出最大数不超过100的所有勾股数组合</li>
+</ol>
+<p><strong>答案1</strong></p>
+<p>生成斐波那契数列的前10项</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- rep(<span class="number">1</span>,<span class="number">10</span>)</span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">3</span>:<span class="number">10</span>)&#123;</span><br><span class="line">  x[i] &lt;- x[i-<span class="number">1</span>] + x[i-<span class="number">2</span>]</span><br><span class="line">&#125;</span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>]  <span class="number">1</span>  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">5</span>  <span class="number">8</span> <span class="number">13</span> <span class="number">21</span> <span class="number">34</span> <span class="number">55</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>答案2</strong></p>
+<p>生成斐波那契数列的所有不超过1000000的项</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">y &lt;- rep(<span class="number">1</span>,<span class="number">2</span>);i &lt;- <span class="number">3</span></span><br><span class="line"><span class="keyword">while</span>(max(y) &lt;= <span class="number">1000000</span>)&#123;</span><br><span class="line">  y[i] &lt;- y[i-<span class="number">1</span>] + y[i-<span class="number">2</span>]</span><br><span class="line">  i &lt;- i + <span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line">y[<span class="number">1</span>:(length(y) - <span class="number">1</span>)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>]      <span class="number">1</span>      <span class="number">1</span>      <span class="number">2</span>      <span class="number">3</span>      <span class="number">5</span>      <span class="number">8</span>     <span class="number">13</span>     <span class="number">21</span>     <span class="number">34</span>     <span class="number">55</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">11</span>]     <span class="number">89</span>    <span class="number">144</span>    <span class="number">233</span>    <span class="number">377</span>    <span class="number">610</span>    <span class="number">987</span>   <span class="number">1597</span>   <span class="number">2584</span>   <span class="number">4181</span>   <span class="number">6765</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">21</span>]  <span class="number">10946</span>  <span class="number">17711</span>  <span class="number">28657</span>  <span class="number">46368</span>  <span class="number">75025</span> <span class="number">121393</span> <span class="number">196418</span> <span class="number">317811</span> <span class="number">514229</span> <span class="number">832040</span></span></span><br></pre></td></tr></table></figure>
+<p><strong>答案3</strong></p>
+<p>生成前1000个质数</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">z &lt;- <span class="number">2</span>;i &lt;- <span class="number">3</span></span><br><span class="line"><span class="keyword">while</span>(length(z) &lt; <span class="number">1000</span>)&#123;</span><br><span class="line"><span class="keyword">if</span>(!any(i %% <span class="number">2</span>:(i-<span class="number">1</span>) == <span class="number">0</span>)) z[length(z) + <span class="number">1</span>] &lt;- i</span><br><span class="line">i &lt;- i + <span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>答案4</strong></p>
+<p>找出最大数不超过100的所有勾股数组合</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(k <span class="keyword">in</span> <span class="number">1</span>:<span class="number">100</span>)&#123;</span><br><span class="line">  <span class="keyword">for</span>(j <span class="keyword">in</span> <span class="number">1</span>:k)&#123;</span><br><span class="line">    <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:j)&#123;</span><br><span class="line">      <span class="keyword">if</span>(i^<span class="number">2</span> + j^<span class="number">2</span> == k^<span class="number">2</span>)</span><br><span class="line">        print(c(i,j,k))</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="u51FD_u6570"><a href="#u51FD_u6570" class="headerlink" title="函数"></a>函数</h2><ul>
+<li>数学函数</li>
+<li>统计函数</li>
+<li>概率函数</li>
+<li>字符处理函数</li>
+<li>自定义函数</li>
+</ul>
+<h2 id="u6570_u5B66_u51FD_u6570"><a href="#u6570_u5B66_u51FD_u6570" class="headerlink" title="数学函数"></a>数学函数</h2><ul>
+<li>abs, sqrt, ceiling, floor</li>
+<li>trunc, round(x, digits = n), signif(x, digits = n)</li>
+<li>cos, sin, tan</li>
+<li>acos, asin, atan</li>
+<li>cosh, sinh, tanh</li>
+<li>log, log10, log(x, base = n)</li>
+</ul>
+<p><strong>数学函数示例</strong></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">abs(-<span class="number">4</span>:<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">4</span> <span class="number">3</span> <span class="number">2</span> <span class="number">1</span> <span class="number">0</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sqrt(<span class="number">1</span>:<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1.000000</span> <span class="number">1.414214</span> <span class="number">1.732051</span> <span class="number">2.000000</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ceiling(<span class="number">3.475</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">floor(<span class="number">3.475</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c(trunc(<span class="number">5.99</span>), trunc(-<span class="number">0.9</span>)) <span class="comment">## towards 0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">5</span> <span class="number">0</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">round(<span class="number">3.475</span>, digits = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3.48</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">signif(<span class="number">3.475</span>, digits = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3.5</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cos(pi/<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.5</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sin(pi/<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.5</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tan(pi/<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c(acos(<span class="number">0.5</span>),pi/<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1.047198</span> <span class="number">1.047198</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c(asin(<span class="number">0.5</span>),pi/<span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.5235988</span> <span class="number">0.5235988</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c(atan(<span class="number">1</span>),pi/<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.7853982</span> <span class="number">0.7853982</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log(exp(<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log10(<span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log(<span class="number">125</span>, base = <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="u7EDF_u8BA1_u51FD_u6570"><a href="#u7EDF_u8BA1_u51FD_u6570" class="headerlink" title="统计函数"></a>统计函数</h2><ul>
+<li>mean, median, quantile</li>
+<li>sd, var</li>
+<li>sum, diff</li>
+<li>min, max, range</li>
+<li>scale</li>
+</ul>
+<p><strong>统计函数示例</strong></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mean(<span class="number">1</span>:<span class="number">9</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">5</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mean(c(<span class="number">1</span>:<span class="number">9</span>, <span class="literal">NA</span>), na.rm = <span class="literal">T</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">5</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">median(<span class="number">1</span>:<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">2.5</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quantile(<span class="number">1</span>:<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##     <span class="number">0</span>%    <span class="number">25</span>%    <span class="number">50</span>%    <span class="number">75</span>%   <span class="number">100</span>% </span></span><br><span class="line"><span class="preprocessor">##   <span class="number">1.00</span>  <span class="number">25.75</span>  <span class="number">50.50</span>  <span class="number">75.25</span> <span class="number">100.00</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quantile(<span class="number">1</span>:<span class="number">100</span>, probs = c(<span class="number">0.3</span>,<span class="number">0.7</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  <span class="number">30</span>%  <span class="number">70</span>% </span></span><br><span class="line"><span class="preprocessor">## <span class="number">30.7</span> <span class="number">70.3</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quantile(<span class="number">1</span>:<span class="number">100</span>, probs = seq(<span class="number">0</span>,<span class="number">1</span>,<span class="number">0.1</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##    <span class="number">0</span>%   <span class="number">10</span>%   <span class="number">20</span>%   <span class="number">30</span>%   <span class="number">40</span>%   <span class="number">50</span>%   <span class="number">60</span>%   <span class="number">70</span>%   <span class="number">80</span>%   <span class="number">90</span>%  <span class="number">100</span>% </span></span><br><span class="line"><span class="preprocessor">##   <span class="number">1.0</span>  <span class="number">10.9</span>  <span class="number">20.8</span>  <span class="number">30.7</span>  <span class="number">40.6</span>  <span class="number">50.5</span>  <span class="number">60.4</span>  <span class="number">70.3</span>  <span class="number">80.2</span>  <span class="number">90.1</span> <span class="number">100.0</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sd(<span class="number">1</span>:<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3.02765</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var(<span class="number">1</span>:<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">9.166667</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(<span class="number">1</span>:<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">5050</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diff(c(<span class="number">1</span>,<span class="number">5</span>,<span class="number">12</span>,<span class="number">28</span>), lag = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>]  <span class="number">4</span>  <span class="number">7</span> <span class="number">16</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">min(<span class="number">10</span>:<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">10</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">max(<span class="number">10</span>:<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">20</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">range(<span class="number">10</span>:<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">10</span> <span class="number">20</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scale(<span class="number">1</span>:<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##             [,<span class="number">1</span>]</span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">1</span>,] -<span class="number">1.4863011</span></span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">2</span>,] -<span class="number">1.1560120</span></span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">3</span>,] -<span class="number">0.8257228</span></span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">4</span>,] -<span class="number">0.4954337</span></span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">5</span>,] -<span class="number">0.1651446</span></span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">6</span>,]  <span class="number">0.1651446</span></span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">7</span>,]  <span class="number">0.4954337</span></span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">8</span>,]  <span class="number">0.8257228</span></span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">9</span>,]  <span class="number">1.1560120</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">10</span>,]  <span class="number">1.4863011</span></span></span><br><span class="line"><span class="preprocessor">## attr(,<span class="string">"scaled:center"</span>)</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">5.5</span></span></span><br><span class="line"><span class="preprocessor">## attr(,<span class="string">"scaled:scale"</span>)</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3.02765</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="u6982_u7387_u51FD_u6570"><a href="#u6982_u7387_u51FD_u6570" class="headerlink" title="概率函数"></a>概率函数</h2><p>概率函数形式:</p>
+<blockquote>
+<p>[dpqr]distribution_abbreviation()</p>
+</blockquote>
+<ul>
+<li>d = 密度函数 density</li>
+<li>p = 分布函数 distribution function</li>
+<li>q = 分位数函数 quantile function</li>
+<li>r = 生成随机数</li>
+</ul>
+<h3 id="u6982_u7387_u5206_u5E03_u7F29_u5199"><a href="#u6982_u7387_u5206_u5E03_u7F29_u5199" class="headerlink" title="概率分布缩写"></a>概率分布缩写</h3><p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/df1.png" alt="df1"></p>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/df2.png" alt="df2"></p>
+<h3 id="u5BC6_u5EA6_u51FD_u6570"><a href="#u5BC6_u5EA6_u51FD_u6570" class="headerlink" title="密度函数"></a>密度函数</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- seq(-<span class="number">3</span>,<span class="number">3</span>,length.out = <span class="number">100</span>)</span><br><span class="line">y &lt;- dnorm(x)</span><br><span class="line">plot(x,y,type = <span class="string">"l"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/control_flow16-1.png" alt=""> </p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">1</span>:<span class="number">30</span>; plot(x, dpois(x, lambda = <span class="number">1</span>), type = <span class="string">"l"</span>)</span><br><span class="line">lines(x, dpois(x, lambda = <span class="number">5</span>), col = <span class="string">"blue"</span>); </span><br><span class="line">lines(x, dpois(x, lambda = <span class="number">10</span>), col = <span class="string">"red"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/control_flow17-1.png" alt=""> </p>
+<h3 id="u5206_u5E03_u51FD_u6570"><a href="#u5206_u5E03_u51FD_u6570" class="headerlink" title="分布函数"></a>分布函数</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- seq(-<span class="number">3</span>,<span class="number">3</span>,length.out = <span class="number">100</span>)</span><br><span class="line">y &lt;- pnorm(x)</span><br><span class="line">plot(x,y,type = <span class="string">"l"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/control_flow18-1.png" alt=""> </p>
+<h3 id="u7EC3_u4E60-1"><a href="#u7EC3_u4E60-1" class="headerlink" title="练习"></a>练习</h3><p>请作下图, 比较t分布(df = 1 和 3)和标准正态分布的密度曲线(使用text()添加文字)</p>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/control_flow19-1.png" alt=""> </p>
+<h3 id="u5206_u4F4D_u6570_u51FD_u6570"><a href="#u5206_u4F4D_u6570_u51FD_u6570" class="headerlink" title="分位数函数"></a>分位数函数</h3><p>分位数函数和分布函数互相联系</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnorm(<span class="number">1.96</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.9750021</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnorm(<span class="number">1.645</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.9500151</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qnorm(<span class="number">0.975</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1.959964</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">qnorm(<span class="number">0.95</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1.644854</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u751F_u6210_u968F_u673A_u6570"><a href="#u751F_u6210_u968F_u673A_u6570" class="headerlink" title="生成随机数"></a>生成随机数</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- rnorm(<span class="number">100</span>); mean(x); hist(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] -<span class="number">0.1276272</span></span></span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/control_flow21-1.png" alt=""> </p>
+<h3 id="Reproducible_Research"><a href="#Reproducible_Research" class="headerlink" title="Reproducible Research"></a>Reproducible Research</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- rnorm(<span class="number">100</span>);head(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] -<span class="number">0.3628155</span>  <span class="number">0.4724650</span>  <span class="number">0.6511996</span>  <span class="number">0.5244914</span> -<span class="number">1.0902893</span>  <span class="number">0.4615401</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- rnorm(<span class="number">100</span>);head(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>]  <span class="number">1.44724163</span>  <span class="number">1.25659218</span>  <span class="number">0.91141674</span>  <span class="number">0.65039449</span>  <span class="number">0.49668000</span> -<span class="number">0.06138254</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">123</span>); x &lt;- rnorm(<span class="number">100</span>);head(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] -<span class="number">0.56047565</span> -<span class="number">0.23017749</span>  <span class="number">1.55870831</span>  <span class="number">0.07050839</span>  <span class="number">0.12928774</span>  <span class="number">1.71506499</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">123</span>); x &lt;- rnorm(<span class="number">100</span>);head(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] -<span class="number">0.56047565</span> -<span class="number">0.23017749</span>  <span class="number">1.55870831</span>  <span class="number">0.07050839</span>  <span class="number">0.12928774</span>  <span class="number">1.71506499</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u9A8C_u8BC1_u5206_u5E03_u6570_u5B57_u7279_u5F81"><a href="#u9A8C_u8BC1_u5206_u5E03_u6570_u5B57_u7279_u5F81" class="headerlink" title="验证分布数字特征"></a>验证分布数字特征</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">123</span>)</span><br><span class="line">x &lt;- rbinom(<span class="number">100</span>, size = <span class="number">40</span>, prob = <span class="number">0.5</span>)</span><br><span class="line">mean(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">20.04</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">y &lt;- runif(<span class="number">100</span>, min = <span class="number">0</span>, max = <span class="number">1</span>)</span><br><span class="line">mean(y)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.5142249</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="u5B57_u7B26_u5904_u7406_u51FD_u6570"><a href="#u5B57_u7B26_u5904_u7406_u51FD_u6570" class="headerlink" title="字符处理函数"></a>字符处理函数</h2><ul>
+<li>nchar</li>
+<li>substr</li>
+<li>grep</li>
+<li>sub</li>
+<li>strsplit</li>
+<li>paste</li>
+<li>toupper, tolower</li>
+</ul>
+<h3 id="nchar"><a href="#nchar" class="headerlink" title="nchar"></a>nchar</h3><p>计算字符串长度</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- c(<span class="string">"ab"</span>,<span class="string">"cde"</span>,<span class="string">"fghij"</span>)</span><br><span class="line">length(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nchar(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">2</span> <span class="number">3</span> <span class="number">5</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="substr"><a href="#substr" class="headerlink" title="substr"></a>substr</h3><p>提取或替换一个字符向量中的子串</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="string">"abcdef"</span></span><br><span class="line">substr(x,<span class="number">2</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"bcd"</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">substr(x,<span class="number">2</span>,<span class="number">4</span>) &lt;- <span class="string">"22222"</span></span><br><span class="line">x</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"a222ef"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h3><p>搜索子串, 可以使用<a href="http://deerchao.net/tutorials/regex/regex.htm" target="_blank" rel="external"><em>正则表达式</em></a></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">txt &lt;- c(<span class="string">"arm"</span>,<span class="string">"foot"</span>,<span class="string">"lefroo"</span>, <span class="string">"bafoobar"</span>)</span><br><span class="line">grep(<span class="string">"foo"</span>, txt)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">2</span> <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">txt[grep(<span class="string">"foo"</span>, txt)]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"foot"</span>     <span class="string">"bafoobar"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="sub_u548Cgsub"><a href="#sub_u548Cgsub" class="headerlink" title="sub和gsub"></a>sub和gsub</h3><p>sub and gsub perform replacement of the first and all matches respectively.</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str &lt;- <span class="string">"Now is the time      "</span></span><br><span class="line">sub(<span class="string">" "</span>, <span class="string">""</span>, str)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Nowis the time      "</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gsub(<span class="string">" "</span>, <span class="string">""</span>, str)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Nowisthetime"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="strsplit"><a href="#strsplit" class="headerlink" title="strsplit"></a>strsplit</h3><p>对字符串进行分解</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- c(as = <span class="string">"asfef"</span>, qu = <span class="string">"qwerty"</span>, <span class="string">"yuiop["</span>, <span class="string">"stuff.blah.yech"</span>)</span><br><span class="line">strsplit(x, <span class="string">"e"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $as</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"asf"</span> <span class="string">"f"</span>  </span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $qu</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"qw"</span>  <span class="string">"rty"</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## [[<span class="number">3</span>]]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"yuiop["</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## [[<span class="number">4</span>]]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"stuff.blah.y"</span> <span class="string">"ch"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="paste"><a href="#paste" class="headerlink" title="paste"></a>paste</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paste(<span class="string">"x"</span>, <span class="number">1</span>:<span class="number">3</span>, sep = <span class="string">""</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"x1"</span> <span class="string">"x2"</span> <span class="string">"x3"</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paste(<span class="string">"x"</span>, <span class="number">1</span>:<span class="number">3</span>, sep = <span class="string">"M"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"xM1"</span> <span class="string">"xM2"</span> <span class="string">"xM3"</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">paste(<span class="string">"Today is"</span>, date())</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"Today is Sun Nov 15 14:36:28 2015"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5927_u5C0F_u5199_u8F6C_u6362"><a href="#u5927_u5C0F_u5199_u8F6C_u6362" class="headerlink" title="大小写转换"></a>大小写转换</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="string">"MiXeD cAsE 123"</span></span><br><span class="line">toupper(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"MIXED CASE 123"</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tolower(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"mixed case 123"</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u81EA_u5B9A_u4E49_u51FD_u6570"><a href="#u81EA_u5B9A_u4E49_u51FD_u6570" class="headerlink" title="自定义函数"></a>自定义函数</h3><blockquote>
+<p>myfunction &lt;- function(arg1, arg2, …){</p>
+<p>  statements</p>
+<p>  return(object)</p>
+<p>}</p>
+</blockquote>
+<ul>
+<li>arg可以有默认值</li>
+<li>如果没有显式的return语句, 则最后一个表达式的值将返回</li>
+<li>如果有return, 则遇到return时函数结束, 后面的代码不再执行</li>
+</ul>
+<h3 id="u81EA_u5B9A_u4E49_u51FD_u6570_u4E3E_u4F8B"><a href="#u81EA_u5B9A_u4E49_u51FD_u6570_u4E3E_u4F8B" class="headerlink" title="自定义函数举例"></a>自定义函数举例</h3><p>输入直角三角形的直角边长度, 输出斜边长度</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hypotenuse &lt;- <span class="keyword">function</span>(x, y)&#123;</span><br><span class="line">  sqrt(x^<span class="number">2</span> + y^<span class="number">2</span>)</span><br><span class="line">&#125;</span><br><span class="line">hypotenuse(<span class="number">3</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">5</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hypotenuse(<span class="number">5</span>,<span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">13</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u51FD_u6570_u7684_u5D4C_u5957_u5B9A_u4E49"><a href="#u51FD_u6570_u7684_u5D4C_u5957_u5B9A_u4E49" class="headerlink" title="函数的嵌套定义"></a>函数的嵌套定义</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">f &lt;- <span class="keyword">function</span>(x)&#123;</span><br><span class="line">  y &lt;- <span class="number">1</span></span><br><span class="line">  g &lt;- <span class="keyword">function</span>(x)&#123;</span><br><span class="line">    (x + y)/<span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">  g(x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u7EC3_u4E60-2"><a href="#u7EC3_u4E60-2" class="headerlink" title="练习"></a>练习</h3><p>输入一个正整数n(n &gt; 3), 输出斐波那契数列的前n项</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fibonacci(<span class="number">15</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>]   <span class="number">1</span>   <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">5</span>   <span class="number">8</span>  <span class="number">13</span>  <span class="number">21</span>  <span class="number">34</span>  <span class="number">55</span>  <span class="number">89</span> <span class="number">144</span> <span class="number">233</span> <span class="number">377</span> <span class="number">610</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u7EC3_u4E60-3"><a href="#u7EC3_u4E60-3" class="headerlink" title="练习"></a>练习</h3><p>输入一个正整数n(n &gt; 3), 输出斐波那契数列的前n项</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fibonacci &lt;- <span class="keyword">function</span>(n)&#123;</span><br><span class="line">  x &lt;- rep(<span class="number">1</span>,n)</span><br><span class="line">  <span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">3</span>:n)&#123;</span><br><span class="line">    x[i] &lt;- x[i-<span class="number">1</span>] + x[i-<span class="number">2</span>]</span><br><span class="line">  &#125;</span><br><span class="line">  x  </span><br><span class="line">&#125;</span><br><span class="line">fibonacci(<span class="number">15</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>]   <span class="number">1</span>   <span class="number">1</span>   <span class="number">2</span>   <span class="number">3</span>   <span class="number">5</span>   <span class="number">8</span>  <span class="number">13</span>  <span class="number">21</span>  <span class="number">34</span>  <span class="number">55</span>  <span class="number">89</span> <span class="number">144</span> <span class="number">233</span> <span class="number">377</span> <span class="number">610</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u7EC3_u4E60-4"><a href="#u7EC3_u4E60-4" class="headerlink" title="练习"></a>练习</h3><p>编写一个函数solve.equ, 可以用来解一元二次方程 $ax^2 + bx + c = 0$</p>
+<ul>
+<li>输入为系数, a,b,c</li>
+<li>输出为方程的解</li>
+<li>注意在不同系数条件下, 方程解的不同(只输出实数解)</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solve.equ(<span class="number">1</span>,<span class="number">2</span>,<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## x = -<span class="number">1</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solve.equ(<span class="number">1</span>,<span class="number">2</span>,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## x1 = <span class="number">0</span> , x2 = -<span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4E00_u5143_u4E8C_u6B21_u65B9_u7A0B_u6C42_u89E3_u7A0B_u5E8F"><a href="#u4E00_u5143_u4E8C_u6B21_u65B9_u7A0B_u6C42_u89E3_u7A0B_u5E8F" class="headerlink" title="一元二次方程求解程序"></a>一元二次方程求解程序</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">solve.equ &lt;- <span class="keyword">function</span>(a,b,c)&#123;</span><br><span class="line">  <span class="keyword">if</span>(a == <span class="number">0</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(b == <span class="number">0</span>)&#123;</span><br><span class="line">      <span class="keyword">if</span>(c == <span class="number">0</span>) <span class="keyword">return</span>(<span class="string">"a=b=c=0"</span>) <span class="keyword">else</span> <span class="keyword">return</span>(<span class="string">"No solution!"</span>)</span><br><span class="line">    &#125; <span class="keyword">else</span> cat(<span class="string">"x ="</span>, -c/b)</span><br><span class="line">  &#125; <span class="keyword">else</span>&#123;</span><br><span class="line">    delta &lt;- b^<span class="number">2</span> - <span class="number">4</span>*a*c</span><br><span class="line">    <span class="keyword">if</span>(delta &gt; <span class="number">0</span>) cat(<span class="string">"x1 ="</span>, (-b + sqrt(delta))/(<span class="number">2</span>*a), <span class="string">", x2 ="</span>, (-b - sqrt(delta))/(<span class="number">2</span>*a)) <span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="keyword">if</span>(abs(delta - <span class="number">0</span>) &lt; <span class="number">10</span>^(-<span class="number">5</span>)) cat(<span class="string">"x ="</span>, -b/<span class="number">2</span>/a) <span class="keyword">else</span> <span class="keyword">return</span>(<span class="string">"No real solution!"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/R/">R</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/R-programing/">R programing</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://ripeconan.com/2015/11/15/control_flow_function/" data-title="控制流和函数 | ripeconan" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/11/23/dplyr/" title="数据处理之dplyr包">
+  <strong>上一篇：</strong><br/>
+  <span>
+  数据处理之dplyr包</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/10/25/input_output/"  title="R的输入输出">
+ <strong>下一篇：</strong><br/> 
+ <span>R的输入输出
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u63D0_u8981"><span class="toc-number">1.</span> <span class="toc-text">内容提要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u9009_u62E9_u7ED3_u6784"><span class="toc-number">2.</span> <span class="toc-text">选择结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#if"><span class="toc-number">2.1.</span> <span class="toc-text">if</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if_u548Celse"><span class="toc-number">2.2.</span> <span class="toc-text">if和else</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#if_u548Celse_u4E2D_u9700_u8981_u6CE8_u610F_u7684_u4E8B_u9879"><span class="toc-number">2.3.</span> <span class="toc-text">if和else中需要注意的事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ifelse"><span class="toc-number">2.4.</span> <span class="toc-text">ifelse</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u591A_u4E2A_u5206_u652F_3A_switch"><span class="toc-number">2.5.</span> <span class="toc-text">多个分支: switch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5FAA_u73AF"><span class="toc-number">3.</span> <span class="toc-text">循环</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#while"><span class="toc-number">3.1.</span> <span class="toc-text">while</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repeat"><span class="toc-number">3.2.</span> <span class="toc-text">repeat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#for"><span class="toc-number">3.3.</span> <span class="toc-text">for</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E60"><span class="toc-number">3.4.</span> <span class="toc-text">练习</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u51FD_u6570"><span class="toc-number">4.</span> <span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u5B66_u51FD_u6570"><span class="toc-number">5.</span> <span class="toc-text">数学函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7EDF_u8BA1_u51FD_u6570"><span class="toc-number">6.</span> <span class="toc-text">统计函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6982_u7387_u51FD_u6570"><span class="toc-number">7.</span> <span class="toc-text">概率函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6982_u7387_u5206_u5E03_u7F29_u5199"><span class="toc-number">7.1.</span> <span class="toc-text">概率分布缩写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5BC6_u5EA6_u51FD_u6570"><span class="toc-number">7.2.</span> <span class="toc-text">密度函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5206_u5E03_u51FD_u6570"><span class="toc-number">7.3.</span> <span class="toc-text">分布函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E60-1"><span class="toc-number">7.4.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5206_u4F4D_u6570_u51FD_u6570"><span class="toc-number">7.5.</span> <span class="toc-text">分位数函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u968F_u673A_u6570"><span class="toc-number">7.6.</span> <span class="toc-text">生成随机数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Reproducible_Research"><span class="toc-number">7.7.</span> <span class="toc-text">Reproducible Research</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9A8C_u8BC1_u5206_u5E03_u6570_u5B57_u7279_u5F81"><span class="toc-number">7.8.</span> <span class="toc-text">验证分布数字特征</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5B57_u7B26_u5904_u7406_u51FD_u6570"><span class="toc-number">8.</span> <span class="toc-text">字符处理函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#nchar"><span class="toc-number">8.1.</span> <span class="toc-text">nchar</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#substr"><span class="toc-number">8.2.</span> <span class="toc-text">substr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grep"><span class="toc-number">8.3.</span> <span class="toc-text">grep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#sub_u548Cgsub"><span class="toc-number">8.4.</span> <span class="toc-text">sub和gsub</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#strsplit"><span class="toc-number">8.5.</span> <span class="toc-text">strsplit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#paste"><span class="toc-number">8.6.</span> <span class="toc-text">paste</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5927_u5C0F_u5199_u8F6C_u6362"><span class="toc-number">8.7.</span> <span class="toc-text">大小写转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u81EA_u5B9A_u4E49_u51FD_u6570"><span class="toc-number">8.8.</span> <span class="toc-text">自定义函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u81EA_u5B9A_u4E49_u51FD_u6570_u4E3E_u4F8B"><span class="toc-number">8.9.</span> <span class="toc-text">自定义函数举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u51FD_u6570_u7684_u5D4C_u5957_u5B9A_u4E49"><span class="toc-number">8.10.</span> <span class="toc-text">函数的嵌套定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E60-2"><span class="toc-number">8.11.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E60-3"><span class="toc-number">8.12.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E60-4"><span class="toc-number">8.13.</span> <span class="toc-text">练习</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u5143_u4E8C_u6B21_u65B9_u7A0B_u6C42_u89E3_u7A0B_u5E8F"><span class="toc-number">8.14.</span> <span class="toc-text">一元二次方程求解程序</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Learning/" title="Learning">Learning<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/R/" title="R">R<sup>7</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/R-programing/" title="R programing">R programing<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/data-mining/" title="data mining">data mining<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-package/" title="R package">R package<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-函数/" title="R 函数">R 函数<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/To-Do/" title="To Do">To Do<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithms/" title="algorithms">algorithms<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://zjdian.com/" target="_blank" title="中继点">中继点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.fens.me/" target="_blank" title="粉丝日志">粉丝日志</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Design your life, Build your dream. <br/>
+			     </p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="ripeconan">ripeconan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe6d1f421bbc9962127a50488f9ed37d1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

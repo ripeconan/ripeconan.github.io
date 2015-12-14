@@ -1,0 +1,858 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>R的数据结构 | ripeconan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="ripeconan">
+    
+
+    
+    <meta name="description" content="数据结构
+向量
+矩阵
+数组
+数据框
+列表
+因子
+
+数据集:dataset1head(mtcars[,1:5])
+1234567##                    mpg cyl disp  hp drat## Mazda RX4         21.0   6  160 110 3.90## Mazda RX4 Wag     21.0   6  160 110 3.90## Datsu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R的数据结构">
+<meta property="og:url" content="http://ripeconan.com/2015/10/12/data_structure/index.html">
+<meta property="og:site_name" content="ripeconan">
+<meta property="og:description" content="数据结构
+向量
+矩阵
+数组
+数据框
+列表
+因子
+
+数据集:dataset1head(mtcars[,1:5])
+1234567##                    mpg cyl disp  hp drat## Mazda RX4         21.0   6  160 110 3.90## Mazda RX4 Wag     21.0   6  160 110 3.90## Datsu">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/datastructure.png">
+<meta property="og:image" content="http://ripeconan.com/data_structure_files/figure-html/unnamed-chunk-31-1.png">
+<meta property="og:updated_time" content="2015-11-07T04:13:23.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R的数据结构">
+<meta name="twitter:description" content="数据结构
+向量
+矩阵
+数组
+数据框
+列表
+因子
+
+数据集:dataset1head(mtcars[,1:5])
+1234567##                    mpg cyl disp  hp drat## Mazda RX4         21.0   6  160 110 3.90## Mazda RX4 Wag     21.0   6  160 110 3.90## Datsu">
+
+    
+    <link rel="alternative" href="/atom.xml" title="ripeconan" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="ripeconan" title="ripeconan"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:ripeconan.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/12/data_structure/" title="R的数据结构" itemprop="url">R的数据结构</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-11T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-10-12</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u636E_u7ED3_u6784"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u96C6_3Adataset"><span class="toc-number">1.1.</span> <span class="toc-text">数据集:dataset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u7ED3_u6784_u56FE_u793A"><span class="toc-number">1.2.</span> <span class="toc-text">数据结构图示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411_u91CF"><span class="toc-number">2.</span> <span class="toc-text">向量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u77E9_u9635"><span class="toc-number">3.</span> <span class="toc-text">矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">3.1.</span> <span class="toc-text">矩阵主要内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u521B_u5EFA"><span class="toc-number">3.2.</span> <span class="toc-text">矩阵创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u7EF4_u6570"><span class="toc-number">3.3.</span> <span class="toc-text">矩阵维数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u4E0B_u6807_u5F15_u7528"><span class="toc-number">3.4.</span> <span class="toc-text">矩阵下标引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u4E0B_u6807_u5F15_u7528_u89C4_u5219"><span class="toc-number">3.5.</span> <span class="toc-text">矩阵下标引用规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u4E0B_u6807_u5F15_u7528_u4E3E_u4F8B"><span class="toc-number">3.6.</span> <span class="toc-text">矩阵下标引用举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u8FD0_u7B97"><span class="toc-number">3.7.</span> <span class="toc-text">矩阵运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8F6C_u7F6E_u77E9_u9635"><span class="toc-number">3.8.</span> <span class="toc-text">转置矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u76F8_u4E58"><span class="toc-number">3.9.</span> <span class="toc-text">矩阵相乘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u65B9_u7A0B_u7EC4_u6C42_u89E3"><span class="toc-number">3.10.</span> <span class="toc-text">方程组求解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u6C42_u9006"><span class="toc-number">3.11.</span> <span class="toc-text">矩阵求逆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7279_u5F81_u503C_u548C_u7279_u5F81_u5411_u91CF"><span class="toc-number">3.12.</span> <span class="toc-text">特征值和特征向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E00"><span class="toc-number">3.13.</span> <span class="toc-text">diag函数的三种用法之一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E8C"><span class="toc-number">3.14.</span> <span class="toc-text">diag函数的三种用法之二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E09"><span class="toc-number">3.15.</span> <span class="toc-text">diag函数的三种用法之三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_rbind__u751F_u6210_u77E9_u9635"><span class="toc-number">3.16.</span> <span class="toc-text">使用 rbind 生成矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_cbind__u751F_u6210_u77E9_u9635"><span class="toc-number">3.17.</span> <span class="toc-text">使用 cbind 生成矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528c_28_29_u5BF9_u77E9_u9635_u6309_u5217_u62C9_u76F4"><span class="toc-number">3.18.</span> <span class="toc-text">使用c()对矩阵按列拉直</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528dim_u7EF4_u6570_u51FD_u6570_u5BF9_u77E9_u9635_u964D_u7EF4"><span class="toc-number">3.19.</span> <span class="toc-text">使用dim维数函数对矩阵降维</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528dim_u51FD_u6570_u66F4_u6539_u77E9_u9635_u7EF4_u5EA6"><span class="toc-number">3.20.</span> <span class="toc-text">使用dim函数更改矩阵维度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u548C_u5411_u91CF_u8FDB_u884C_u56DB_u5219_u8FD0_u7B97"><span class="toc-number">3.21.</span> <span class="toc-text">矩阵和向量进行四则运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u548C_u5411_u91CF_u7684_u56DB_u5219_u8FD0_u7B97"><span class="toc-number">3.22.</span> <span class="toc-text">矩阵和向量的四则运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apply_u7CFB_u5217_u51FD_u6570"><span class="toc-number">3.23.</span> <span class="toc-text">apply系列函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u7EC4"><span class="toc-number">4.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u7EC4_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">4.1.</span> <span class="toc-text">数组主要内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_u4E00_u4E2A_u4E8C_u7EF4_u6570_u7EC4"><span class="toc-number">4.2.</span> <span class="toc-text">创建一个二维数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_u4E00_u4E2A_u4E09_u7EF4_u6570_u7EC4"><span class="toc-number">4.3.</span> <span class="toc-text">创建一个三维数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528dim_u51FD_u6570_u6765_u521B_u5EFA_u6570_u7EC4"><span class="toc-number">4.4.</span> <span class="toc-text">使用dim函数来创建数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528dim_u51FD_u6570_u6765_u521B_u5EFA_u6570_u7EC4-1"><span class="toc-number">4.5.</span> <span class="toc-text">使用dim函数来创建数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u7EC4_u4E0B_u6807_u5F15_u7528_28_u7C7B_u4F3C_u4E8E_u77E9_u9635_29"><span class="toc-number">4.6.</span> <span class="toc-text">数组下标引用(类似于矩阵)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u7EC4_u7684_u8FD0_u7B97_u6CD5_u5219_u540C_u77E9_u9635"><span class="toc-number">4.7.</span> <span class="toc-text">数组的运算法则同矩阵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u79EF_u4E0E_u5916_u79EF"><span class="toc-number">5.</span> <span class="toc-text">内积与外积</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5185_u79EF"><span class="toc-number">5.1.</span> <span class="toc-text">内积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5916_u79EF"><span class="toc-number">5.2.</span> <span class="toc-text">外积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u5411_u91CF_u7684_u5916_u79EF"><span class="toc-number">5.3.</span> <span class="toc-text">两个向量的外积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5916_u79EF_u4F8B_u5B50"><span class="toc-number">5.4.</span> <span class="toc-text">外积例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5916_u79EF_u7684_u62D3_u5C55"><span class="toc-number">5.5.</span> <span class="toc-text">外积的拓展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5229_u7528outer_u51FD_u6570_u751F_u6210_u4E09_u7EF4_u70B9_u5217"><span class="toc-number">5.6.</span> <span class="toc-text">利用outer函数生成三维点列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#persp_u51FD_u6570_u505A_u4E09_u7EF4_u56FE_u5F62"><span class="toc-number">5.7.</span> <span class="toc-text">persp函数做三维图形</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u636E_u6846"><span class="toc-number">6.</span> <span class="toc-text">数据框</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u6846_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">6.1.</span> <span class="toc-text">数据框主要内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u6846_2C_data-frame"><span class="toc-number">6.2.</span> <span class="toc-text">数据框, data.frame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_u6570_u636E_u6846"><span class="toc-number">6.3.</span> <span class="toc-text">创建数据框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_u6570_u636E_u6846_u4E3E_u4F8B"><span class="toc-number">6.4.</span> <span class="toc-text">创建数据框举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_u4E0D_u540C_u7C7B_u578B_u7684_u53D8_u91CF_u7684_u6570_u636E_u6846"><span class="toc-number">6.5.</span> <span class="toc-text">创建不同类型的变量的数据框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-frame__u51FD_u6570_u7684_u53C2_u6570"><span class="toc-number">6.6.</span> <span class="toc-text">data.frame 函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u6846_u5143_u7D20_u7684_u4E00_u822C_u5F15_u7528_u65B9_u5F0F"><span class="toc-number">6.7.</span> <span class="toc-text">数据框元素的一般引用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u6846_u5143_u7D20_u7684_u7279_u6B8A_u5F15_u7528_u65B9_u5F0F"><span class="toc-number">6.8.</span> <span class="toc-text">数据框元素的特殊引用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528subset_u51FD_u6570_u9009_u53D6_u6570_u636E_u6846_u7684_u884C_u548C_u5217"><span class="toc-number">6.9.</span> <span class="toc-text">使用subset函数选取数据框的行和列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5982_u4F55_u7ED9_u6570_u636E_u6846_u6DFB_u52A0_u53D8_u91CF"><span class="toc-number">6.10.</span> <span class="toc-text">如何给数据框添加变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F16_u8F91_u6570_u636E_u6846_u4E2D_u7684_u5C11_u6570_u5355_u5143"><span class="toc-number">6.11.</span> <span class="toc-text">编辑数据框中的少数单元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u67D0_u4E9B_u542B_u6709_u6570_u636E_u6846_u7684_u7A0B_u5E8F_u4EE3_u7801"><span class="toc-number">6.12.</span> <span class="toc-text">某些含有数据框的程序代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attach__u548C_detach__u4E00_u4E2A_u6570_u636E_u6846"><span class="toc-number">6.13.</span> <span class="toc-text">attach 和 detach 一个数据框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_with__u6765_u8FDB_u884C_u6570_u636E_u6846_u64CD_u4F5C"><span class="toc-number">6.14.</span> <span class="toc-text">使用 with 来进行数据框操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5217_u8868_2C_list"><span class="toc-number">7.</span> <span class="toc-text">列表, list</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u7684_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">7.1.</span> <span class="toc-text">列表的主要内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u7684_u521B_u5EFA"><span class="toc-number">7.2.</span> <span class="toc-text">列表的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u7684_u5143_u7D20_u7684_u5F15_u7528"><span class="toc-number">7.3.</span> <span class="toc-text">列表的元素的引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u5143_u7D20_u7684_u5176_u4ED6_u5F15_u7528_u65B9_u6CD5"><span class="toc-number">7.4.</span> <span class="toc-text">列表元素的其他引用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4FEE_u6539_u5217_u8868_u5143_u7D20"><span class="toc-number">7.5.</span> <span class="toc-text">修改列表元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u65B0_u52A0_u5143_u7D20"><span class="toc-number">7.6.</span> <span class="toc-text">列表新加元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u5220_u9664_u5143_u7D20"><span class="toc-number">7.7.</span> <span class="toc-text">列表删除元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5176_u4ED6_u5217_u8868_u76F8_u5173"><span class="toc-number">7.8.</span> <span class="toc-text">其他列表相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u548C_u6570_u636E_u6846_u9009_u62E9_u5217_u7684_u6CE8_u610F_u4E8B_u9879"><span class="toc-number">7.9.</span> <span class="toc-text">列表和数据框选择列的注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u56E0_u5B50_2C_factor"><span class="toc-number">8.</span> <span class="toc-text">因子, factor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u56E0_u5B50_u7684_u672C_u8D28"><span class="toc-number">8.1.</span> <span class="toc-text">因子的本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u56E0_u5B50_u7684_u521B_u5EFA"><span class="toc-number">8.2.</span> <span class="toc-text">因子的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#factor_u7684_u521B_u5EFA_u53C2_u6570"><span class="toc-number">8.3.</span> <span class="toc-text">factor的创建参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tapply_u51FD_u6570"><span class="toc-number">8.4.</span> <span class="toc-text">tapply函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528gl_u51FD_u6570_u751F_u6210_u6307_u5B9A_u6C34_u5E73_u6570_u7684_u56E0_u5B50"><span class="toc-number">8.5.</span> <span class="toc-text">使用gl函数生成指定水平数的因子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stringsAsFactors_u53C2_u6570_u7684_u610F_u4E49"><span class="toc-number">8.6.</span> <span class="toc-text">stringsAsFactors参数的意义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5404_u79CD_u6570_u636E_u7ED3_u6784_u7684_u5224_u5B9A_u548C_u8F6C_u6362"><span class="toc-number">9.</span> <span class="toc-text">各种数据结构的判定和转换</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="u6570_u636E_u7ED3_u6784"><a href="#u6570_u636E_u7ED3_u6784" class="headerlink" title="数据结构"></a>数据结构</h2><ul>
+<li>向量</li>
+<li>矩阵</li>
+<li>数组</li>
+<li>数据框</li>
+<li>列表</li>
+<li>因子</li>
+</ul>
+<h3 id="u6570_u636E_u96C6_3Adataset"><a href="#u6570_u636E_u96C6_3Adataset" class="headerlink" title="数据集:dataset"></a>数据集:dataset</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head(mtcars[,<span class="number">1</span>:<span class="number">5</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##                    mpg cyl disp  hp drat</span></span><br><span class="line"><span class="preprocessor">## Mazda RX4         <span class="number">21.0</span>   <span class="number">6</span>  <span class="number">160</span> <span class="number">110</span> <span class="number">3.90</span></span></span><br><span class="line"><span class="preprocessor">## Mazda RX4 Wag     <span class="number">21.0</span>   <span class="number">6</span>  <span class="number">160</span> <span class="number">110</span> <span class="number">3.90</span></span></span><br><span class="line"><span class="preprocessor">## Datsun <span class="number">710</span>        <span class="number">22.8</span>   <span class="number">4</span>  <span class="number">108</span>  <span class="number">93</span> <span class="number">3.85</span></span></span><br><span class="line"><span class="preprocessor">## Hornet <span class="number">4</span> Drive    <span class="number">21.4</span>   <span class="number">6</span>  <span class="number">258</span> <span class="number">110</span> <span class="number">3.08</span></span></span><br><span class="line"><span class="preprocessor">## Hornet Sportabout <span class="number">18.7</span>   <span class="number">8</span>  <span class="number">360</span> <span class="number">175</span> <span class="number">3.15</span></span></span><br><span class="line"><span class="preprocessor">## Valiant           <span class="number">18.1</span>   <span class="number">6</span>  <span class="number">225</span> <span class="number">105</span> <span class="number">2.76</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u6570_u636E_u7ED3_u6784_u56FE_u793A"><a href="#u6570_u636E_u7ED3_u6784_u56FE_u793A" class="headerlink" title="数据结构图示"></a>数据结构图示</h3><p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/datastructure.png" alt="datastructure"></p>
+<h2 id="u5411_u91CF"><a href="#u5411_u91CF" class="headerlink" title="向量"></a>向量</h2><ul>
+<li>向量生成方式: c, :, seq, rep</li>
+<li>向量四则运算</li>
+<li>向量下标运算</li>
+</ul>
+<h2 id="u77E9_u9635"><a href="#u77E9_u9635" class="headerlink" title="矩阵"></a>矩阵</h2><h3 id="u77E9_u9635_u4E3B_u8981_u5185_u5BB9"><a href="#u77E9_u9635_u4E3B_u8981_u5185_u5BB9" class="headerlink" title="矩阵主要内容"></a>矩阵主要内容</h3><ul>
+<li>矩阵创建</li>
+<li>矩阵下标引用</li>
+<li>矩阵运算: 加, 减, 矩阵乘法, 逆, 方程组求解</li>
+<li>rbind, cbind</li>
+</ul>
+<h3 id="u77E9_u9635_u521B_u5EFA"><a href="#u77E9_u9635_u521B_u5EFA" class="headerlink" title="矩阵创建"></a>矩阵创建</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A &lt;- matrix(<span class="number">1</span>:<span class="number">12</span>, nrow = <span class="number">3</span>); A</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">4</span>    <span class="number">7</span>   <span class="number">10</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">5</span>    <span class="number">8</span>   <span class="number">11</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">3</span>,]    <span class="number">3</span>    <span class="number">6</span>    <span class="number">9</span>   <span class="number">12</span></span></span><br></pre></td></tr></table></figure>
+<p>重要参数:</p>
+<ul>
+<li>nrow, ncol</li>
+<li>byrow = T(缺省值是 FALSE)</li>
+<li>dimnames, rownames, colnames</li>
+</ul>
+<h3 id="u77E9_u9635_u7EF4_u6570"><a href="#u77E9_u9635_u7EF4_u6570" class="headerlink" title="矩阵维数"></a>矩阵维数</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dim(A)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3</span> <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nrow(A)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ncol(A)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">length(A)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">12</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u77E9_u9635_u4E0B_u6807_u5F15_u7528"><a href="#u77E9_u9635_u4E0B_u6807_u5F15_u7528" class="headerlink" title="矩阵下标引用"></a>矩阵下标引用</h3><p>索引的几种方法:</p>
+<ul>
+<li>正整数</li>
+<li>负整数</li>
+<li>逻辑值</li>
+<li>元素名称</li>
+</ul>
+<p>注意:</p>
+<ul>
+<li>不同维度可以使用不同引用方法</li>
+<li>每个维度下标用逗号分隔</li>
+</ul>
+<h3 id="u77E9_u9635_u4E0B_u6807_u5F15_u7528_u89C4_u5219"><a href="#u77E9_u9635_u4E0B_u6807_u5F15_u7528_u89C4_u5219" class="headerlink" title="矩阵下标引用规则"></a>矩阵下标引用规则</h3><ul>
+<li>访问矩阵的第 i 行第 j 列的元素：A[i,j]</li>
+<li>访问矩阵的第 i 行的元素：A[i,]</li>
+<li>访问矩阵的第 j 列的元素：A[,j]</li>
+<li>访问矩阵的第 a,b 行与第 x,y,z 列交叉的元素形成的子矩阵：A[c(a,b),c(x,y,z)]</li>
+</ul>
+<h3 id="u77E9_u9635_u4E0B_u6807_u5F15_u7528_u4E3E_u4F8B"><a href="#u77E9_u9635_u4E0B_u6807_u5F15_u7528_u4E3E_u4F8B" class="headerlink" title="矩阵下标引用举例"></a>矩阵下标引用举例</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A[<span class="number">1</span>,<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A[<span class="number">1</span>,<span class="number">2</span>:<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">4</span> <span class="number">7</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A[<span class="number">1</span>:<span class="number">2</span>,]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">4</span>    <span class="number">7</span>   <span class="number">10</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">5</span>    <span class="number">8</span>   <span class="number">11</span></span></span><br></pre></td></tr></table></figure>
+<p>其他几种方式可以自己练习一下</p>
+<h3 id="u77E9_u9635_u8FD0_u7B97"><a href="#u77E9_u9635_u8FD0_u7B97" class="headerlink" title="矩阵运算"></a>矩阵运算</h3><p>两个同为m行n列的矩阵, 可以进行二元运算: + - * / ^</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">B &lt;- matrix(<span class="number">2</span>:<span class="number">13</span>, nrow = <span class="number">3</span>)</span><br><span class="line">A + B</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">3</span>    <span class="number">9</span>   <span class="number">15</span>   <span class="number">21</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">5</span>   <span class="number">11</span>   <span class="number">17</span>   <span class="number">23</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">3</span>,]    <span class="number">7</span>   <span class="number">13</span>   <span class="number">19</span>   <span class="number">25</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u8F6C_u7F6E_u77E9_u9635"><a href="#u8F6C_u7F6E_u77E9_u9635" class="headerlink" title="转置矩阵"></a>转置矩阵</h3><p>t(A)是对A的转置</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">t(A)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">2</span>    <span class="number">3</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">4</span>    <span class="number">5</span>    <span class="number">6</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">3</span>,]    <span class="number">7</span>    <span class="number">8</span>    <span class="number">9</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">4</span>,]   <span class="number">10</span>   <span class="number">11</span>   <span class="number">12</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u77E9_u9635_u76F8_u4E58"><a href="#u77E9_u9635_u76F8_u4E58" class="headerlink" title="矩阵相乘"></a>矩阵相乘</h3><p>A %*% D, 要求A的列数和D的行数相等</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D &lt;- matrix(<span class="number">1</span>:<span class="number">12</span>, nrow = <span class="number">4</span>); c(dim(A), dim(D))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">3</span> <span class="number">4</span> <span class="number">4</span> <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A %*% D</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]   <span class="number">70</span>  <span class="number">158</span>  <span class="number">246</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]   <span class="number">80</span>  <span class="number">184</span>  <span class="number">288</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">3</span>,]   <span class="number">90</span>  <span class="number">210</span>  <span class="number">330</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u65B9_u7A0B_u7EC4_u6C42_u89E3"><a href="#u65B9_u7A0B_u7EC4_u6C42_u89E3" class="headerlink" title="方程组求解"></a>方程组求解</h3><p>solve(A,b) 返回 Ax=b 的解 x</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">A &lt;- matrix(c(<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">6</span>,<span class="number">2</span>), nrow = <span class="number">3</span>); b &lt;- <span class="number">1</span>:<span class="number">3</span></span><br><span class="line">solve(A,b)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.44444444</span> <span class="number">0.08333333</span> <span class="number">0.05555556</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u77E9_u9635_u6C42_u9006"><a href="#u77E9_u9635_u6C42_u9006" class="headerlink" title="矩阵求逆"></a>矩阵求逆</h3><ul>
+<li>det(A) 返回 A 的行列式</li>
+<li>solve(A) 返回 A 的逆矩阵，要求 A 是方阵</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">det(A)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">36</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">solve(A)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##            [,<span class="number">1</span>]        [,<span class="number">2</span>]        [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,] -<span class="number">1.1111111</span>  <span class="number">1.44444444</span> -<span class="number">0.44444444</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]  <span class="number">0.6666667</span> -<span class="number">0.91666667</span>  <span class="number">0.41666667</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">3</span>,]  <span class="number">0.1111111</span>  <span class="number">0.05555556</span> -<span class="number">0.05555556</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u7279_u5F81_u503C_u548C_u7279_u5F81_u5411_u91CF"><a href="#u7279_u5F81_u503C_u548C_u7279_u5F81_u5411_u91CF" class="headerlink" title="特征值和特征向量"></a>特征值和特征向量</h3><p>eigen(A) 计算 A 的特征值和特征向量, 要求A是方阵</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eigen(A)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $values</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">12.9879815</span> -<span class="number">5.4824014</span> -<span class="number">0.5055801</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $vectors</span></span><br><span class="line"><span class="preprocessor">##            [,<span class="number">1</span>]       [,<span class="number">2</span>]        [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,] -<span class="number">0.4776405</span> -<span class="number">0.6821753</span> -<span class="number">0.85227871</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,] -<span class="number">0.5924795</span> -<span class="number">0.2244914</span>  <span class="number">0.52197030</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">3</span>,] -<span class="number">0.6487123</span>  <span class="number">0.6958739</span>  <span class="number">0.03417619</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E00"><a href="#diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E00" class="headerlink" title="diag函数的三种用法之一"></a>diag函数的三种用法之一</h3><p>diag(n), 当n为正整数时, 生成一个n阶单位矩阵</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diag(<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">0</span>    <span class="number">0</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">0</span>    <span class="number">1</span>    <span class="number">0</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">3</span>,]    <span class="number">0</span>    <span class="number">0</span>    <span class="number">1</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E8C"><a href="#diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E8C" class="headerlink" title="diag函数的三种用法之二"></a>diag函数的三种用法之二</h3><p>diag(A), 当A是一个方阵时, 生成一个由A的主对角线元素组成的向量</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">2</span>    <span class="number">7</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">3</span>    <span class="number">4</span>    <span class="number">6</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">3</span>,]    <span class="number">5</span>    <span class="number">8</span>    <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diag(A)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">4</span> <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E09"><a href="#diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E09" class="headerlink" title="diag函数的三种用法之三"></a>diag函数的三种用法之三</h3><p>diag(b), 当b是一个向量时, 生成一个由b作为主对角线元素, 和b同样阶数的方阵</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diag(<span class="number">1</span>:<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">0</span>    <span class="number">0</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">0</span>    <span class="number">2</span>    <span class="number">0</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">3</span>,]    <span class="number">0</span>    <span class="number">0</span>    <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528_rbind__u751F_u6210_u77E9_u9635"><a href="#u4F7F_u7528_rbind__u751F_u6210_u77E9_u9635" class="headerlink" title="使用 rbind 生成矩阵"></a>使用 rbind 生成矩阵</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rbind(c(<span class="number">1</span>,<span class="number">2</span>),c(<span class="number">3</span>,<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">3</span>    <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matrix(<span class="number">1</span>:<span class="number">4</span>,nrow = <span class="number">2</span>,ncol = <span class="number">2</span>,byrow = <span class="literal">TRUE</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">3</span>    <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528_cbind__u751F_u6210_u77E9_u9635"><a href="#u4F7F_u7528_cbind__u751F_u6210_u77E9_u9635" class="headerlink" title="使用 cbind 生成矩阵"></a>使用 cbind 生成矩阵</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cbind(c(<span class="number">1</span>,<span class="number">2</span>),c(<span class="number">3</span>,<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">3</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">matrix(<span class="number">1</span>:<span class="number">4</span>,nrow = <span class="number">2</span>,ncol = <span class="number">2</span>,byrow = <span class="literal">FALSE</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">3</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528c_28_29_u5BF9_u77E9_u9635_u6309_u5217_u62C9_u76F4"><a href="#u4F7F_u7528c_28_29_u5BF9_u77E9_u9635_u6309_u5217_u62C9_u76F4" class="headerlink" title="使用c()对矩阵按列拉直"></a>使用c()对矩阵按列拉直</h3><p>如果对A进行操作c(A)，意思是按列拉直</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">2</span>    <span class="number">7</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">3</span>    <span class="number">4</span>    <span class="number">6</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">3</span>,]    <span class="number">5</span>    <span class="number">8</span>    <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c(A)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">3</span> <span class="number">5</span> <span class="number">2</span> <span class="number">4</span> <span class="number">8</span> <span class="number">7</span> <span class="number">6</span> <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528dim_u7EF4_u6570_u51FD_u6570_u5BF9_u77E9_u9635_u964D_u7EF4"><a href="#u4F7F_u7528dim_u7EF4_u6570_u51FD_u6570_u5BF9_u77E9_u9635_u964D_u7EF4" class="headerlink" title="使用dim维数函数对矩阵降维"></a>使用dim维数函数对矩阵降维</h3><p>矩阵的实质是向量附加上两个维度</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A &lt;- matrix(<span class="number">1</span>:<span class="number">12</span>, nrow = <span class="number">3</span>)</span><br><span class="line">dim(A) &lt;- <span class="number">12</span></span><br><span class="line">A</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>]  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span>  <span class="number">6</span>  <span class="number">7</span>  <span class="number">8</span>  <span class="number">9</span> <span class="number">10</span> <span class="number">11</span> <span class="number">12</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528dim_u51FD_u6570_u66F4_u6539_u77E9_u9635_u7EF4_u5EA6"><a href="#u4F7F_u7528dim_u51FD_u6570_u66F4_u6539_u77E9_u9635_u7EF4_u5EA6" class="headerlink" title="使用dim函数更改矩阵维度"></a>使用dim函数更改矩阵维度</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dim(A) &lt;- c(<span class="number">2</span>,<span class="number">6</span>)</span><br><span class="line">A</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>] [,<span class="number">6</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">3</span>    <span class="number">5</span>    <span class="number">7</span>    <span class="number">9</span>   <span class="number">11</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span>    <span class="number">6</span>    <span class="number">8</span>   <span class="number">10</span>   <span class="number">12</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u77E9_u9635_u548C_u5411_u91CF_u8FDB_u884C_u56DB_u5219_u8FD0_u7B97"><a href="#u77E9_u9635_u548C_u5411_u91CF_u8FDB_u884C_u56DB_u5219_u8FD0_u7B97" class="headerlink" title="矩阵和向量进行四则运算"></a>矩阵和向量进行四则运算</h3><ol>
+<li>先将矩阵进行按列拉直</li>
+<li>再参考两个向量的操作</li>
+<li>最后把结果变回原形状的矩阵</li>
+</ol>
+<h3 id="u77E9_u9635_u548C_u5411_u91CF_u7684_u56DB_u5219_u8FD0_u7B97"><a href="#u77E9_u9635_u548C_u5411_u91CF_u7684_u56DB_u5219_u8FD0_u7B97" class="headerlink" title="矩阵和向量的四则运算"></a>矩阵和向量的四则运算</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A + <span class="number">13</span>:<span class="number">24</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>] [,<span class="number">6</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]   <span class="number">14</span>   <span class="number">18</span>   <span class="number">22</span>   <span class="number">26</span>   <span class="number">30</span>   <span class="number">34</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]   <span class="number">16</span>   <span class="number">20</span>   <span class="number">24</span>   <span class="number">28</span>   <span class="number">32</span>   <span class="number">36</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A - <span class="number">1</span>:<span class="number">3</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>] [,<span class="number">6</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">0</span>    <span class="number">0</span>    <span class="number">3</span>    <span class="number">6</span>    <span class="number">6</span>    <span class="number">9</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">0</span>    <span class="number">3</span>    <span class="number">3</span>    <span class="number">6</span>    <span class="number">9</span>    <span class="number">9</span></span></span><br></pre></td></tr></table></figure>
+<p>注意后者的循环法则</p>
+<h3 id="apply_u7CFB_u5217_u51FD_u6570"><a href="#apply_u7CFB_u5217_u51FD_u6570" class="headerlink" title="apply系列函数"></a>apply系列函数</h3><ul>
+<li>apply, mapply, tapply, lapply</li>
+<li>apply 函数处理矩阵和数组</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply(A, MARGIN = <span class="number">1</span>, FUN = sum)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">36</span> <span class="number">42</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply(A, MARGIN = <span class="number">2</span>, FUN = mean)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>]  <span class="number">1.5</span>  <span class="number">3.5</span>  <span class="number">5.5</span>  <span class="number">7.5</span>  <span class="number">9.5</span> <span class="number">11.5</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="u6570_u7EC4"><a href="#u6570_u7EC4" class="headerlink" title="数组"></a>数组</h2><h3 id="u6570_u7EC4_u4E3B_u8981_u5185_u5BB9"><a href="#u6570_u7EC4_u4E3B_u8981_u5185_u5BB9" class="headerlink" title="数组主要内容"></a>数组主要内容</h3><ul>
+<li>数组创建</li>
+<li>数组下标引用</li>
+</ul>
+<h3 id="u521B_u5EFA_u4E00_u4E2A_u4E8C_u7EF4_u6570_u7EC4"><a href="#u521B_u5EFA_u4E00_u4E2A_u4E8C_u7EF4_u6570_u7EC4" class="headerlink" title="创建一个二维数组"></a>创建一个二维数组</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z &lt;- array(<span class="number">1</span>:<span class="number">12</span>,dim=c(<span class="number">2</span>,<span class="number">6</span>))</span><br><span class="line">z</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>] [,<span class="number">6</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">3</span>    <span class="number">5</span>    <span class="number">7</span>    <span class="number">9</span>   <span class="number">11</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span>    <span class="number">6</span>    <span class="number">8</span>   <span class="number">10</span>   <span class="number">12</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u521B_u5EFA_u4E00_u4E2A_u4E09_u7EF4_u6570_u7EC4"><a href="#u521B_u5EFA_u4E00_u4E2A_u4E09_u7EF4_u6570_u7EC4" class="headerlink" title="创建一个三维数组"></a>创建一个三维数组</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">z &lt;- array(<span class="number">1</span>:<span class="number">12</span>,dim=c(<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>))</span><br><span class="line">z</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## , , <span class="number">1</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">3</span>    <span class="number">5</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span>    <span class="number">6</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## , , <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">7</span>    <span class="number">9</span>   <span class="number">11</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">8</span>   <span class="number">10</span>   <span class="number">12</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528dim_u51FD_u6570_u6765_u521B_u5EFA_u6570_u7EC4"><a href="#u4F7F_u7528dim_u51FD_u6570_u6765_u521B_u5EFA_u6570_u7EC4" class="headerlink" title="使用dim函数来创建数组"></a>使用dim函数来创建数组</h3><p>数组同矩阵一样, 是向量加维数</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">z &lt;- <span class="number">1</span>:<span class="number">12</span></span><br><span class="line">dim(z) &lt;- c(<span class="number">2</span>,<span class="number">6</span>)</span><br><span class="line">z</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>] [,<span class="number">6</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">3</span>    <span class="number">5</span>    <span class="number">7</span>    <span class="number">9</span>   <span class="number">11</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span>    <span class="number">6</span>    <span class="number">8</span>   <span class="number">10</span>   <span class="number">12</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528dim_u51FD_u6570_u6765_u521B_u5EFA_u6570_u7EC4-1"><a href="#u4F7F_u7528dim_u51FD_u6570_u6765_u521B_u5EFA_u6570_u7EC4-1" class="headerlink" title="使用dim函数来创建数组"></a>使用dim函数来创建数组</h3><p>给向量赋以多个维度, 就会变成数组</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">z &lt;- <span class="number">1</span>:<span class="number">12</span></span><br><span class="line">dim(z) &lt;- c(<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>)</span><br><span class="line">z</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## , , <span class="number">1</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">3</span>    <span class="number">5</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span>    <span class="number">6</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## , , <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">7</span>    <span class="number">9</span>   <span class="number">11</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">8</span>   <span class="number">10</span>   <span class="number">12</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u6570_u7EC4_u4E0B_u6807_u5F15_u7528_28_u7C7B_u4F3C_u4E8E_u77E9_u9635_29"><a href="#u6570_u7EC4_u4E0B_u6807_u5F15_u7528_28_u7C7B_u4F3C_u4E8E_u77E9_u9635_29" class="headerlink" title="数组下标引用(类似于矩阵)"></a>数组下标引用(类似于矩阵)</h3><ul>
+<li>z[i,j,k]访问数组的一个元素</li>
+<li>z[,j,k]第一维的数据全都取</li>
+<li>z[,,k]前两维的数据全都取</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">z &lt;- array(<span class="number">1</span>:<span class="number">12</span>,dim=c(<span class="number">2</span>,<span class="number">3</span>,<span class="number">2</span>));z</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## , , <span class="number">1</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">3</span>    <span class="number">5</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span>    <span class="number">6</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## , , <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">7</span>    <span class="number">9</span>   <span class="number">11</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">8</span>   <span class="number">10</span>   <span class="number">12</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u6570_u7EC4_u7684_u8FD0_u7B97_u6CD5_u5219_u540C_u77E9_u9635"><a href="#u6570_u7EC4_u7684_u8FD0_u7B97_u6CD5_u5219_u540C_u77E9_u9635" class="headerlink" title="数组的运算法则同矩阵"></a>数组的运算法则同矩阵</h3><ul>
+<li>两个维度相同的数组，可以进行二元运算： + - * / ^</li>
+<li>维度不同不可直接运算(矩阵和数组均如此)</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a &lt;- array(<span class="number">1</span>:<span class="number">6</span>, dim = c(<span class="number">2</span>,<span class="number">3</span>,<span class="number">1</span>))</span><br><span class="line">z + a</span><br></pre></td></tr></table></figure>
+<h2 id="u5185_u79EF_u4E0E_u5916_u79EF"><a href="#u5185_u79EF_u4E0E_u5916_u79EF" class="headerlink" title="内积与外积"></a>内积与外积</h2><h3 id="u5185_u79EF"><a href="#u5185_u79EF" class="headerlink" title="内积"></a>内积</h3><p>若 x 是向量, 则 x %*% x = crossprod(x) = x 和 x 的内积</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">1</span>:<span class="number">5</span></span><br><span class="line">c(x %*% x, crossprod(x), sum(x*x))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">55</span> <span class="number">55</span> <span class="number">55</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5916_u79EF"><a href="#u5916_u79EF" class="headerlink" title="外积"></a>外积</h3><p>思考, 如何生成下列矩阵?</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>] [,<span class="number">4</span>] [,<span class="number">5</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">1</span>    <span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span>    <span class="number">5</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">2</span>    <span class="number">4</span>    <span class="number">6</span>    <span class="number">8</span>   <span class="number">10</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">3</span>,]    <span class="number">3</span>    <span class="number">6</span>    <span class="number">9</span>   <span class="number">12</span>   <span class="number">15</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">4</span>,]    <span class="number">4</span>    <span class="number">8</span>   <span class="number">12</span>   <span class="number">16</span>   <span class="number">20</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">5</span>,]    <span class="number">5</span>   <span class="number">10</span>   <span class="number">15</span>   <span class="number">20</span>   <span class="number">25</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4E24_u4E2A_u5411_u91CF_u7684_u5916_u79EF"><a href="#u4E24_u4E2A_u5411_u91CF_u7684_u5916_u79EF" class="headerlink" title="两个向量的外积"></a>两个向量的外积</h3><ul>
+<li>两个向量可以定义外积(矩阵, 数组也可以)</li>
+<li>向量 a 和 b, 其外积为 a %o% b</li>
+<li>运算符 %o% 可以用函数 outer(a,b,’*’)来代替</li>
+<li>该外积的维度为c(dim(a),dim(b))。</li>
+</ul>
+<h3 id="u5916_u79EF_u4F8B_u5B50"><a href="#u5916_u79EF_u4F8B_u5B50" class="headerlink" title="外积例子"></a>外积例子</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a=c(<span class="number">1</span>,<span class="number">2</span>)</span><br><span class="line">b=c(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line">a %o% b</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">4</span>    <span class="number">6</span>    <span class="number">8</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5916_u79EF_u7684_u62D3_u5C55"><a href="#u5916_u79EF_u7684_u62D3_u5C55" class="headerlink" title="外积的拓展"></a>外积的拓展</h3><ul>
+<li>%o% 利用函数outer可以拓展到更广泛的功能</li>
+<li>outer(x,y,f)表示 f 对所有的 x 和 y 的值进行取值计算</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outer(<span class="number">1</span>:<span class="number">2</span>,<span class="number">2</span>:<span class="number">4</span>,<span class="string">'+'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      [,<span class="number">1</span>] [,<span class="number">2</span>] [,<span class="number">3</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,]    <span class="number">3</span>    <span class="number">4</span>    <span class="number">5</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">2</span>,]    <span class="number">4</span>    <span class="number">5</span>    <span class="number">6</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5229_u7528outer_u51FD_u6570_u751F_u6210_u4E09_u7EF4_u70B9_u5217"><a href="#u5229_u7528outer_u51FD_u6570_u751F_u6210_u4E09_u7EF4_u70B9_u5217" class="headerlink" title="利用outer函数生成三维点列"></a>利用outer函数生成三维点列</h3><ol>
+<li>先定义好 x 和 y</li>
+<li>然后将outer函数的值赋给 z(z是x和y的函数)</li>
+<li>那么(x,y,z)就是三维点列, 利用之可以画出三维的图</li>
+</ol>
+<h3 id="persp_u51FD_u6570_u505A_u4E09_u7EF4_u56FE_u5F62"><a href="#persp_u51FD_u6570_u505A_u4E09_u7EF4_u56FE_u5F62" class="headerlink" title="persp函数做三维图形"></a>persp函数做三维图形</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x = <span class="number">1</span>:<span class="number">100</span>; y = <span class="number">1</span>:<span class="number">100</span>; z = outer(x,y,<span class="string">'+'</span>)</span><br><span class="line">persp(x,y,z)</span><br></pre></td></tr></table></figure>
+<p><img src="data_structure_files/figure-html/unnamed-chunk-31-1.png" alt=""> </p>
+<h2 id="u6570_u636E_u6846"><a href="#u6570_u636E_u6846" class="headerlink" title="数据框"></a>数据框</h2><h3 id="u6570_u636E_u6846_u4E3B_u8981_u5185_u5BB9"><a href="#u6570_u636E_u6846_u4E3B_u8981_u5185_u5BB9" class="headerlink" title="数据框主要内容"></a>数据框主要内容</h3><ul>
+<li>数据框创建</li>
+<li>数据框下标引用</li>
+<li>attach, detach, with</li>
+<li>R的内置数据集</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(help = datasets)</span><br><span class="line">head(CO2)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##   Plant   Type  Treatment conc uptake</span></span><br><span class="line"><span class="preprocessor">## <span class="number">1</span>   Qn1 Quebec nonchilled   <span class="number">95</span>   <span class="number">16.0</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">2</span>   Qn1 Quebec nonchilled  <span class="number">175</span>   <span class="number">30.4</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">3</span>   Qn1 Quebec nonchilled  <span class="number">250</span>   <span class="number">34.8</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">4</span>   Qn1 Quebec nonchilled  <span class="number">350</span>   <span class="number">37.2</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">5</span>   Qn1 Quebec nonchilled  <span class="number">500</span>   <span class="number">35.3</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">6</span>   Qn1 Quebec nonchilled  <span class="number">675</span>   <span class="number">39.2</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u6570_u636E_u6846_2C_data-frame"><a href="#u6570_u636E_u6846_2C_data-frame" class="headerlink" title="数据框, data.frame"></a>数据框, data.frame</h3><ul>
+<li>数据框是一个矩阵形式的数据结构</li>
+<li>不同的列的数据类型可不同</li>
+<li>但是每一列内的数据类型都相同</li>
+<li>每列是一个变量，每行是一个观测</li>
+<li>类似于Excel表格</li>
+</ul>
+<h3 id="u521B_u5EFA_u6570_u636E_u6846"><a href="#u521B_u5EFA_u6570_u636E_u6846" class="headerlink" title="创建数据框"></a>创建数据框</h3><ul>
+<li>frame &lt;- data.frame(x, y)</li>
+<li>x 和 y 应该是长度相同的向量</li>
+<li>frame 把 x 作为第一列, 把 y 作为第二列</li>
+<li>可创建任意多列, 任意多行</li>
+</ul>
+<h3 id="u521B_u5EFA_u6570_u636E_u6846_u4E3E_u4F8B"><a href="#u521B_u5EFA_u6570_u636E_u6846_u4E3E_u4F8B" class="headerlink" title="创建数据框举例"></a>创建数据框举例</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">1</span>:<span class="number">5</span>; y &lt;- <span class="number">2</span>:<span class="number">6</span></span><br><span class="line">frame &lt;- data.frame(x,y); frame</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##   x y</span></span><br><span class="line"><span class="preprocessor">## <span class="number">1</span> <span class="number">1</span> <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">2</span> <span class="number">2</span> <span class="number">3</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">3</span> <span class="number">3</span> <span class="number">4</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">4</span> <span class="number">4</span> <span class="number">5</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">5</span> <span class="number">5</span> <span class="number">6</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u521B_u5EFA_u4E0D_u540C_u7C7B_u578B_u7684_u53D8_u91CF_u7684_u6570_u636E_u6846"><a href="#u521B_u5EFA_u4E0D_u540C_u7C7B_u578B_u7684_u53D8_u91CF_u7684_u6570_u636E_u6846" class="headerlink" title="创建不同类型的变量的数据框"></a>创建不同类型的变量的数据框</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- <span class="number">1</span>:<span class="number">3</span></span><br><span class="line">gender &lt;- c(<span class="string">"M"</span>, <span class="string">"F"</span>, <span class="string">"M"</span>)</span><br><span class="line">age &lt;- c(<span class="number">25</span>, <span class="number">20</span>, <span class="number">30</span>) </span><br><span class="line">graduate &lt;- c(<span class="literal">T</span>,<span class="literal">F</span>,<span class="literal">T</span>) <span class="comment">#graduated or not</span></span><br><span class="line">math &lt;- c(<span class="number">80</span>, <span class="number">90</span>, <span class="number">85</span>); physics &lt;- c(<span class="number">70</span>, <span class="number">75</span>, <span class="number">80</span>)</span><br><span class="line">stu &lt;- data.frame(x,gender,age,graduate,math,physics); stu</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##   x gender age graduate math physics</span></span><br><span class="line"><span class="preprocessor">## <span class="number">1</span> <span class="number">1</span>      M  <span class="number">25</span>     TRUE   <span class="number">80</span>      <span class="number">70</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">2</span> <span class="number">2</span>      F  <span class="number">20</span>    FALSE   <span class="number">90</span>      <span class="number">75</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">3</span> <span class="number">3</span>      M  <span class="number">30</span>     TRUE   <span class="number">85</span>      <span class="number">80</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="data-frame__u51FD_u6570_u7684_u53C2_u6570"><a href="#data-frame__u51FD_u6570_u7684_u53C2_u6570" class="headerlink" title="data.frame 函数的参数"></a>data.frame 函数的参数</h3><ul>
+<li>?data.frame 查看函数帮助</li>
+<li>row.names</li>
+<li>stringsAsFactors (在因子之后讲解)</li>
+</ul>
+<h3 id="u6570_u636E_u6846_u5143_u7D20_u7684_u4E00_u822C_u5F15_u7528_u65B9_u5F0F"><a href="#u6570_u636E_u6846_u5143_u7D20_u7684_u4E00_u822C_u5F15_u7528_u65B9_u5F0F" class="headerlink" title="数据框元素的一般引用方式"></a>数据框元素的一般引用方式</h3><p>由于数据框是二维数据, 类似矩阵, 所以引用方法相似</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stu[<span class="number">1</span>,<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">25</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stu[<span class="number">2</span>:<span class="number">3</span>,-<span class="number">2</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##   x age graduate math physics</span></span><br><span class="line"><span class="preprocessor">## <span class="number">2</span> <span class="number">2</span>  <span class="number">20</span>    FALSE   <span class="number">90</span>      <span class="number">75</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">3</span> <span class="number">3</span>  <span class="number">30</span>     TRUE   <span class="number">85</span>      <span class="number">80</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u6570_u636E_u6846_u5143_u7D20_u7684_u7279_u6B8A_u5F15_u7528_u65B9_u5F0F"><a href="#u6570_u636E_u6846_u5143_u7D20_u7684_u7279_u6B8A_u5F15_u7528_u65B9_u5F0F" class="headerlink" title="数据框元素的特殊引用方式"></a>数据框元素的特殊引用方式</h3><p>[[]] 和 $ 是两个特殊引用<strong>列</strong>的方式</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stu[[<span class="number">3</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">25</span> <span class="number">20</span> <span class="number">30</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stu$graduate</span><br></pre></td></tr></table></figure>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## [<span class="number">1</span>]  <span class="literal">TRUE</span> <span class="literal">FALSE</span>  <span class="literal">TRUE</span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528subset_u51FD_u6570_u9009_u53D6_u6570_u636E_u6846_u7684_u884C_u548C_u5217"><a href="#u4F7F_u7528subset_u51FD_u6570_u9009_u53D6_u6570_u636E_u6846_u7684_u884C_u548C_u5217" class="headerlink" title="使用subset函数选取数据框的行和列"></a>使用subset函数选取数据框的行和列</h3><ul>
+<li>?subset查看使用帮助</li>
+<li>select参数选择列, subset参数选择行(使用逻辑表达式)</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subset(mtcars, select = mpg, subset = (cyl == <span class="number">6</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##                 mpg</span></span><br><span class="line"><span class="preprocessor">## Mazda RX4      <span class="number">21.0</span></span></span><br><span class="line"><span class="preprocessor">## Mazda RX4 Wag  <span class="number">21.0</span></span></span><br><span class="line"><span class="preprocessor">## Hornet <span class="number">4</span> Drive <span class="number">21.4</span></span></span><br><span class="line"><span class="preprocessor">## Valiant        <span class="number">18.1</span></span></span><br><span class="line"><span class="preprocessor">## Merc <span class="number">280</span>       <span class="number">19.2</span></span></span><br><span class="line"><span class="preprocessor">## Merc <span class="number">280</span>C      <span class="number">17.8</span></span></span><br><span class="line"><span class="preprocessor">## Ferrari Dino   <span class="number">19.7</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5982_u4F55_u7ED9_u6570_u636E_u6846_u6DFB_u52A0_u53D8_u91CF"><a href="#u5982_u4F55_u7ED9_u6570_u636E_u6846_u6DFB_u52A0_u53D8_u91CF" class="headerlink" title="如何给数据框添加变量"></a>如何给数据框添加变量</h3><p>给stu数据框添加一个数学和物理的平均分变量</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">stu$average &lt;- (stu$math + stu$physics)/<span class="number">2</span></span><br><span class="line">stu</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##   x gender age graduate math physics average</span></span><br><span class="line"><span class="preprocessor">## <span class="number">1</span> <span class="number">1</span>      M  <span class="number">25</span>     TRUE   <span class="number">80</span>      <span class="number">70</span>    <span class="number">75.0</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">2</span> <span class="number">2</span>      F  <span class="number">20</span>    FALSE   <span class="number">90</span>      <span class="number">75</span>    <span class="number">82.5</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">3</span> <span class="number">3</span>      M  <span class="number">30</span>     TRUE   <span class="number">85</span>      <span class="number">80</span>    <span class="number">82.5</span></span></span><br></pre></td></tr></table></figure>
+<p>注意, 如果直接赋值给average, 则达不到目标</p>
+<h3 id="u7F16_u8F91_u6570_u636E_u6846_u4E2D_u7684_u5C11_u6570_u5355_u5143"><a href="#u7F16_u8F91_u6570_u636E_u6846_u4E2D_u7684_u5C11_u6570_u5355_u5143" class="headerlink" title="编辑数据框中的少数单元"></a>编辑数据框中的少数单元</h3><p>如果只想编辑数据框中的少数几个单元, 使用edit和fix函数</p>
+<ul>
+<li>edit(一个数据框名) 只编辑, 并返回副本</li>
+<li>fix(一个数据框名) 不但编辑, 并且直接覆盖原数据框</li>
+</ul>
+<p>可以使用 mtcars 来测试</p>
+<h3 id="u67D0_u4E9B_u542B_u6709_u6570_u636E_u6846_u7684_u7A0B_u5E8F_u4EE3_u7801"><a href="#u67D0_u4E9B_u542B_u6709_u6570_u636E_u6846_u7684_u7A0B_u5E8F_u4EE3_u7801" class="headerlink" title="某些含有数据框的程序代码"></a>某些含有数据框的程序代码</h3><p>如下程序, 需要写很多stu(数据框名称)</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mean(stu$age)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">25</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table(stu$gender)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## F M </span></span><br><span class="line"><span class="preprocessor">## 1 2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(stu$math, stu$physics)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">480</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="attach__u548C_detach__u4E00_u4E2A_u6570_u636E_u6846"><a href="#attach__u548C_detach__u4E00_u4E2A_u6570_u636E_u6846" class="headerlink" title="attach 和 detach 一个数据框"></a>attach 和 detach 一个数据框</h3><p>先用 attach 加载数据框, 最后再 detach 之</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">attach</span>(stu)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## The following objects are masked _by_ .GlobalEnv:</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">##     age, gender, graduate, math, physics, x</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mean(age);sum(math, physics)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">25</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">480</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">detach</span>(stu)</span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528_with__u6765_u8FDB_u884C_u6570_u636E_u6846_u64CD_u4F5C"><a href="#u4F7F_u7528_with__u6765_u8FDB_u884C_u6570_u636E_u6846_u64CD_u4F5C" class="headerlink" title="使用 with 来进行数据框操作"></a>使用 with 来进行数据框操作</h3><p>如果代码只有一个语句, 但是较长, 可以使用 with</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">with(stu, c(mean(age),table(gender),</span><br><span class="line">           sum(math, physics)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##       F   M     </span></span><br><span class="line"><span class="preprocessor">##  <span class="number">25</span>   <span class="number">1</span>   <span class="number">2</span> <span class="number">480</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="u5217_u8868_2C_list"><a href="#u5217_u8868_2C_list" class="headerlink" title="列表, list"></a>列表, list</h2><h3 id="u5217_u8868_u7684_u4E3B_u8981_u5185_u5BB9"><a href="#u5217_u8868_u7684_u4E3B_u8981_u5185_u5BB9" class="headerlink" title="列表的主要内容"></a>列表的主要内容</h3><ul>
+<li>列表的元素可以是任何的对象, 包括列表</li>
+<li>所以列表是个递归数据类型</li>
+<li>元素类型可以多样化</li>
+</ul>
+<h3 id="u5217_u8868_u7684_u521B_u5EFA"><a href="#u5217_u8868_u7684_u521B_u5EFA" class="headerlink" title="列表的创建"></a>列表的创建</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rec &lt;- list(name = <span class="string">"小明"</span>, age = <span class="number">30</span>, score = c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>))</span><br><span class="line">rec</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $name</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"小明"</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $age</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">30</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $score</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5217_u8868_u7684_u5143_u7D20_u7684_u5F15_u7528"><a href="#u5217_u8868_u7684_u5143_u7D20_u7684_u5F15_u7528" class="headerlink" title="列表的元素的引用"></a>列表的元素的引用</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rec$name &lt;- <span class="string">"大明"</span></span><br><span class="line">rec$age &lt;- <span class="number">35</span></span><br><span class="line">rec</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $name</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"大明"</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $age</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">35</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $score</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<p>注意: 一次只能引用列表的一个元素</p>
+<h3 id="u5217_u8868_u5143_u7D20_u7684_u5176_u4ED6_u5F15_u7528_u65B9_u6CD5"><a href="#u5217_u8868_u5143_u7D20_u7684_u5176_u4ED6_u5F15_u7528_u65B9_u6CD5" class="headerlink" title="列表元素的其他引用方法"></a>列表元素的其他引用方法</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rec[[<span class="string">"age"</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">35</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rec[[<span class="number">2</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">35</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rec$age</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">35</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4FEE_u6539_u5217_u8868_u5143_u7D20"><a href="#u4FEE_u6539_u5217_u8868_u5143_u7D20" class="headerlink" title="修改列表元素"></a>修改列表元素</h3><p>修改列表元素的方法: 先引用出来, 然后对其赋值</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rec$age &lt;- <span class="number">40</span></span><br><span class="line">rec</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $name</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"大明"</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $age</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">40</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $score</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5217_u8868_u65B0_u52A0_u5143_u7D20"><a href="#u5217_u8868_u65B0_u52A0_u5143_u7D20" class="headerlink" title="列表新加元素"></a>列表新加元素</h3><p>列表新加元素的方法: 直接用引用的形式, 对该元素赋值</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rec[[<span class="string">"four"</span>]] &lt;- <span class="number">100</span></span><br><span class="line">rec</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $name</span></span><br><span class="line"><span class="preprocessor">## [1] "大明"</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $age</span></span><br><span class="line"><span class="preprocessor">## [1] 40</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $score</span></span><br><span class="line"><span class="preprocessor">## [1] 1 2 3</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $four</span></span><br><span class="line"><span class="preprocessor">## [1] 100</span></span><br></pre></td></tr></table></figure>
+<h3 id="u5217_u8868_u5220_u9664_u5143_u7D20"><a href="#u5217_u8868_u5220_u9664_u5143_u7D20" class="headerlink" title="列表删除元素"></a>列表删除元素</h3><p>将NULL赋给要删除的元素即可</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rec$four &lt;- <span class="literal">NULL</span></span><br><span class="line">rec</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $name</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="string">"大明"</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $age</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">40</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $score</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5176_u4ED6_u5217_u8868_u76F8_u5173"><a href="#u5176_u4ED6_u5217_u8868_u76F8_u5173" class="headerlink" title="其他列表相关"></a>其他列表相关</h3><ol>
+<li>用 c ( , ) 的方法可以连接两个或多个列表。</li>
+<li>返回到列表的函数有：eigen(), svd(), qr()</li>
+</ol>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rec2 = list(gender = <span class="string">"M"</span>, weight = <span class="number">5</span>:<span class="number">10</span>)</span><br><span class="line">c(rec,rec2)</span><br></pre></td></tr></table></figure>
+<h3 id="u5217_u8868_u548C_u6570_u636E_u6846_u9009_u62E9_u5217_u7684_u6CE8_u610F_u4E8B_u9879"><a href="#u5217_u8868_u548C_u6570_u636E_u6846_u9009_u62E9_u5217_u7684_u6CE8_u610F_u4E8B_u9879" class="headerlink" title="列表和数据框选择列的注意事项"></a>列表和数据框选择列的注意事项</h3><ol>
+<li>使用[[]]选择一列</li>
+<li>使用[]选择出来的仍然是一个子列表或子数据框</li>
+</ol>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rec[[<span class="number">3</span>]]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rec[<span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $score</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<p>数据框同理, 可自行测试</p>
+<h2 id="u56E0_u5B50_2C_factor"><a href="#u56E0_u5B50_2C_factor" class="headerlink" title="因子, factor"></a>因子, factor</h2><h3 id="u56E0_u5B50_u7684_u672C_u8D28"><a href="#u56E0_u5B50_u7684_u672C_u8D28" class="headerlink" title="因子的本质"></a>因子的本质</h3><ul>
+<li>因子是元素有重复的向量(重复越多越好)</li>
+<li>按照其中元素的重复进行分类</li>
+<li>对某变量按照类别统计时使用(男女分别计算平均身高)</li>
+<li>因子应用: 列联表, 线性回归, 方差分析, 逻辑回归等</li>
+</ul>
+<h3 id="u56E0_u5B50_u7684_u521B_u5EFA"><a href="#u56E0_u5B50_u7684_u521B_u5EFA" class="headerlink" title="因子的创建"></a>因子的创建</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- c(<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>)</span><br><span class="line">y &lt;- factor(x)</span><br><span class="line">y</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">0</span> <span class="number">0</span> <span class="number">1</span></span></span><br><span class="line"><span class="preprocessor">## Levels: <span class="number">0</span> <span class="number">1</span></span></span><br></pre></td></tr></table></figure>
+<p>说明 y 除了含有 x 的值以外, 还含有按照 0 和 1 这两个值的分类。</p>
+<h3 id="factor_u7684_u521B_u5EFA_u53C2_u6570"><a href="#factor_u7684_u521B_u5EFA_u53C2_u6570" class="headerlink" title="factor的创建参数"></a>factor的创建参数</h3><ul>
+<li>使用 factor(x) 将 x 因子化</li>
+<li>factor(x,levels = sort(unique(x)),exclude = NA)</li>
+<li>unique(x) 是将 x 的不同的值取出来, 作为一个向量</li>
+<li>levels 向量可以随意变换顺序</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">factor(rep(<span class="number">1</span>:<span class="number">3</span>, <span class="number">2</span>), levels = c(<span class="number">1</span>,<span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span>    <span class="number">2</span>    &lt;NA&gt; <span class="number">1</span>    <span class="number">2</span>    &lt;NA&gt;</span></span><br><span class="line"><span class="preprocessor">## Levels: <span class="number">1</span> <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">factor(rep(<span class="number">1</span>:<span class="number">3</span>, <span class="number">2</span>), levels = c(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span></span><br><span class="line"><span class="preprocessor">## Levels: <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="tapply_u51FD_u6570"><a href="#tapply_u51FD_u6570" class="headerlink" title="tapply函数"></a>tapply函数</h3><ul>
+<li>函数形式 tapply(x,INDEX,FUN=f)</li>
+<li>其中 x 是向量, INDEX 是一个因子, 且需要和 x 的长度一样</li>
+<li>将函数 f, 按照 INDEX的分类的角标, 对 x 操作</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">fac &lt;- factor(rep(<span class="number">1</span>:<span class="number">3</span>, <span class="number">4</span>), levels = <span class="number">1</span>:<span class="number">5</span>)</span><br><span class="line">tapply(<span class="number">1</span>:<span class="number">12</span>, fac, sum)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  <span class="number">1</span>  <span class="number">2</span>  <span class="number">3</span>  <span class="number">4</span>  <span class="number">5</span> </span></span><br><span class="line"><span class="preprocessor">## <span class="number">22</span> <span class="number">26</span> <span class="number">30</span> NA NA</span></span><br></pre></td></tr></table></figure>
+<h3 id="u4F7F_u7528gl_u51FD_u6570_u751F_u6210_u6307_u5B9A_u6C34_u5E73_u6570_u7684_u56E0_u5B50"><a href="#u4F7F_u7528gl_u51FD_u6570_u751F_u6210_u6307_u5B9A_u6C34_u5E73_u6570_u7684_u56E0_u5B50" class="headerlink" title="使用gl函数生成指定水平数的因子"></a>使用gl函数生成指定水平数的因子</h3><ul>
+<li>gl(n,k) 生成一个因子</li>
+<li>其中 n 是水平数, k 是重复数</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gl(<span class="number">3</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  [<span class="number">1</span>] <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">2</span> <span class="number">2</span> <span class="number">2</span> <span class="number">3</span> <span class="number">3</span> <span class="number">3</span> <span class="number">3</span></span></span><br><span class="line"><span class="preprocessor">## Levels: <span class="number">1</span> <span class="number">2</span> <span class="number">3</span></span></span><br></pre></td></tr></table></figure>
+<p>思考如何使用已知的函数生成相同的因子?</p>
+<h3 id="stringsAsFactors_u53C2_u6570_u7684_u610F_u4E49"><a href="#stringsAsFactors_u53C2_u6570_u7684_u610F_u4E49" class="headerlink" title="stringsAsFactors参数的意义"></a>stringsAsFactors参数的意义</h3><ul>
+<li>?data.frame 中的参数</li>
+<li>表示是否需要将字符串转化为因子</li>
+<li>默认是转化的(因为利于按类别统计分析)</li>
+<li>如果不要转化, 使用 stringsAsFactors = FALSE</li>
+</ul>
+<h2 id="u5404_u79CD_u6570_u636E_u7ED3_u6784_u7684_u5224_u5B9A_u548C_u8F6C_u6362"><a href="#u5404_u79CD_u6570_u636E_u7ED3_u6784_u7684_u5224_u5B9A_u548C_u8F6C_u6362" class="headerlink" title="各种数据结构的判定和转换"></a>各种数据结构的判定和转换</h2><p>数据类型和数据结构的判定(判定结果为TRUE, FALSE)</p>
+<ul>
+<li>is.numeric, is.complex, is.logical, is.charactor, is.na</li>
+<li>is.vector, is.matrix, is.array, is.data.frame</li>
+<li>is.list, is.factor</li>
+</ul>
+<p>数据类型和数据结构的转换</p>
+<p>将上述is改成as即可</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/R/">R</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/R-programing/">R programing</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://ripeconan.com/2015/10/12/data_structure/" data-title="R的数据结构 | ripeconan" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/10/25/input_output/" title="R的输入输出">
+  <strong>上一篇：</strong><br/>
+  <span>
+  R的输入输出</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/09/21/R_language_introduction/"  title="R语言简介">
+ <strong>下一篇：</strong><br/> 
+ <span>R语言简介
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u636E_u7ED3_u6784"><span class="toc-number">1.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u96C6_3Adataset"><span class="toc-number">1.1.</span> <span class="toc-text">数据集:dataset</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u7ED3_u6784_u56FE_u793A"><span class="toc-number">1.2.</span> <span class="toc-text">数据结构图示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411_u91CF"><span class="toc-number">2.</span> <span class="toc-text">向量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u77E9_u9635"><span class="toc-number">3.</span> <span class="toc-text">矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">3.1.</span> <span class="toc-text">矩阵主要内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u521B_u5EFA"><span class="toc-number">3.2.</span> <span class="toc-text">矩阵创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u7EF4_u6570"><span class="toc-number">3.3.</span> <span class="toc-text">矩阵维数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u4E0B_u6807_u5F15_u7528"><span class="toc-number">3.4.</span> <span class="toc-text">矩阵下标引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u4E0B_u6807_u5F15_u7528_u89C4_u5219"><span class="toc-number">3.5.</span> <span class="toc-text">矩阵下标引用规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u4E0B_u6807_u5F15_u7528_u4E3E_u4F8B"><span class="toc-number">3.6.</span> <span class="toc-text">矩阵下标引用举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u8FD0_u7B97"><span class="toc-number">3.7.</span> <span class="toc-text">矩阵运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8F6C_u7F6E_u77E9_u9635"><span class="toc-number">3.8.</span> <span class="toc-text">转置矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u76F8_u4E58"><span class="toc-number">3.9.</span> <span class="toc-text">矩阵相乘</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u65B9_u7A0B_u7EC4_u6C42_u89E3"><span class="toc-number">3.10.</span> <span class="toc-text">方程组求解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u6C42_u9006"><span class="toc-number">3.11.</span> <span class="toc-text">矩阵求逆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7279_u5F81_u503C_u548C_u7279_u5F81_u5411_u91CF"><span class="toc-number">3.12.</span> <span class="toc-text">特征值和特征向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E00"><span class="toc-number">3.13.</span> <span class="toc-text">diag函数的三种用法之一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E8C"><span class="toc-number">3.14.</span> <span class="toc-text">diag函数的三种用法之二</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#diag_u51FD_u6570_u7684_u4E09_u79CD_u7528_u6CD5_u4E4B_u4E09"><span class="toc-number">3.15.</span> <span class="toc-text">diag函数的三种用法之三</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_rbind__u751F_u6210_u77E9_u9635"><span class="toc-number">3.16.</span> <span class="toc-text">使用 rbind 生成矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_cbind__u751F_u6210_u77E9_u9635"><span class="toc-number">3.17.</span> <span class="toc-text">使用 cbind 生成矩阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528c_28_29_u5BF9_u77E9_u9635_u6309_u5217_u62C9_u76F4"><span class="toc-number">3.18.</span> <span class="toc-text">使用c()对矩阵按列拉直</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528dim_u7EF4_u6570_u51FD_u6570_u5BF9_u77E9_u9635_u964D_u7EF4"><span class="toc-number">3.19.</span> <span class="toc-text">使用dim维数函数对矩阵降维</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528dim_u51FD_u6570_u66F4_u6539_u77E9_u9635_u7EF4_u5EA6"><span class="toc-number">3.20.</span> <span class="toc-text">使用dim函数更改矩阵维度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u548C_u5411_u91CF_u8FDB_u884C_u56DB_u5219_u8FD0_u7B97"><span class="toc-number">3.21.</span> <span class="toc-text">矩阵和向量进行四则运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u77E9_u9635_u548C_u5411_u91CF_u7684_u56DB_u5219_u8FD0_u7B97"><span class="toc-number">3.22.</span> <span class="toc-text">矩阵和向量的四则运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#apply_u7CFB_u5217_u51FD_u6570"><span class="toc-number">3.23.</span> <span class="toc-text">apply系列函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u7EC4"><span class="toc-number">4.</span> <span class="toc-text">数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u7EC4_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">4.1.</span> <span class="toc-text">数组主要内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_u4E00_u4E2A_u4E8C_u7EF4_u6570_u7EC4"><span class="toc-number">4.2.</span> <span class="toc-text">创建一个二维数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_u4E00_u4E2A_u4E09_u7EF4_u6570_u7EC4"><span class="toc-number">4.3.</span> <span class="toc-text">创建一个三维数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528dim_u51FD_u6570_u6765_u521B_u5EFA_u6570_u7EC4"><span class="toc-number">4.4.</span> <span class="toc-text">使用dim函数来创建数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528dim_u51FD_u6570_u6765_u521B_u5EFA_u6570_u7EC4-1"><span class="toc-number">4.5.</span> <span class="toc-text">使用dim函数来创建数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u7EC4_u4E0B_u6807_u5F15_u7528_28_u7C7B_u4F3C_u4E8E_u77E9_u9635_29"><span class="toc-number">4.6.</span> <span class="toc-text">数组下标引用(类似于矩阵)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u7EC4_u7684_u8FD0_u7B97_u6CD5_u5219_u540C_u77E9_u9635"><span class="toc-number">4.7.</span> <span class="toc-text">数组的运算法则同矩阵</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u79EF_u4E0E_u5916_u79EF"><span class="toc-number">5.</span> <span class="toc-text">内积与外积</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5185_u79EF"><span class="toc-number">5.1.</span> <span class="toc-text">内积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5916_u79EF"><span class="toc-number">5.2.</span> <span class="toc-text">外积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u5411_u91CF_u7684_u5916_u79EF"><span class="toc-number">5.3.</span> <span class="toc-text">两个向量的外积</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5916_u79EF_u4F8B_u5B50"><span class="toc-number">5.4.</span> <span class="toc-text">外积例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5916_u79EF_u7684_u62D3_u5C55"><span class="toc-number">5.5.</span> <span class="toc-text">外积的拓展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5229_u7528outer_u51FD_u6570_u751F_u6210_u4E09_u7EF4_u70B9_u5217"><span class="toc-number">5.6.</span> <span class="toc-text">利用outer函数生成三维点列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#persp_u51FD_u6570_u505A_u4E09_u7EF4_u56FE_u5F62"><span class="toc-number">5.7.</span> <span class="toc-text">persp函数做三维图形</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6570_u636E_u6846"><span class="toc-number">6.</span> <span class="toc-text">数据框</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u6846_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">6.1.</span> <span class="toc-text">数据框主要内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u6846_2C_data-frame"><span class="toc-number">6.2.</span> <span class="toc-text">数据框, data.frame</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_u6570_u636E_u6846"><span class="toc-number">6.3.</span> <span class="toc-text">创建数据框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_u6570_u636E_u6846_u4E3E_u4F8B"><span class="toc-number">6.4.</span> <span class="toc-text">创建数据框举例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u521B_u5EFA_u4E0D_u540C_u7C7B_u578B_u7684_u53D8_u91CF_u7684_u6570_u636E_u6846"><span class="toc-number">6.5.</span> <span class="toc-text">创建不同类型的变量的数据框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#data-frame__u51FD_u6570_u7684_u53C2_u6570"><span class="toc-number">6.6.</span> <span class="toc-text">data.frame 函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u6846_u5143_u7D20_u7684_u4E00_u822C_u5F15_u7528_u65B9_u5F0F"><span class="toc-number">6.7.</span> <span class="toc-text">数据框元素的一般引用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u6846_u5143_u7D20_u7684_u7279_u6B8A_u5F15_u7528_u65B9_u5F0F"><span class="toc-number">6.8.</span> <span class="toc-text">数据框元素的特殊引用方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528subset_u51FD_u6570_u9009_u53D6_u6570_u636E_u6846_u7684_u884C_u548C_u5217"><span class="toc-number">6.9.</span> <span class="toc-text">使用subset函数选取数据框的行和列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5982_u4F55_u7ED9_u6570_u636E_u6846_u6DFB_u52A0_u53D8_u91CF"><span class="toc-number">6.10.</span> <span class="toc-text">如何给数据框添加变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F16_u8F91_u6570_u636E_u6846_u4E2D_u7684_u5C11_u6570_u5355_u5143"><span class="toc-number">6.11.</span> <span class="toc-text">编辑数据框中的少数单元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u67D0_u4E9B_u542B_u6709_u6570_u636E_u6846_u7684_u7A0B_u5E8F_u4EE3_u7801"><span class="toc-number">6.12.</span> <span class="toc-text">某些含有数据框的程序代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#attach__u548C_detach__u4E00_u4E2A_u6570_u636E_u6846"><span class="toc-number">6.13.</span> <span class="toc-text">attach 和 detach 一个数据框</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_with__u6765_u8FDB_u884C_u6570_u636E_u6846_u64CD_u4F5C"><span class="toc-number">6.14.</span> <span class="toc-text">使用 with 来进行数据框操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5217_u8868_2C_list"><span class="toc-number">7.</span> <span class="toc-text">列表, list</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u7684_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">7.1.</span> <span class="toc-text">列表的主要内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u7684_u521B_u5EFA"><span class="toc-number">7.2.</span> <span class="toc-text">列表的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u7684_u5143_u7D20_u7684_u5F15_u7528"><span class="toc-number">7.3.</span> <span class="toc-text">列表的元素的引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u5143_u7D20_u7684_u5176_u4ED6_u5F15_u7528_u65B9_u6CD5"><span class="toc-number">7.4.</span> <span class="toc-text">列表元素的其他引用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4FEE_u6539_u5217_u8868_u5143_u7D20"><span class="toc-number">7.5.</span> <span class="toc-text">修改列表元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u65B0_u52A0_u5143_u7D20"><span class="toc-number">7.6.</span> <span class="toc-text">列表新加元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u5220_u9664_u5143_u7D20"><span class="toc-number">7.7.</span> <span class="toc-text">列表删除元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5176_u4ED6_u5217_u8868_u76F8_u5173"><span class="toc-number">7.8.</span> <span class="toc-text">其他列表相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5217_u8868_u548C_u6570_u636E_u6846_u9009_u62E9_u5217_u7684_u6CE8_u610F_u4E8B_u9879"><span class="toc-number">7.9.</span> <span class="toc-text">列表和数据框选择列的注意事项</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u56E0_u5B50_2C_factor"><span class="toc-number">8.</span> <span class="toc-text">因子, factor</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u56E0_u5B50_u7684_u672C_u8D28"><span class="toc-number">8.1.</span> <span class="toc-text">因子的本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u56E0_u5B50_u7684_u521B_u5EFA"><span class="toc-number">8.2.</span> <span class="toc-text">因子的创建</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#factor_u7684_u521B_u5EFA_u53C2_u6570"><span class="toc-number">8.3.</span> <span class="toc-text">factor的创建参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tapply_u51FD_u6570"><span class="toc-number">8.4.</span> <span class="toc-text">tapply函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528gl_u51FD_u6570_u751F_u6210_u6307_u5B9A_u6C34_u5E73_u6570_u7684_u56E0_u5B50"><span class="toc-number">8.5.</span> <span class="toc-text">使用gl函数生成指定水平数的因子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stringsAsFactors_u53C2_u6570_u7684_u610F_u4E49"><span class="toc-number">8.6.</span> <span class="toc-text">stringsAsFactors参数的意义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5404_u79CD_u6570_u636E_u7ED3_u6784_u7684_u5224_u5B9A_u548C_u8F6C_u6362"><span class="toc-number">9.</span> <span class="toc-text">各种数据结构的判定和转换</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Learning/" title="Learning">Learning<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/R/" title="R">R<sup>7</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/R-programing/" title="R programing">R programing<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/data-mining/" title="data mining">data mining<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-package/" title="R package">R package<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-函数/" title="R 函数">R 函数<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/To-Do/" title="To Do">To Do<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithms/" title="algorithms">algorithms<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://zjdian.com/" target="_blank" title="中继点">中继点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.fens.me/" target="_blank" title="粉丝日志">粉丝日志</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Design your life, Build your dream. <br/>
+			     </p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="ripeconan">ripeconan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe6d1f421bbc9962127a50488f9ed37d1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>

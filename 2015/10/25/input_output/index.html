@@ -1,0 +1,616 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>R的输入输出 | ripeconan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="ripeconan">
+    
+
+    
+    <meta name="description" content="内容提要
+R内置数据集
+文本文档: csv, txt
+二进制文件: Excel, SPSS, SAS
+Web数据: api, 抓取网页
+其他: 数据库, XML
+
+R的内置数据集1library(help = datasets)
+1head(airquality)
+1234567##   Ozone Solar.R Wind Temp Month Day## 1    41     190  7.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R的输入输出">
+<meta property="og:url" content="http://ripeconan.com/2015/10/25/input_output/index.html">
+<meta property="og:site_name" content="ripeconan">
+<meta property="og:description" content="内容提要
+R内置数据集
+文本文档: csv, txt
+二进制文件: Excel, SPSS, SAS
+Web数据: api, 抓取网页
+其他: 数据库, XML
+
+R的内置数据集1library(help = datasets)
+1head(airquality)
+1234567##   Ozone Solar.R Wind Temp Month Day## 1    41     190  7.">
+<meta property="og:updated_time" content="2015-11-10T07:47:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="R的输入输出">
+<meta name="twitter:description" content="内容提要
+R内置数据集
+文本文档: csv, txt
+二进制文件: Excel, SPSS, SAS
+Web数据: api, 抓取网页
+其他: 数据库, XML
+
+R的内置数据集1library(help = datasets)
+1head(airquality)
+1234567##   Ozone Solar.R Wind Temp Month Day## 1    41     190  7.">
+
+    
+    <link rel="alternative" href="/atom.xml" title="ripeconan" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="ripeconan" title="ripeconan"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:ripeconan.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/10/25/input_output/" title="R的输入输出" itemprop="url">R的输入输出</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
+		
+  <p class="article-time">
+    <time datetime="2015-10-24T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-10-25</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u63D0_u8981"><span class="toc-number">1.</span> <span class="toc-text">内容提要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u7684_u5185_u7F6E_u6570_u636E_u96C6"><span class="toc-number">2.</span> <span class="toc-text">R的内置数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u67E5_u770B_u672C_u673A_u5B89_u88C5_u7684_u6570_u636E_u96C6"><span class="toc-number">2.1.</span> <span class="toc-text">查看本机安装的数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684_u5E38_u7528_u5185_u7F6E_u6570_u636E_u96C6"><span class="toc-number">2.2.</span> <span class="toc-text">R的常用内置数据集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u672C_u6587_u6863_u7684_u8BFB_u53D6read-table"><span class="toc-number">3.</span> <span class="toc-text">文本文档的读取read.table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#txt_u6587_u4EF6"><span class="toc-number">3.1.</span> <span class="toc-text">txt文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#read-table_u51FD_u6570_u7684_u53C2_u6570"><span class="toc-number">3.2.</span> <span class="toc-text">read.table函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528read-table_u8BBE_u5B9A_u53C2_u6570_u8BFB_u53D6txt_u6587_u6863"><span class="toc-number">3.3.</span> <span class="toc-text">使用read.table设定参数读取txt文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6csv_u6587_u4EF6"><span class="toc-number">3.4.</span> <span class="toc-text">读取csv文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5176_u4ED6_u7684read-table_u7C7B_u51FD_u6570"><span class="toc-number">3.5.</span> <span class="toc-text">其他的read.table类函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5199_u5165_u51FD_u6570write-table"><span class="toc-number">3.6.</span> <span class="toc-text">写入函数write.table</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E8C_u8FDB_u5236_u6587_u6863_u7684_u8BFB_u53D6"><span class="toc-number">4.</span> <span class="toc-text">二进制文档的读取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6Excel_u6587_u4EF6"><span class="toc-number">4.1.</span> <span class="toc-text">读取Excel文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6_u5176_u4ED6_u5E38_u7528_u7EDF_u8BA1_u8F6F_u4EF6_u7684_u6570_u636E"><span class="toc-number">4.2.</span> <span class="toc-text">读取其他常用统计软件的数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web_u6570_u636E"><span class="toc-number">4.3.</span> <span class="toc-text">Web数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u811A_u672C_u64CD_u4F5C"><span class="toc-number">5.</span> <span class="toc-text">脚本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528source_u51FD_u6570_u6267_u884CR_u811A_u672C"><span class="toc-number">5.1.</span> <span class="toc-text">使用source函数执行R脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528sink_u91CD_u5B9A_u5411_u6587_u672C_u8F93_u51FA"><span class="toc-number">5.2.</span> <span class="toc-text">使用sink重定向文本输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat"><span class="toc-number">5.3.</span> <span class="toc-text">cat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA"><span class="toc-number">5.4.</span> <span class="toc-text">重定向图像输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA_u4F8B_u5B50"><span class="toc-number">5.5.</span> <span class="toc-text">重定向图像输出例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6279_u91CF_u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA"><span class="toc-number">5.6.</span> <span class="toc-text">批量重定向图像输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E601"><span class="toc-number">5.7.</span> <span class="toc-text">练习1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E601_u7B54_u6848"><span class="toc-number">5.8.</span> <span class="toc-text">练习1答案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E602"><span class="toc-number">5.9.</span> <span class="toc-text">练习2</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="u5185_u5BB9_u63D0_u8981"><a href="#u5185_u5BB9_u63D0_u8981" class="headerlink" title="内容提要"></a>内容提要</h2><ul>
+<li>R内置数据集</li>
+<li>文本文档: csv, txt</li>
+<li>二进制文件: Excel, SPSS, SAS</li>
+<li>Web数据: api, 抓取网页</li>
+<li>其他: 数据库, XML</li>
+</ul>
+<h2 id="R_u7684_u5185_u7F6E_u6570_u636E_u96C6"><a href="#R_u7684_u5185_u7F6E_u6570_u636E_u96C6" class="headerlink" title="R的内置数据集"></a>R的内置数据集</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(help = datasets)</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head(airquality)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##   Ozone Solar.R Wind Temp Month Day</span></span><br><span class="line"><span class="preprocessor">## <span class="number">1</span>    <span class="number">41</span>     <span class="number">190</span>  <span class="number">7.4</span>   <span class="number">67</span>     <span class="number">5</span>   <span class="number">1</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">2</span>    <span class="number">36</span>     <span class="number">118</span>  <span class="number">8.0</span>   <span class="number">72</span>     <span class="number">5</span>   <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">3</span>    <span class="number">12</span>     <span class="number">149</span> <span class="number">12.6</span>   <span class="number">74</span>     <span class="number">5</span>   <span class="number">3</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">4</span>    <span class="number">18</span>     <span class="number">313</span> <span class="number">11.5</span>   <span class="number">62</span>     <span class="number">5</span>   <span class="number">4</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">5</span>    NA      NA <span class="number">14.3</span>   <span class="number">56</span>     <span class="number">5</span>   <span class="number">5</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">6</span>    <span class="number">28</span>      NA <span class="number">14.9</span>   <span class="number">66</span>     <span class="number">5</span>   <span class="number">6</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u67E5_u770B_u672C_u673A_u5B89_u88C5_u7684_u6570_u636E_u96C6"><a href="#u67E5_u770B_u672C_u673A_u5B89_u88C5_u7684_u6570_u636E_u96C6" class="headerlink" title="查看本机安装的数据集"></a>查看本机安装的数据集</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data(package = .packages(<span class="literal">TRUE</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="R_u7684_u5E38_u7528_u5185_u7F6E_u6570_u636E_u96C6"><a href="#R_u7684_u5E38_u7528_u5185_u7F6E_u6570_u636E_u96C6" class="headerlink" title="R的常用内置数据集"></a>R的常用内置数据集</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail(ToothGrowth)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##     len supp dose</span></span><br><span class="line"><span class="preprocessor">## <span class="number">55</span> <span class="number">24.8</span>   OJ    <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">56</span> <span class="number">30.9</span>   OJ    <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">57</span> <span class="number">26.4</span>   OJ    <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">58</span> <span class="number">27.3</span>   OJ    <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">59</span> <span class="number">29.4</span>   OJ    <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">60</span> <span class="number">23.0</span>   OJ    <span class="number">2</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head(USArrests)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##            Murder Assault UrbanPop Rape</span></span><br><span class="line"><span class="preprocessor">## Alabama      <span class="number">13.2</span>     <span class="number">236</span>       <span class="number">58</span> <span class="number">21.2</span></span></span><br><span class="line"><span class="preprocessor">## Alaska       <span class="number">10.0</span>     <span class="number">263</span>       <span class="number">48</span> <span class="number">44.5</span></span></span><br><span class="line"><span class="preprocessor">## Arizona       <span class="number">8.1</span>     <span class="number">294</span>       <span class="number">80</span> <span class="number">31.0</span></span></span><br><span class="line"><span class="preprocessor">## Arkansas      <span class="number">8.8</span>     <span class="number">190</span>       <span class="number">50</span> <span class="number">19.5</span></span></span><br><span class="line"><span class="preprocessor">## California    <span class="number">9.0</span>     <span class="number">276</span>       <span class="number">91</span> <span class="number">40.6</span></span></span><br><span class="line"><span class="preprocessor">## Colorado      <span class="number">7.9</span>     <span class="number">204</span>       <span class="number">78</span> <span class="number">38.7</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head(iris)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species</span></span><br><span class="line"><span class="preprocessor">## <span class="number">1</span>          <span class="number">5.1</span>         <span class="number">3.5</span>          <span class="number">1.4</span>         <span class="number">0.2</span>  setosa</span></span><br><span class="line"><span class="preprocessor">## <span class="number">2</span>          <span class="number">4.9</span>         <span class="number">3.0</span>          <span class="number">1.4</span>         <span class="number">0.2</span>  setosa</span></span><br><span class="line"><span class="preprocessor">## <span class="number">3</span>          <span class="number">4.7</span>         <span class="number">3.2</span>          <span class="number">1.3</span>         <span class="number">0.2</span>  setosa</span></span><br><span class="line"><span class="preprocessor">## <span class="number">4</span>          <span class="number">4.6</span>         <span class="number">3.1</span>          <span class="number">1.5</span>         <span class="number">0.2</span>  setosa</span></span><br><span class="line"><span class="preprocessor">## <span class="number">5</span>          <span class="number">5.0</span>         <span class="number">3.6</span>          <span class="number">1.4</span>         <span class="number">0.2</span>  setosa</span></span><br><span class="line"><span class="preprocessor">## <span class="number">6</span>          <span class="number">5.4</span>         <span class="number">3.9</span>          <span class="number">1.7</span>         <span class="number">0.4</span>  setosa</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head(mtcars)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb</span></span><br><span class="line"><span class="preprocessor">## Mazda RX4         <span class="number">21.0</span>   <span class="number">6</span>  <span class="number">160</span> <span class="number">110</span> <span class="number">3.90</span> <span class="number">2.620</span> <span class="number">16.46</span>  <span class="number">0</span>  <span class="number">1</span>    <span class="number">4</span>    <span class="number">4</span></span></span><br><span class="line"><span class="preprocessor">## Mazda RX4 Wag     <span class="number">21.0</span>   <span class="number">6</span>  <span class="number">160</span> <span class="number">110</span> <span class="number">3.90</span> <span class="number">2.875</span> <span class="number">17.02</span>  <span class="number">0</span>  <span class="number">1</span>    <span class="number">4</span>    <span class="number">4</span></span></span><br><span class="line"><span class="preprocessor">## Datsun <span class="number">710</span>        <span class="number">22.8</span>   <span class="number">4</span>  <span class="number">108</span>  <span class="number">93</span> <span class="number">3.85</span> <span class="number">2.320</span> <span class="number">18.61</span>  <span class="number">1</span>  <span class="number">1</span>    <span class="number">4</span>    <span class="number">1</span></span></span><br><span class="line"><span class="preprocessor">## Hornet <span class="number">4</span> Drive    <span class="number">21.4</span>   <span class="number">6</span>  <span class="number">258</span> <span class="number">110</span> <span class="number">3.08</span> <span class="number">3.215</span> <span class="number">19.44</span>  <span class="number">1</span>  <span class="number">0</span>    <span class="number">3</span>    <span class="number">1</span></span></span><br><span class="line"><span class="preprocessor">## Hornet Sportabout <span class="number">18.7</span>   <span class="number">8</span>  <span class="number">360</span> <span class="number">175</span> <span class="number">3.15</span> <span class="number">3.440</span> <span class="number">17.02</span>  <span class="number">0</span>  <span class="number">0</span>    <span class="number">3</span>    <span class="number">2</span></span></span><br><span class="line"><span class="preprocessor">## Valiant           <span class="number">18.1</span>   <span class="number">6</span>  <span class="number">225</span> <span class="number">105</span> <span class="number">2.76</span> <span class="number">3.460</span> <span class="number">20.22</span>  <span class="number">1</span>  <span class="number">0</span>    <span class="number">3</span>    <span class="number">1</span></span></span><br></pre></td></tr></table></figure>
+<h2 id="u6587_u672C_u6587_u6863_u7684_u8BFB_u53D6read-table"><a href="#u6587_u672C_u6587_u6863_u7684_u8BFB_u53D6read-table" class="headerlink" title="文本文档的读取read.table"></a>文本文档的读取read.table</h2><h3 id="txt_u6587_u4EF6"><a href="#txt_u6587_u4EF6" class="headerlink" title="txt文件"></a>txt文件</h3><p>文件可点击此处下载 <a href="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/1.txt" target="_blank" rel="external">1.txt</a>, 并存放到相应文件夹下</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">txt1 &lt;- read.table(<span class="string">"input_output\\1.txt"</span>)</span><br><span class="line">txt1</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##   V1       V2  V3</span></span><br><span class="line"><span class="preprocessor">## <span class="number">1</span>  <span class="number">1</span> Zhejiang  <span class="number">50</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">2</span>  <span class="number">2</span>  Jiangsu  <span class="number">80</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">3</span>  <span class="number">3</span> Shanghai  <span class="number">70</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">4</span>  <span class="number">4</span>  Beijing <span class="number">100</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="read-table_u51FD_u6570_u7684_u53C2_u6570"><a href="#read-table_u51FD_u6570_u7684_u53C2_u6570" class="headerlink" title="read.table函数的参数"></a>read.table函数的参数</h3><ul>
+<li>?read.table</li>
+<li>header = FALSE</li>
+<li>sep = “”</li>
+<li>col.names</li>
+<li>nrows = -1</li>
+<li>skip = 0</li>
+<li>stringsAsFactors</li>
+</ul>
+<h3 id="u4F7F_u7528read-table_u8BBE_u5B9A_u53C2_u6570_u8BFB_u53D6txt_u6587_u6863"><a href="#u4F7F_u7528read-table_u8BBE_u5B9A_u53C2_u6570_u8BFB_u53D6txt_u6587_u6863" class="headerlink" title="使用read.table设定参数读取txt文档"></a>使用read.table设定参数读取txt文档</h3><p>文件可点击此处下载 <a href="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/2.txt" target="_blank" rel="external">2.txt</a>, 并存放到相应文件夹下</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">txt2 &lt;- read.table(<span class="string">"input_output/2.txt"</span>, header = <span class="literal">T</span>, encoding = <span class="string">"UTF-8"</span>)</span><br><span class="line">txt2</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##   num city gender age height</span></span><br><span class="line"><span class="preprocessor">## <span class="number">1</span>   <span class="number">1</span> 北京      M  <span class="number">30</span>    <span class="number">175</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">2</span>   <span class="number">2</span> 上海      F  <span class="number">25</span>    <span class="number">165</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">3</span>   <span class="number">3</span> 广州      F  <span class="number">20</span>    <span class="number">168</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">4</span>   <span class="number">4</span> 深圳      M  <span class="number">33</span>    <span class="number">170</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">5</span>   <span class="number">5</span> 杭州      M  <span class="number">28</span>    <span class="number">169</span></span></span><br></pre></td></tr></table></figure>
+<p>自己尝试其他参数: header, sep, col.names, nrows, skip, stringsAsFactors</p>
+<h3 id="u8BFB_u53D6csv_u6587_u4EF6"><a href="#u8BFB_u53D6csv_u6587_u4EF6" class="headerlink" title="读取csv文件"></a>读取csv文件</h3><p>逗号分隔符文件, 可用记事本打开查看是否为逗号分隔.<a href="http://7xo4sl.com1.z0.glb.clouddn.com/2015/R_language/csvtest.csv" target="_blank" rel="external">点此下载</a></p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">csv &lt;- read.csv(<span class="string">"input_output\\csvtest.csv"</span>)</span><br><span class="line">csv</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##   num city gender age height weight</span></span><br><span class="line"><span class="preprocessor">## <span class="number">1</span>   <span class="number">1</span> 北京      M  <span class="number">30</span>    <span class="number">175</span>     <span class="number">70</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">2</span>   <span class="number">2</span> 上海      F  <span class="number">25</span>    <span class="number">165</span>     <span class="number">50</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">3</span>   <span class="number">3</span> 广州      F  <span class="number">20</span>    <span class="number">168</span>     <span class="number">49</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">4</span>   <span class="number">4</span> 深圳      M  <span class="number">33</span>    <span class="number">170</span>     <span class="number">68</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">5</span>   <span class="number">5</span> 杭州      M  <span class="number">28</span>    <span class="number">169</span>     <span class="number">65</span></span></span><br></pre></td></tr></table></figure>
+<p>注意默认参数: header = TRUE, sep = “,”</p>
+<h3 id="u5176_u4ED6_u7684read-table_u7C7B_u51FD_u6570"><a href="#u5176_u4ED6_u7684read-table_u7C7B_u51FD_u6570" class="headerlink" title="其他的read.table类函数"></a>其他的read.table类函数</h3><ul>
+<li>read.csv 分隔符为逗号</li>
+<li>read.csv2 逗号作为小数位, 分号为分隔符</li>
+<li>read.delim 句号为小数位, 制表符(Tab)为分隔符</li>
+<li>read.delim2 逗号为小数位, 制表符(Tab)为分隔符</li>
+<li>万能公式: read.table</li>
+</ul>
+<h3 id="u5199_u5165_u51FD_u6570write-table"><a href="#u5199_u5165_u51FD_u6570write-table" class="headerlink" title="写入函数write.table"></a>写入函数write.table</h3><p>和read.table相反, 把数据写入到硬盘中的文件里, 且写入的文件也能再次用read.table读出</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">txt2$halfage &lt;- txt2$age / <span class="number">2</span></span><br><span class="line">write.table(txt2, <span class="string">"halfage.txt"</span>)</span><br></pre></td></tr></table></figure>
+<p>相应的有write.csv, write.csv2……</p>
+<h2 id="u4E8C_u8FDB_u5236_u6587_u6863_u7684_u8BFB_u53D6"><a href="#u4E8C_u8FDB_u5236_u6587_u6863_u7684_u8BFB_u53D6" class="headerlink" title="二进制文档的读取"></a>二进制文档的读取</h2><p>二进制数据格式: </p>
+<ul>
+<li>数据储存为二进制(0,1)</li>
+<li>格式比文本格式要小</li>
+<li>可读性差</li>
+<li>专有软件可以读取, 通用性差</li>
+<li>不推荐使用</li>
+</ul>
+<h3 id="u8BFB_u53D6Excel_u6587_u4EF6"><a href="#u8BFB_u53D6Excel_u6587_u4EF6" class="headerlink" title="读取Excel文件"></a>读取Excel文件</h3><ul>
+<li>可以使用xlsx包中的read.xlsx函数</li>
+<li>xlsx包的dependency有rJava包, 需要Java运行环境</li>
+<li>如果电脑无Java环境, 则无法成功加载xlsx包</li>
+<li>结论: 不建议使用xlsx包, 建议另存为csv文件</li>
+</ul>
+<h3 id="u8BFB_u53D6_u5176_u4ED6_u5E38_u7528_u7EDF_u8BA1_u8F6F_u4EF6_u7684_u6570_u636E"><a href="#u8BFB_u53D6_u5176_u4ED6_u5E38_u7528_u7EDF_u8BA1_u8F6F_u4EF6_u7684_u6570_u636E" class="headerlink" title="读取其他常用统计软件的数据"></a>读取其他常用统计软件的数据</h3><ul>
+<li>其他常用统计软件: SAS, SPSS, Stata, Matlab等</li>
+<li>使用foreign包(SAS, SPSS, Stata)</li>
+<li>使用R.matlab包(Matlab)</li>
+<li>建议数据集均另存为csv文件</li>
+<li>还有很多不常用的数据格式可以用R读取, 请自行检索</li>
+</ul>
+<h3 id="Web_u6570_u636E"><a href="#Web_u6570_u636E" class="headerlink" title="Web数据"></a>Web数据</h3><p>互联网上有大量数据, 可以使用R编程来导入数据</p>
+<ul>
+<li>拥有API接口的网站, 可以通过API接口下载数据到R中</li>
+<li>抓取网页数据: RCurl包, XML包, httr包等</li>
+</ul>
+<p>数据清洗</p>
+<h2 id="u811A_u672C_u64CD_u4F5C"><a href="#u811A_u672C_u64CD_u4F5C" class="headerlink" title="脚本操作"></a>脚本操作</h2><h3 id="u4F7F_u7528source_u51FD_u6570_u6267_u884CR_u811A_u672C"><a href="#u4F7F_u7528source_u51FD_u6570_u6267_u884CR_u811A_u672C" class="headerlink" title="使用source函数执行R脚本"></a>使用source函数执行R脚本</h3><p>使用方法:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">source</span>(<span class="string">"script\\simple.R"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">38.5</span></span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>注意工作空间地址及双斜杠</li>
+<li>结果输出到显示器终端</li>
+<li>和read.table结合使用, 封装数据和脚本</li>
+</ol>
+<h3 id="u4F7F_u7528sink_u91CD_u5B9A_u5411_u6587_u672C_u8F93_u51FA"><a href="#u4F7F_u7528sink_u91CD_u5B9A_u5411_u6587_u672C_u8F93_u51FA" class="headerlink" title="使用sink重定向文本输出"></a>使用sink重定向文本输出</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sink(file = <span class="string">"sink1.txt"</span>)</span><br><span class="line"><span class="keyword">for</span>(n <span class="keyword">in</span> <span class="number">1</span>:<span class="number">30</span>)&#123;</span><br><span class="line">  x &lt;- <span class="number">1</span>:n</span><br><span class="line">cat(<span class="string">"Mean from 1 to"</span>, n, <span class="string">"is"</span>, mean(x),<span class="string">"\n"</span>, append = <span class="literal">T</span>)</span><br><span class="line">&#125;</span><br><span class="line">sink()</span><br></pre></td></tr></table></figure>
+<h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat(<span class="string">"I"</span>,<span class="string">"Love"</span>,<span class="string">"You"</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## I Love You</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat(<span class="string">"I"</span>,<span class="string">"Love"</span>,<span class="string">"You"</span>, sep = <span class="string">","</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## I,Love,You</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat(<span class="string">"Mean of 1:100 is"</span>, mean(<span class="number">1</span>:<span class="number">100</span>), <span class="string">"while sum is"</span>, sum(<span class="number">1</span>:<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## Mean of <span class="number">1</span>:<span class="number">100</span> is <span class="number">50.5</span> while sum is <span class="number">5050</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA"><a href="#u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA" class="headerlink" title="重定向图像输出"></a>重定向图像输出</h3><ul>
+<li>sink()只能重定向文本输出, 图像输出应使用以下方法</li>
+<li>pdf(“filename.pdf”)</li>
+<li>png(“filename.png”)</li>
+<li>jpeg(“filename.jpeg”)</li>
+<li>bmp(“filename.bmp”)</li>
+<li>关闭方法 dev.off()</li>
+</ul>
+<h3 id="u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA_u4F8B_u5B50"><a href="#u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA_u4F8B_u5B50" class="headerlink" title="重定向图像输出例子"></a>重定向图像输出例子</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pdf(<span class="string">"pic\\redirect.pdf"</span>)</span><br><span class="line">plot(<span class="number">1</span>:<span class="number">10</span>,<span class="number">1</span>:<span class="number">10</span>,type = <span class="string">"n"</span>)</span><br><span class="line">lines(<span class="number">1</span>:<span class="number">10</span>,<span class="number">1</span>:<span class="number">10</span>)</span><br><span class="line">lines(<span class="number">1</span>:<span class="number">10</span>,<span class="number">10</span>:<span class="number">1</span>)</span><br><span class="line">dev.off()</span><br></pre></td></tr></table></figure>
+<h3 id="u6279_u91CF_u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA"><a href="#u6279_u91CF_u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA" class="headerlink" title="批量重定向图像输出"></a>批量重定向图像输出</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(n <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span>)&#123;</span><br><span class="line">  x &lt;- <span class="number">1</span>:<span class="number">100</span></span><br><span class="line">  y &lt;- x*(<span class="number">11</span> - n)/<span class="number">10</span></span><br><span class="line">  filename &lt;- paste(<span class="string">"pic"</span>,n,<span class="string">".png"</span>, sep = <span class="string">""</span>)</span><br><span class="line">  png(filename)</span><br><span class="line">  plot(x,y, ylim = c(<span class="number">0</span>,<span class="number">100</span>))</span><br><span class="line">  dev.off()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="u7EC3_u4E601"><a href="#u7EC3_u4E601" class="headerlink" title="练习1"></a>练习1</h3><p>编写脚本, 将0-360度, 每隔10度的正弦值写到一个文本文档中</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">The <span class="built_in">sin</span> of <span class="number">0</span> degree is <span class="number">0</span> </span><br><span class="line">The <span class="built_in">sin</span> of <span class="number">10</span> degree is <span class="number">0.1736482</span> </span><br><span class="line">The <span class="built_in">sin</span> of <span class="number">20</span> degree is <span class="number">0.3420201</span> </span><br><span class="line">The <span class="built_in">sin</span> of <span class="number">30</span> degree is <span class="number">0.5</span> </span><br><span class="line">The <span class="built_in">sin</span> of <span class="number">40</span> degree is <span class="number">0.6427876</span> </span><br><span class="line">...</span><br><span class="line">The <span class="built_in">sin</span> of <span class="number">340</span> degree is -<span class="number">0.3420201</span> </span><br><span class="line">The <span class="built_in">sin</span> of <span class="number">350</span> degree is -<span class="number">0.1736482</span></span><br></pre></td></tr></table></figure>
+<h3 id="u7EC3_u4E601_u7B54_u6848"><a href="#u7EC3_u4E601_u7B54_u6848" class="headerlink" title="练习1答案"></a>练习1答案</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sink(<span class="string">"sin.txt"</span>)</span><br><span class="line"><span class="keyword">for</span>(n <span class="keyword">in</span> <span class="number">0</span>:<span class="number">35</span>)&#123;</span><br><span class="line">  cat(<span class="string">"The sin of"</span>, <span class="number">10</span>*n, <span class="string">"degree is"</span>, sin(<span class="number">10</span>*n/<span class="number">180</span>*pi), <span class="string">"\n"</span>, append = <span class="literal">T</span>) </span><br><span class="line">&#125;</span><br><span class="line">sink()</span><br></pre></td></tr></table></figure>
+<h3 id="u7EC3_u4E602"><a href="#u7EC3_u4E602" class="headerlink" title="练习2"></a>练习2</h3><p>编写脚本, 画10张曲线图, 横轴是从-360°到360°, 纵轴是横轴的正弦值的1:10倍</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- seq(-<span class="number">2</span>*pi,<span class="number">2</span>*pi,length.out = <span class="number">100</span>)</span><br><span class="line"><span class="keyword">for</span>(n <span class="keyword">in</span> <span class="number">1</span>:<span class="number">10</span>)&#123;</span><br><span class="line">  y &lt;- n*sin(x)</span><br><span class="line">  filename &lt;- paste(<span class="string">"sin"</span>,n,<span class="string">".png"</span>, sep = <span class="string">""</span>)</span><br><span class="line">  png(filename)</span><br><span class="line">  plot(x,y,type = <span class="string">"l"</span>, ylim = c(-<span class="number">11</span>,<span class="number">11</span>))</span><br><span class="line">  png()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/R/">R</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/R-programing/">R programing</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://ripeconan.com/2015/10/25/input_output/" data-title="R的输入输出 | ripeconan" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2015/11/15/control_flow_function/" title="控制流和函数">
+  <strong>上一篇：</strong><br/>
+  <span>
+  控制流和函数</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2015/10/12/data_structure/"  title="R的数据结构">
+ <strong>下一篇：</strong><br/> 
+ <span>R的数据结构
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u63D0_u8981"><span class="toc-number">1.</span> <span class="toc-text">内容提要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u7684_u5185_u7F6E_u6570_u636E_u96C6"><span class="toc-number">2.</span> <span class="toc-text">R的内置数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u67E5_u770B_u672C_u673A_u5B89_u88C5_u7684_u6570_u636E_u96C6"><span class="toc-number">2.1.</span> <span class="toc-text">查看本机安装的数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684_u5E38_u7528_u5185_u7F6E_u6570_u636E_u96C6"><span class="toc-number">2.2.</span> <span class="toc-text">R的常用内置数据集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u672C_u6587_u6863_u7684_u8BFB_u53D6read-table"><span class="toc-number">3.</span> <span class="toc-text">文本文档的读取read.table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#txt_u6587_u4EF6"><span class="toc-number">3.1.</span> <span class="toc-text">txt文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#read-table_u51FD_u6570_u7684_u53C2_u6570"><span class="toc-number">3.2.</span> <span class="toc-text">read.table函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528read-table_u8BBE_u5B9A_u53C2_u6570_u8BFB_u53D6txt_u6587_u6863"><span class="toc-number">3.3.</span> <span class="toc-text">使用read.table设定参数读取txt文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6csv_u6587_u4EF6"><span class="toc-number">3.4.</span> <span class="toc-text">读取csv文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5176_u4ED6_u7684read-table_u7C7B_u51FD_u6570"><span class="toc-number">3.5.</span> <span class="toc-text">其他的read.table类函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5199_u5165_u51FD_u6570write-table"><span class="toc-number">3.6.</span> <span class="toc-text">写入函数write.table</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E8C_u8FDB_u5236_u6587_u6863_u7684_u8BFB_u53D6"><span class="toc-number">4.</span> <span class="toc-text">二进制文档的读取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6Excel_u6587_u4EF6"><span class="toc-number">4.1.</span> <span class="toc-text">读取Excel文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6_u5176_u4ED6_u5E38_u7528_u7EDF_u8BA1_u8F6F_u4EF6_u7684_u6570_u636E"><span class="toc-number">4.2.</span> <span class="toc-text">读取其他常用统计软件的数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web_u6570_u636E"><span class="toc-number">4.3.</span> <span class="toc-text">Web数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u811A_u672C_u64CD_u4F5C"><span class="toc-number">5.</span> <span class="toc-text">脚本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528source_u51FD_u6570_u6267_u884CR_u811A_u672C"><span class="toc-number">5.1.</span> <span class="toc-text">使用source函数执行R脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528sink_u91CD_u5B9A_u5411_u6587_u672C_u8F93_u51FA"><span class="toc-number">5.2.</span> <span class="toc-text">使用sink重定向文本输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat"><span class="toc-number">5.3.</span> <span class="toc-text">cat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA"><span class="toc-number">5.4.</span> <span class="toc-text">重定向图像输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA_u4F8B_u5B50"><span class="toc-number">5.5.</span> <span class="toc-text">重定向图像输出例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6279_u91CF_u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA"><span class="toc-number">5.6.</span> <span class="toc-text">批量重定向图像输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E601"><span class="toc-number">5.7.</span> <span class="toc-text">练习1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E601_u7B54_u6848"><span class="toc-number">5.8.</span> <span class="toc-text">练习1答案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E602"><span class="toc-number">5.9.</span> <span class="toc-text">练习2</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Learning/" title="Learning">Learning<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/R/" title="R">R<sup>7</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/R-programing/" title="R programing">R programing<sup>6</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/data-mining/" title="data mining">data mining<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-package/" title="R package">R package<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-函数/" title="R 函数">R 函数<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/To-Do/" title="To Do">To Do<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithms/" title="algorithms">algorithms<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://zjdian.com/" target="_blank" title="中继点">中继点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.fens.me/" target="_blank" title="粉丝日志">粉丝日志</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Design your life, Build your dream. <br/>
+			     </p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="ripeconan">ripeconan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe6d1f421bbc9962127a50488f9ed37d1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
