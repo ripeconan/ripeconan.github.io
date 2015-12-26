@@ -1,0 +1,623 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>作图 | ripeconan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="ripeconan">
+    
+
+    
+    <meta name="description" content="作图系统
+graphics包, 基础包
+lattice包
+ggplot2包, 重点
+
+基础包graphics作图
+高级图形函数例子(初始化图形窗口)
+plot 通用绘图
+boxplot 箱线图
+hist 直方图
+qqnorm Q-Q图
+curve 绘制函数图形
+
+
+低级图形函数例子(不能启动新图形, 要先用高级函数做一个图)
+points 添加点
+lines 添加线
+abline 添加直线
+seg">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作图">
+<meta property="og:url" content="http://ripeconan.com/2015/12/21/7_plot/index.html">
+<meta property="og:site_name" content="ripeconan">
+<meta property="og:description" content="作图系统
+graphics包, 基础包
+lattice包
+ggplot2包, 重点
+
+基础包graphics作图
+高级图形函数例子(初始化图形窗口)
+plot 通用绘图
+boxplot 箱线图
+hist 直方图
+qqnorm Q-Q图
+curve 绘制函数图形
+
+
+低级图形函数例子(不能启动新图形, 要先用高级函数做一个图)
+points 添加点
+lines 添加线
+abline 添加直线
+seg">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-1-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-2-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-3-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-4-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-5-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-6-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-7-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-8-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-9-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-10-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-11-1.png">
+<meta property="og:image" content="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-12-1.png">
+<meta property="og:updated_time" content="2015-12-26T12:53:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="作图">
+<meta name="twitter:description" content="作图系统
+graphics包, 基础包
+lattice包
+ggplot2包, 重点
+
+基础包graphics作图
+高级图形函数例子(初始化图形窗口)
+plot 通用绘图
+boxplot 箱线图
+hist 直方图
+qqnorm Q-Q图
+curve 绘制函数图形
+
+
+低级图形函数例子(不能启动新图形, 要先用高级函数做一个图)
+points 添加点
+lines 添加线
+abline 添加直线
+seg">
+
+    
+    <link rel="alternative" href="/atom.xml" title="ripeconan" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="ripeconan" title="ripeconan"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:ripeconan.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/12/21/7_plot/" title="作图" itemprop="url">作图</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
+		
+  <p class="article-time">
+    <time datetime="2015-12-20T16:00:00.000Z" itemprop="datePublished"> Published 2015-12-21</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F5C_u56FE_u7CFB_u7EDF"><span class="toc-number">1.</span> <span class="toc-text">作图系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u7840_u5305graphics_u4F5C_u56FE"><span class="toc-number">2.</span> <span class="toc-text">基础包graphics作图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5355_u4E2A_u53D8_u91CF"><span class="toc-number">3.</span> <span class="toc-text">单个变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_barplot__u6761_u5F62_u56FE"><span class="toc-number">3.1.</span> <span class="toc-text">一个定类或定序向量: barplot 条形图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_pie__u997C_u56FE"><span class="toc-number">3.2.</span> <span class="toc-text">一个定类或定序向量: pie 饼图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_hist__u76F4_u65B9_u56FE"><span class="toc-number">3.3.</span> <span class="toc-text">一个数值型向量: hist 直方图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_boxplot__u7BB1_u7EBF_u56FE"><span class="toc-number">3.4.</span> <span class="toc-text">一个数值型向量: boxplot 箱线图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E24_u4E2A_u53D8_u91CF"><span class="toc-number">4.</span> <span class="toc-text">两个变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_plot__u6563_u70B9_u56FE"><span class="toc-number">4.1.</span> <span class="toc-text">两个数值型向量: plot 散点图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#plot__u51FD_u6570_u7684_u53C2_u6570"><span class="toc-number">4.1.1.</span> <span class="toc-text">plot 函数的参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#plot_u51FD_u6570_u6DFB_u52A0_u53C2_u6570_u7684_u4F8B_u5B50"><span class="toc-number">4.1.2.</span> <span class="toc-text">plot函数添加参数的例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F4E_u7EA7_u56FE_u5F62_u51FD_u6570"><span class="toc-number">5.</span> <span class="toc-text">低级图形函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528points_u6DFB_u52A0_u70B9"><span class="toc-number">5.1.</span> <span class="toc-text">使用points添加点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528lines_u6DFB_u52A0_u7EBF"><span class="toc-number">5.2.</span> <span class="toc-text">使用lines添加线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528text_u6DFB_u52A0_u6587_u5B57"><span class="toc-number">5.3.</span> <span class="toc-text">使用text添加文字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5176_u4ED6_u56FE_u5F62"><span class="toc-number">6.</span> <span class="toc-text">其他图形</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6B63_u6001_u6982_u7387_u56FE_uFF1Aqqnorm_28x_29"><span class="toc-number">6.1.</span> <span class="toc-text">正态概率图：qqnorm(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528curve_u7ED8_u5236_u51FD_u6570"><span class="toc-number">6.2.</span> <span class="toc-text">使用curve绘制函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u56FE_u5F62_u6392_u7248_3A__u5728_u4E00_u9875_u4E2D_u663E_u793AN_u884CM_u5217_u4E2A_u56FE_u5F62"><span class="toc-number">6.3.</span> <span class="toc-text">图形排版: 在一页中显示N行M列个图形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E9B_u53EF_u80FD_u7528_u5F97_u5230_u7684_u57FA_u7840_u4F5C_u56FE_u51FD_u6570"><span class="toc-number">6.4.</span> <span class="toc-text">一些可能用得到的基础作图函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ggplot2_u5305"><span class="toc-number">7.</span> <span class="toc-text">ggplot2包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ggplot2_u5305_u7684_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">8.</span> <span class="toc-text">ggplot2包的主要内容</span></a></li></ol>
+		
+		</div>
+		
+		<h2 id="u4F5C_u56FE_u7CFB_u7EDF"><a href="#u4F5C_u56FE_u7CFB_u7EDF" class="headerlink" title="作图系统"></a>作图系统</h2><ol>
+<li>graphics包, 基础包</li>
+<li>lattice包</li>
+<li>ggplot2包, 重点</li>
+</ol>
+<h2 id="u57FA_u7840_u5305graphics_u4F5C_u56FE"><a href="#u57FA_u7840_u5305graphics_u4F5C_u56FE" class="headerlink" title="基础包graphics作图"></a>基础包graphics作图</h2><ul>
+<li>高级图形函数例子(初始化图形窗口)<ul>
+<li>plot 通用绘图</li>
+<li>boxplot 箱线图</li>
+<li>hist 直方图</li>
+<li>qqnorm Q-Q图</li>
+<li>curve 绘制函数图形</li>
+</ul>
+</li>
+<li>低级图形函数例子(不能启动新图形, 要先用高级函数做一个图)<ul>
+<li>points 添加点</li>
+<li>lines 添加线</li>
+<li>abline 添加直线</li>
+<li>segments 添加线段</li>
+<li>polygon 添加闭合多边形</li>
+<li>text 添加文本</li>
+</ul>
+</li>
+</ul>
+<h2 id="u5355_u4E2A_u53D8_u91CF"><a href="#u5355_u4E2A_u53D8_u91CF" class="headerlink" title="单个变量"></a>单个变量</h2><h3 id="u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_barplot__u6761_u5F62_u56FE"><a href="#u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_barplot__u6761_u5F62_u56FE" class="headerlink" title="一个定类或定序向量: barplot 条形图"></a>一个定类或定序向量: barplot 条形图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gender &lt;- sample(c(<span class="string">"m"</span>, <span class="string">"f"</span>), <span class="number">20</span>, replace = <span class="literal">T</span>, </span><br><span class="line">                 prob = c(<span class="number">0.3</span>,<span class="number">0.7</span>))</span><br><span class="line">barplot(table(gender))</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-1-1.png" alt=""> </p>
+<h3 id="u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_pie__u997C_u56FE"><a href="#u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_pie__u997C_u56FE" class="headerlink" title="一个定类或定序向量: pie 饼图"></a>一个定类或定序向量: pie 饼图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pie(table(gender))</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-2-1.png" alt=""> </p>
+<h3 id="u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_hist__u76F4_u65B9_u56FE"><a href="#u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_hist__u76F4_u65B9_u56FE" class="headerlink" title="一个数值型向量: hist 直方图"></a>一个数值型向量: hist 直方图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">123</span>); height &lt;- rnorm(<span class="number">100</span>, mean=<span class="number">170</span>, sd=<span class="number">10</span>)</span><br><span class="line">hist(height)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-3-1.png" alt=""> </p>
+<h3 id="u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_boxplot__u7BB1_u7EBF_u56FE"><a href="#u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_boxplot__u7BB1_u7EBF_u56FE" class="headerlink" title="一个数值型向量: boxplot 箱线图"></a>一个数值型向量: boxplot 箱线图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">boxplot(height)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-4-1.png" alt=""> </p>
+<h2 id="u4E24_u4E2A_u53D8_u91CF"><a href="#u4E24_u4E2A_u53D8_u91CF" class="headerlink" title="两个变量"></a>两个变量</h2><h3 id="u4E24_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_plot__u6563_u70B9_u56FE"><a href="#u4E24_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_plot__u6563_u70B9_u56FE" class="headerlink" title="两个数值型向量: plot 散点图"></a>两个数值型向量: plot 散点图</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- seq(-<span class="number">2</span>,<span class="number">2</span>,by = <span class="number">0.1</span>); y &lt;- x^<span class="number">2</span></span><br><span class="line">plot(x,y)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-5-1.png" alt=""> </p>
+<h4 id="plot__u51FD_u6570_u7684_u53C2_u6570"><a href="#plot__u51FD_u6570_u7684_u53C2_u6570" class="headerlink" title="plot 函数的参数"></a>plot 函数的参数</h4><p>plot 函数的若干参数: ?plot, ?plot.default</p>
+<ul>
+<li>type 可以画点, 画线, etc.</li>
+<li>main 标题</li>
+<li>xlab, ylab 横纵轴标题</li>
+<li>xlim, ylim 指定横纵轴的取值范围</li>
+<li>col 颜色</li>
+<li>pch点型, cex点大小, lty线型, lwd线宽, 等等</li>
+</ul>
+<p>很多其他高级图形函数也有这些参数</p>
+<h4 id="plot_u51FD_u6570_u6DFB_u52A0_u53C2_u6570_u7684_u4F8B_u5B50"><a href="#plot_u51FD_u6570_u6DFB_u52A0_u53C2_u6570_u7684_u4F8B_u5B50" class="headerlink" title="plot函数添加参数的例子"></a>plot函数添加参数的例子</h4><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x = (<span class="number">0</span>:<span class="number">100</span>)/<span class="number">20</span>; y = sin(x)</span><br><span class="line">plot(x, y, type = <span class="string">"l"</span>, main = <span class="string">"two dimentional scatter plot"</span>, </span><br><span class="line">     xlab = <span class="string">"this is x-lab"</span>, ylab = <span class="string">"this is y-lab"</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-6-1.png" alt=""> </p>
+<h2 id="u4F4E_u7EA7_u56FE_u5F62_u51FD_u6570"><a href="#u4F4E_u7EA7_u56FE_u5F62_u51FD_u6570" class="headerlink" title="低级图形函数"></a>低级图形函数</h2><h3 id="u4F7F_u7528points_u6DFB_u52A0_u70B9"><a href="#u4F7F_u7528points_u6DFB_u52A0_u70B9" class="headerlink" title="使用points添加点"></a>使用points添加点</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(<span class="number">1</span>:<span class="number">5</span>, <span class="number">1</span>:<span class="number">5</span>); points(<span class="number">1</span>:<span class="number">5</span>, rep(<span class="number">1.5</span>,<span class="number">5</span>), cex = <span class="number">2</span>, pch = <span class="number">17</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-7-1.png" alt=""> </p>
+<h3 id="u4F7F_u7528lines_u6DFB_u52A0_u7EBF"><a href="#u4F7F_u7528lines_u6DFB_u52A0_u7EBF" class="headerlink" title="使用lines添加线"></a>使用lines添加线</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">x &lt;- seq(-<span class="number">4</span>,<span class="number">4</span>,by = <span class="number">0.1</span>); plot(x, dnorm(x), type = <span class="string">"l"</span>)</span><br><span class="line">lines(x, dnorm(x,-<span class="number">1</span>), lty = <span class="number">2</span>, lwd = <span class="number">2</span>)</span><br><span class="line">lines(x, dnorm(x, <span class="number">1</span>), lty = <span class="number">4</span>, lwd = <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-8-1.png" alt=""> </p>
+<h3 id="u4F7F_u7528text_u6DFB_u52A0_u6587_u5B57"><a href="#u4F7F_u7528text_u6DFB_u52A0_u6587_u5B57" class="headerlink" title="使用text添加文字"></a>使用text添加文字</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">plot(x, dnorm(x), type = <span class="string">"l"</span>)</span><br><span class="line">text(-<span class="number">3</span>,<span class="number">0.2</span>,<span class="string">"Hello"</span>,col = <span class="string">"red"</span>)</span><br><span class="line">text(<span class="number">3</span>,<span class="number">0.3</span>,<span class="string">"World"</span>,col = <span class="string">"blue"</span>, cex = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-9-1.png" alt=""> </p>
+<h2 id="u5176_u4ED6_u56FE_u5F62"><a href="#u5176_u4ED6_u56FE_u5F62" class="headerlink" title="其他图形"></a>其他图形</h2><h3 id="u6B63_u6001_u6982_u7387_u56FE_uFF1Aqqnorm_28x_29"><a href="#u6B63_u6001_u6982_u7387_u56FE_uFF1Aqqnorm_28x_29" class="headerlink" title="正态概率图：qqnorm(x)"></a>正态概率图：qqnorm(x)</h3><p>作用: 判断数据是否服从正态分布</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">123</span>); qqnorm(rnorm(<span class="number">100</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-10-1.png" alt=""> </p>
+<h3 id="u4F7F_u7528curve_u7ED8_u5236_u51FD_u6570"><a href="#u4F7F_u7528curve_u7ED8_u5236_u51FD_u6570" class="headerlink" title="使用curve绘制函数"></a>使用curve绘制函数</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curve(sin, -<span class="number">3</span>, <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-11-1.png" alt=""> </p>
+<h3 id="u56FE_u5F62_u6392_u7248_3A__u5728_u4E00_u9875_u4E2D_u663E_u793AN_u884CM_u5217_u4E2A_u56FE_u5F62"><a href="#u56FE_u5F62_u6392_u7248_3A__u5728_u4E00_u9875_u4E2D_u663E_u793AN_u884CM_u5217_u4E2A_u56FE_u5F62" class="headerlink" title="图形排版: 在一页中显示N行M列个图形"></a>图形排版: 在一页中显示N行M列个图形</h3><blockquote>
+<p>par(mfrow = c(N, M))  </p>
+</blockquote>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">op &lt;- par(no.readonly = <span class="literal">T</span>)</span><br><span class="line">par(mfrow=c(<span class="number">1</span>,<span class="number">2</span>));curve(sin,-pi,pi);curve(dnorm,-<span class="number">2</span>,<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xo4sl.com1.z0.glb.clouddn.com/2015%2FR_language%2Fplot%2Funnamed-chunk-12-1.png" alt=""> </p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">par(op)</span><br></pre></td></tr></table></figure>
+<h3 id="u4E00_u4E9B_u53EF_u80FD_u7528_u5F97_u5230_u7684_u57FA_u7840_u4F5C_u56FE_u51FD_u6570"><a href="#u4E00_u4E9B_u53EF_u80FD_u7528_u5F97_u5230_u7684_u57FA_u7840_u4F5C_u56FE_u51FD_u6570" class="headerlink" title="一些可能用得到的基础作图函数"></a>一些可能用得到的基础作图函数</h3><ul>
+<li>grid: 给plot图形添加网格, 需要先设置 type = “n”</li>
+<li>legend: 给plot图形添加图例</li>
+</ul>
+<h2 id="ggplot2_u5305"><a href="#ggplot2_u5305" class="headerlink" title="ggplot2包"></a>ggplot2包</h2><p>包的安装:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">install.packages(<span class="string">"ggplot2"</span>)</span><br></pre></td></tr></table></figure>
+<p>包的加载</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(ggplot2)</span><br></pre></td></tr></table></figure>
+<h2 id="ggplot2_u5305_u7684_u4E3B_u8981_u5185_u5BB9"><a href="#ggplot2_u5305_u7684_u4E3B_u8981_u5185_u5BB9" class="headerlink" title="ggplot2包的主要内容"></a>ggplot2包的主要内容</h2><p>两个基本函数:</p>
+<ul>
+<li>qplot</li>
+<li>ggplot</li>
+</ul>
+<p>两个数据集: </p>
+<ul>
+<li>diamonds 约54000颗钻石的信息</li>
+<li>dsmall 随机选出100颗钻石的子数据集</li>
+</ul>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">1410</span>)</span><br><span class="line">dsmall &lt;- diamonds[sample(nrow(diamonds), <span class="number">100</span>), ]</span><br></pre></td></tr></table></figure>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/R/">R</a>
+</div>
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/R-programing/">R programing</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://ripeconan.com/2015/12/21/7_plot/" data-title="作图 | ripeconan" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/12/07/6_probability_statistics/"  title="概率统计">
+ <strong>下一篇：</strong><br/> 
+ <span>概率统计
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F5C_u56FE_u7CFB_u7EDF"><span class="toc-number">1.</span> <span class="toc-text">作图系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u7840_u5305graphics_u4F5C_u56FE"><span class="toc-number">2.</span> <span class="toc-text">基础包graphics作图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5355_u4E2A_u53D8_u91CF"><span class="toc-number">3.</span> <span class="toc-text">单个变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_barplot__u6761_u5F62_u56FE"><span class="toc-number">3.1.</span> <span class="toc-text">一个定类或定序向量: barplot 条形图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_pie__u997C_u56FE"><span class="toc-number">3.2.</span> <span class="toc-text">一个定类或定序向量: pie 饼图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_hist__u76F4_u65B9_u56FE"><span class="toc-number">3.3.</span> <span class="toc-text">一个数值型向量: hist 直方图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_boxplot__u7BB1_u7EBF_u56FE"><span class="toc-number">3.4.</span> <span class="toc-text">一个数值型向量: boxplot 箱线图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E24_u4E2A_u53D8_u91CF"><span class="toc-number">4.</span> <span class="toc-text">两个变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_plot__u6563_u70B9_u56FE"><span class="toc-number">4.1.</span> <span class="toc-text">两个数值型向量: plot 散点图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#plot__u51FD_u6570_u7684_u53C2_u6570"><span class="toc-number">4.1.1.</span> <span class="toc-text">plot 函数的参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#plot_u51FD_u6570_u6DFB_u52A0_u53C2_u6570_u7684_u4F8B_u5B50"><span class="toc-number">4.1.2.</span> <span class="toc-text">plot函数添加参数的例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F4E_u7EA7_u56FE_u5F62_u51FD_u6570"><span class="toc-number">5.</span> <span class="toc-text">低级图形函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528points_u6DFB_u52A0_u70B9"><span class="toc-number">5.1.</span> <span class="toc-text">使用points添加点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528lines_u6DFB_u52A0_u7EBF"><span class="toc-number">5.2.</span> <span class="toc-text">使用lines添加线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528text_u6DFB_u52A0_u6587_u5B57"><span class="toc-number">5.3.</span> <span class="toc-text">使用text添加文字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5176_u4ED6_u56FE_u5F62"><span class="toc-number">6.</span> <span class="toc-text">其他图形</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6B63_u6001_u6982_u7387_u56FE_uFF1Aqqnorm_28x_29"><span class="toc-number">6.1.</span> <span class="toc-text">正态概率图：qqnorm(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528curve_u7ED8_u5236_u51FD_u6570"><span class="toc-number">6.2.</span> <span class="toc-text">使用curve绘制函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u56FE_u5F62_u6392_u7248_3A__u5728_u4E00_u9875_u4E2D_u663E_u793AN_u884CM_u5217_u4E2A_u56FE_u5F62"><span class="toc-number">6.3.</span> <span class="toc-text">图形排版: 在一页中显示N行M列个图形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E9B_u53EF_u80FD_u7528_u5F97_u5230_u7684_u57FA_u7840_u4F5C_u56FE_u51FD_u6570"><span class="toc-number">6.4.</span> <span class="toc-text">一些可能用得到的基础作图函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ggplot2_u5305"><span class="toc-number">7.</span> <span class="toc-text">ggplot2包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ggplot2_u5305_u7684_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">8.</span> <span class="toc-text">ggplot2包的主要内容</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Learning/" title="Learning">Learning<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/R/" title="R">R<sup>8</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/R-programing/" title="R programing">R programing<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/data-mining/" title="data mining">data mining<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-package/" title="R package">R package<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-函数/" title="R 函数">R 函数<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/To-Do/" title="To Do">To Do<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithms/" title="algorithms">algorithms<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://zjdian.com/" target="_blank" title="中继点">中继点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.fens.me/" target="_blank" title="粉丝日志">粉丝日志</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Design your life, Build your dream. <br/>
+			     </p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2015 
+		
+		<a href="/about" target="_blank" title="ripeconan">ripeconan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe6d1f421bbc9962127a50488f9ed37d1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
