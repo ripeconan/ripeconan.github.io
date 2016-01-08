@@ -116,7 +116,7 @@ R语言简介: 软件安装, 获取帮助, 包的安装
 				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -130,7 +130,7 @@ R语言简介: 软件安装, 获取帮助, 包的安装
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:ripeconan.com">
 					</form>
 					
@@ -153,14 +153,14 @@ R语言简介: 软件安装, 获取帮助, 包的安装
 		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
 		
   <p class="article-time">
-    <time datetime="2015-09-20T16:00:00.000Z" itemprop="datePublished"> Published 2015-09-21</time>
+    <time datetime="2015-09-20T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-09-21</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u8BED_u8A00_u76F8_u5173_u6559_u6750"><span class="toc-number">1.</span> <span class="toc-text">R语言相关教材</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u67B6_u6784"><span class="toc-number">2.</span> <span class="toc-text">内容架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shiny"><span class="toc-number">2.1.</span> <span class="toc-text">shiny</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E16_u754C_u5730_u56FE"><span class="toc-number">2.2.</span> <span class="toc-text">世界地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F8E_u56FD_u5730_u56FE"><span class="toc-number">2.3.</span> <span class="toc-text">美国地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5404_u5DDE_u5730_u56FE"><span class="toc-number">2.4.</span> <span class="toc-text">各州地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5931_u4E1A_u5206_u5E03_u5730_u56FE"><span class="toc-number">2.5.</span> <span class="toc-text">失业分布地图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u5386_u53F2_u7B80_u4ECB"><span class="toc-number">3.</span> <span class="toc-text">R历史简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F00_u53D1_u5DE5_u5177"><span class="toc-number">4.</span> <span class="toc-text">开发工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684_u4E0B_u8F7D_u548C_u5B89_u88C5"><span class="toc-number">4.1.</span> <span class="toc-text">R的下载和安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684IDE_u4ECB_u7ECD_3A_RStudio"><span class="toc-number">4.2.</span> <span class="toc-text">R的IDE介绍: RStudio</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u7684_u57FA_u7840_u4F7F_u7528"><span class="toc-number">5.</span> <span class="toc-text">R的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u4F5C_u4E3A_u79D1_u5B66_u8BA1_u7B97_u5668"><span class="toc-number">5.1.</span> <span class="toc-text">R作为科学计算器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R__u4E2D_u7684_u5E38_u91CF_u548C_u53D8_u91CF"><span class="toc-number">5.2.</span> <span class="toc-text">R 中的常量和变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7ED9_u53D8_u91CF_u8D4B_u503C"><span class="toc-number">5.3.</span> <span class="toc-text">给变量赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u53D8_u91CF_u7A7A_u95F4"><span class="toc-number">5.4.</span> <span class="toc-text">变量空间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411_u91CF"><span class="toc-number">6.</span> <span class="toc-text">向量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u5411_u91CF"><span class="toc-number">6.1.</span> <span class="toc-text">生成向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BA1_u7B97_u57FA_u672C_u7EDF_u8BA1_u91CF"><span class="toc-number">6.2.</span> <span class="toc-text">计算基本统计量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u6570_u5217seq"><span class="toc-number">6.3.</span> <span class="toc-text">生成数列seq</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u6570_u5217rep"><span class="toc-number">6.4.</span> <span class="toc-text">生成数列rep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BF7_u5C1D_u8BD5_u751F_u6210_u4EE5_u4E0B_u6570_u5217"><span class="toc-number">6.5.</span> <span class="toc-text">请尝试生成以下数列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9009_u53D6_u5411_u91CF_u4E2D_u7684_u5143_u7D20"><span class="toc-number">6.6.</span> <span class="toc-text">选取向量中的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u5E38_u7528_u51FD_u6570"><span class="toc-number">6.7.</span> <span class="toc-text">向量常用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u7684_u5FAA_u73AF_u8BA1_u7B97"><span class="toc-number">6.8.</span> <span class="toc-text">向量的循环计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u7684_u51FD_u6570_u8BA1_u7B97"><span class="toc-number">6.9.</span> <span class="toc-text">向量的函数计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u903B_u8F91_u5411_u91CF_u548C_u6BD4_u8F83_u8FD0_u7B97_u7B26"><span class="toc-number">6.10.</span> <span class="toc-text">逻辑向量和比较运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_u903B_u8F91_u8868_u8FBE_u5F0F_u6765_u9009_u62E9_u5411_u91CF"><span class="toc-number">6.11.</span> <span class="toc-text">使用逻辑表达式来选择向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u903B_u8F91_u8868_u8FBE_u5F0F_u6D3B_u7528"><span class="toc-number">6.12.</span> <span class="toc-text">逻辑表达式活用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F5C_u56FE"><span class="toc-number">7.</span> <span class="toc-text">作图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u57FA_u7840_u4F5C_u56FE_u4ECB_u7ECD"><span class="toc-number">7.1.</span> <span class="toc-text">基础作图介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6563_u70B9_u56FE"><span class="toc-number">7.2.</span> <span class="toc-text">散点图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8FDE_u7EBF_u56FE"><span class="toc-number">7.3.</span> <span class="toc-text">连线图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E09_u7EF4_u56FE_uFF0C_u7B49_u503C_u7EBF_u56FE_uFF0C_u7B49_u503C_u8272_u56FE"><span class="toc-number">8.</span> <span class="toc-text">三维图，等值线图，等值色图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E09_u7EF4_u56FE"><span class="toc-number">8.1.</span> <span class="toc-text">三维图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7B49_u503C_u7EBF_u56FE"><span class="toc-number">8.2.</span> <span class="toc-text">等值线图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7B49_u503C_u8272_u56FE"><span class="toc-number">8.3.</span> <span class="toc-text">等值色图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5E2E_u52A9"><span class="toc-number">9.</span> <span class="toc-text">帮助</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R__u7684_u5E2E_u52A9_u6587_u6863"><span class="toc-number">9.1.</span> <span class="toc-text">R 的帮助文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u901A_u8FC7_u7F51_u7EDC_u83B7_u53D6_u5E2E_u52A9"><span class="toc-number">9.2.</span> <span class="toc-text">通过网络获取帮助</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_Package__u64CD_u4F5C"><span class="toc-number">9.3.</span> <span class="toc-text">R Package 操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Datacamp"><span class="toc-number">9.4.</span> <span class="toc-text">Datacamp</span></a></li></ol></li></ol>
 		
@@ -434,17 +434,17 @@ R语言简介: 软件安装, 获取帮助, 包的安装
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目錄</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u8BED_u8A00_u76F8_u5173_u6559_u6750"><span class="toc-number">1.</span> <span class="toc-text">R语言相关教材</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u67B6_u6784"><span class="toc-number">2.</span> <span class="toc-text">内容架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shiny"><span class="toc-number">2.1.</span> <span class="toc-text">shiny</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E16_u754C_u5730_u56FE"><span class="toc-number">2.2.</span> <span class="toc-text">世界地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7F8E_u56FD_u5730_u56FE"><span class="toc-number">2.3.</span> <span class="toc-text">美国地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5404_u5DDE_u5730_u56FE"><span class="toc-number">2.4.</span> <span class="toc-text">各州地图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5931_u4E1A_u5206_u5E03_u5730_u56FE"><span class="toc-number">2.5.</span> <span class="toc-text">失业分布地图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u5386_u53F2_u7B80_u4ECB"><span class="toc-number">3.</span> <span class="toc-text">R历史简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5F00_u53D1_u5DE5_u5177"><span class="toc-number">4.</span> <span class="toc-text">开发工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684_u4E0B_u8F7D_u548C_u5B89_u88C5"><span class="toc-number">4.1.</span> <span class="toc-text">R的下载和安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684IDE_u4ECB_u7ECD_3A_RStudio"><span class="toc-number">4.2.</span> <span class="toc-text">R的IDE介绍: RStudio</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u7684_u57FA_u7840_u4F7F_u7528"><span class="toc-number">5.</span> <span class="toc-text">R的基础使用</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u4F5C_u4E3A_u79D1_u5B66_u8BA1_u7B97_u5668"><span class="toc-number">5.1.</span> <span class="toc-text">R作为科学计算器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R__u4E2D_u7684_u5E38_u91CF_u548C_u53D8_u91CF"><span class="toc-number">5.2.</span> <span class="toc-text">R 中的常量和变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7ED9_u53D8_u91CF_u8D4B_u503C"><span class="toc-number">5.3.</span> <span class="toc-text">给变量赋值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u53D8_u91CF_u7A7A_u95F4"><span class="toc-number">5.4.</span> <span class="toc-text">变量空间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5411_u91CF"><span class="toc-number">6.</span> <span class="toc-text">向量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u5411_u91CF"><span class="toc-number">6.1.</span> <span class="toc-text">生成向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BA1_u7B97_u57FA_u672C_u7EDF_u8BA1_u91CF"><span class="toc-number">6.2.</span> <span class="toc-text">计算基本统计量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u6570_u5217seq"><span class="toc-number">6.3.</span> <span class="toc-text">生成数列seq</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u751F_u6210_u6570_u5217rep"><span class="toc-number">6.4.</span> <span class="toc-text">生成数列rep</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BF7_u5C1D_u8BD5_u751F_u6210_u4EE5_u4E0B_u6570_u5217"><span class="toc-number">6.5.</span> <span class="toc-text">请尝试生成以下数列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u9009_u53D6_u5411_u91CF_u4E2D_u7684_u5143_u7D20"><span class="toc-number">6.6.</span> <span class="toc-text">选取向量中的元素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u5E38_u7528_u51FD_u6570"><span class="toc-number">6.7.</span> <span class="toc-text">向量常用函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u7684_u5FAA_u73AF_u8BA1_u7B97"><span class="toc-number">6.8.</span> <span class="toc-text">向量的循环计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5411_u91CF_u7684_u51FD_u6570_u8BA1_u7B97"><span class="toc-number">6.9.</span> <span class="toc-text">向量的函数计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u903B_u8F91_u5411_u91CF_u548C_u6BD4_u8F83_u8FD0_u7B97_u7B26"><span class="toc-number">6.10.</span> <span class="toc-text">逻辑向量和比较运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_u903B_u8F91_u8868_u8FBE_u5F0F_u6765_u9009_u62E9_u5411_u91CF"><span class="toc-number">6.11.</span> <span class="toc-text">使用逻辑表达式来选择向量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u903B_u8F91_u8868_u8FBE_u5F0F_u6D3B_u7528"><span class="toc-number">6.12.</span> <span class="toc-text">逻辑表达式活用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F5C_u56FE"><span class="toc-number">7.</span> <span class="toc-text">作图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u57FA_u7840_u4F5C_u56FE_u4ECB_u7ECD"><span class="toc-number">7.1.</span> <span class="toc-text">基础作图介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6563_u70B9_u56FE"><span class="toc-number">7.2.</span> <span class="toc-text">散点图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8FDE_u7EBF_u56FE"><span class="toc-number">7.3.</span> <span class="toc-text">连线图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E09_u7EF4_u56FE_uFF0C_u7B49_u503C_u7EBF_u56FE_uFF0C_u7B49_u503C_u8272_u56FE"><span class="toc-number">8.</span> <span class="toc-text">三维图，等值线图，等值色图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E09_u7EF4_u56FE"><span class="toc-number">8.1.</span> <span class="toc-text">三维图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7B49_u503C_u7EBF_u56FE"><span class="toc-number">8.2.</span> <span class="toc-text">等值线图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7B49_u503C_u8272_u56FE"><span class="toc-number">8.3.</span> <span class="toc-text">等值色图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5E2E_u52A9"><span class="toc-number">9.</span> <span class="toc-text">帮助</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#R__u7684_u5E2E_u52A9_u6587_u6863"><span class="toc-number">9.1.</span> <span class="toc-text">R 的帮助文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u901A_u8FC7_u7F51_u7EDC_u83B7_u53D6_u5E2E_u52A9"><span class="toc-number">9.2.</span> <span class="toc-text">通过网络获取帮助</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_Package__u64CD_u4F5C"><span class="toc-number">9.3.</span> <span class="toc-text">R Package 操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Datacamp"><span class="toc-number">9.4.</span> <span class="toc-text">Datacamp</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
@@ -452,7 +452,7 @@ R语言简介: 软件安装, 获取帮助, 包的安装
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
 		  
@@ -473,7 +473,7 @@ R语言简介: 软件安装, 获取帮助, 包的安装
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -505,7 +505,7 @@ R语言简介: 软件安装, 获取帮助, 包的安装
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -527,7 +527,7 @@ R语言简介: 软件安装, 获取帮助, 包的安装
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
 </aside>
@@ -742,7 +742,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
