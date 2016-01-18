@@ -1,0 +1,644 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>经验似然方法的模拟验证 | ripeconan</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="ripeconan">
+    
+
+    
+    <meta name="description" content="准备工作12#install.packages(&quot;emplik&quot;)library(emplik)
+假设检验
+EL for one-dimensional mean
+EL for two-dimensional mean
+EL for three-dimensional mean
+
+一维向量均值的经验似然假设检验123set.seed(3)x &amp;lt;- rnorm(50)(el.x &amp;lt;- e">
+<meta property="og:type" content="article">
+<meta property="og:title" content="经验似然方法的模拟验证">
+<meta property="og:url" content="http://ripeconan.com/2016/01/18/empirical_likelihood/index.html">
+<meta property="og:site_name" content="ripeconan">
+<meta property="og:description" content="准备工作12#install.packages(&quot;emplik&quot;)library(emplik)
+假设检验
+EL for one-dimensional mean
+EL for two-dimensional mean
+EL for three-dimensional mean
+
+一维向量均值的经验似然假设检验123set.seed(3)x &amp;lt;- rnorm(50)(el.x &amp;lt;- e">
+<meta property="og:image" content="http://7xq8g9.com1.z0.glb.clouddn.com/unnamed-chunk-21-1.png">
+<meta property="og:updated_time" content="2016-01-18T14:02:19.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="经验似然方法的模拟验证">
+<meta name="twitter:description" content="准备工作12#install.packages(&quot;emplik&quot;)library(emplik)
+假设检验
+EL for one-dimensional mean
+EL for two-dimensional mean
+EL for three-dimensional mean
+
+一维向量均值的经验似然假设检验123set.seed(3)x &amp;lt;- rnorm(50)(el.x &amp;lt;- e">
+
+    
+    <link rel="alternative" href="/atom.xml" title="ripeconan" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="ripeconan" title="ripeconan"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:ripeconan.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/01/18/empirical_likelihood/" title="经验似然方法的模拟验证" itemprop="url">经验似然方法的模拟验证</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
+		
+  <p class="article-time">
+    <time datetime="2016-01-17T16:00:00.000Z" itemprop="datePublished"> 發表於 2016-01-18</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目錄</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u51C6_u5907_u5DE5_u4F5C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5047_u8BBE_u68C0_u9A8C"><span class="toc-number">2.</span> <span class="toc-text">假设检验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C"><span class="toc-number">2.1.</span> <span class="toc-text">一维向量均值的经验似然假设检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E8C_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C"><span class="toc-number">2.2.</span> <span class="toc-text">二维向量均值的经验似然假设检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E09_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C"><span class="toc-number">2.3.</span> <span class="toc-text">三维向量均值的经验似然假设检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F53__24_5Cmu_24__u8FDC_u79BB__24_5Cmu_0_24__u65F6_2C_el-test__u7684_Pval__u4F1A_u53D8_u5C0F"><span class="toc-number">2.4.</span> <span class="toc-text">当 $\mu$ 远离 $\mu_0$ 时, el.test 的 Pval 会变小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F6E_u4FE1_u533A_u95F4"><span class="toc-number">3.</span> <span class="toc-text">置信区间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u7F6E_u4FE1_u533A_u95F4"><span class="toc-number">3.1.</span> <span class="toc-text">一维向量均值的经验似然置信区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7ECF_u9A8C_u4F3C_u7136_u548C_u6B63_u6001_u903C_u8FD1_u7684_u5BF9_u6BD4"><span class="toc-number">3.2.</span> <span class="toc-text">经验似然和正态逼近的对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u7ECF_u9A8C_u4F3C_u7136_u65B9_u6CD5_u8BA1_u7B97_u7F6E_u4FE1_u533A_u95F4"><span class="toc-number">3.2.1.</span> <span class="toc-text">经验似然方法计算置信区间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6B63_u6001_u903C_u8FD1_u65B9_u6CD5_u8BA1_u7B97_u7F6E_u4FE1_u533A_u95F4"><span class="toc-number">3.2.2.</span> <span class="toc-text">正态逼近方法计算置信区间</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EL_u548CNA_u7F6E_u4FE1_u533A_u95F4_u7EFC_u5408_u6BD4_u8F83"><span class="toc-number">3.3.</span> <span class="toc-text">EL和NA置信区间综合比较</span></a></li></ol></li></ol>
+		
+		</div>
+		
+		<h2 id="u51C6_u5907_u5DE5_u4F5C"><a href="#u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="准备工作"></a>准备工作</h2><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#install.packages("emplik")</span></span><br><span class="line"><span class="keyword">library</span>(emplik)</span><br></pre></td></tr></table></figure>
+<h2 id="u5047_u8BBE_u68C0_u9A8C"><a href="#u5047_u8BBE_u68C0_u9A8C" class="headerlink" title="假设检验"></a>假设检验</h2><ul>
+<li>EL for one-dimensional mean</li>
+<li>EL for two-dimensional mean</li>
+<li>EL for three-dimensional mean</li>
+</ul>
+<h3 id="u4E00_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C"><a href="#u4E00_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C" class="headerlink" title="一维向量均值的经验似然假设检验"></a>一维向量均值的经验似然假设检验</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">3</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">50</span>)</span><br><span class="line">(el.x &lt;- el.test(x , mu = <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $`-<span class="number">2L</span>LR`</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.2637869</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $Pval</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.6075303</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $lambda</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] -<span class="number">0.08258183</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $grad</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] -<span class="number">3.876559e-14</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $hess</span></span><br><span class="line"><span class="preprocessor">##          [,<span class="number">1</span>]</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>,] <span class="number">38.86236</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $wts</span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">1</span>] <span class="number">0.9264078</span> <span class="number">0.9764125</span> <span class="number">1.0218379</span> <span class="number">0.9131210</span> <span class="number">1.0164338</span> <span class="number">1.0024939</span> <span class="number">1.0071041</span></span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">8</span>] <span class="number">1.1015784</span> <span class="number">0.9085495</span> <span class="number">1.1168962</span> <span class="number">0.9420583</span> <span class="number">0.9145632</span> <span class="number">0.9441460</span> <span class="number">1.0213091</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">15</span>] <span class="number">1.0127159</span> <span class="number">0.9752227</span> <span class="number">0.9270402</span> <span class="number">0.9491871</span> <span class="number">1.1124783</span> <span class="number">1.0167777</span> <span class="number">0.9544059</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">22</span>] <span class="number">0.9278014</span> <span class="number">0.9834541</span> <span class="number">0.8790277</span> <span class="number">0.9615318</span> <span class="number">0.9423302</span> <span class="number">1.1060060</span> <span class="number">1.0912008</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">29</span>] <span class="number">0.9940828</span> <span class="number">0.9141791</span> <span class="number">1.0803514</span> <span class="number">1.0756629</span> <span class="number">1.0639385</span> <span class="number">1.0647605</span> <span class="number">0.9717422</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">36</span>] <span class="number">1.0618673</span> <span class="number">1.1203050</span> <span class="number">1.0031689</span> <span class="number">0.9251797</span> <span class="number">1.0701485</span> <span class="number">1.0694629</span> <span class="number">0.9750023</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">43</span>] <span class="number">1.1631924</span> <span class="number">0.9384217</span> <span class="number">1.0296271</span> <span class="number">0.8424025</span> <span class="number">0.9867819</span> <span class="number">1.1030088</span> <span class="number">0.9637441</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">50</span>] <span class="number">0.9308779</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $nits</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<p>此时的x是一维向量, mu 也是长度为 1 的常数向量, 使用 <code>el.test</code> 函数可以执行假设检验.</p>
+<p><code>el.test</code> 函数的返回结果是一个列表, 其中有几个元素较为重要, 分别是</p>
+<ul>
+<li>-2LLR, -2倍的经验似然比, 如果重复带入同一分布的x, 则-2LLR趋近$\chi^2(1)$</li>
+<li>Pval, P($\chi^2(1)$ &gt; -2LLR), 如果小于阈值, 则拒绝 $H_0: \mu = \mu_0$</li>
+<li>lambda, 拉格朗日乘子</li>
+<li>wts, 每个观测上的权重$w<em>i$, 不过这些权重和服从$\sum</em>{i=1}^n w_i = n$</li>
+</ul>
+<p>我们可以简单的对以上返回结果进行验证</p>
+<p>以下两项相等</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.x$Pval</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.6075303</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> - pchisq(el.x$`-2LLR`, df = <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.6075303</span></span></span><br></pre></td></tr></table></figure>
+<p>以下三项相等</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.x$`-2LLR`</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.2637869</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>*sum(log(<span class="number">1</span> + el.x$lambda*x))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.2637869</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="number">2</span>*log(prod(el.x$wts))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.2637869</span></span></span><br></pre></td></tr></table></figure>
+<p>以下两项相等</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(el.x$wts)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">50</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">length(x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">50</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4E8C_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C"><a href="#u4E8C_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C" class="headerlink" title="二维向量均值的经验似然假设检验"></a>二维向量均值的经验似然假设检验</h3><p>对于二维情况, 代码如下:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">3.1</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">50</span>)</span><br><span class="line">y &lt;- rnorm(<span class="number">50</span>)</span><br><span class="line">(el.two.dim &lt;- el.test(cbind(x,y), mu = c(<span class="number">0</span>,<span class="number">0</span>)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $`-<span class="number">2L</span>LR`</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.7596482</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $Pval</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.6839817</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $lambda</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] -<span class="number">0.07377731</span>  <span class="number">0.11984790</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $grad</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] -<span class="number">2.838477e-10</span>  <span class="number">3.860352e-10</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $hess</span></span><br><span class="line"><span class="preprocessor">##           x         y</span></span><br><span class="line"><span class="preprocessor">## x <span class="number">39.141566</span> -<span class="number">3.804552</span></span></span><br><span class="line"><span class="preprocessor">## y -<span class="number">3.804552</span> <span class="number">35.404447</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $wts</span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">1</span>] <span class="number">0.8634990</span> <span class="number">1.0815816</span> <span class="number">0.9872478</span> <span class="number">1.1405190</span> <span class="number">1.2248908</span> <span class="number">1.0599729</span> <span class="number">1.1499584</span></span></span><br><span class="line"><span class="preprocessor">##  [<span class="number">8</span>] <span class="number">0.9251811</span> <span class="number">0.8334172</span> <span class="number">1.2309218</span> <span class="number">0.8899308</span> <span class="number">0.8378703</span> <span class="number">0.9228783</span> <span class="number">0.9769991</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">15</span>] <span class="number">0.8853284</span> <span class="number">1.0361947</span> <span class="number">0.9802815</span> <span class="number">0.8603676</span> <span class="number">1.3241724</span> <span class="number">0.9924831</span> <span class="number">0.9625337</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">22</span>] <span class="number">0.8884932</span> <span class="number">0.8789057</span> <span class="number">0.8658081</span> <span class="number">0.9402688</span> <span class="number">0.8739183</span> <span class="number">0.9431862</span> <span class="number">1.0295723</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">29</span>] <span class="number">1.1275207</span> <span class="number">0.9389052</span> <span class="number">0.8759984</span> <span class="number">1.1173978</span> <span class="number">0.9719654</span> <span class="number">0.9154111</span> <span class="number">0.8919223</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">36</span>] <span class="number">1.0557637</span> <span class="number">1.0748899</span> <span class="number">1.1224138</span> <span class="number">0.8889258</span> <span class="number">1.1973087</span> <span class="number">1.1909791</span> <span class="number">1.1058810</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">43</span>] <span class="number">1.2552493</span> <span class="number">0.8439272</span> <span class="number">1.0782284</span> <span class="number">0.8630544</span> <span class="number">1.0453786</span> <span class="number">1.0189582</span> <span class="number">0.8731615</span></span></span><br><span class="line"><span class="preprocessor">## [<span class="number">50</span>] <span class="number">0.9603777</span></span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $nits</span></span><br><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">4</span></span></span><br></pre></td></tr></table></figure>
+<p>将两个向量按列合并为一个矩阵, mu也是一个长度为2的常数向量. 对<code>el.test</code>的返回结果, 我们也有一维情形下的等式</p>
+<p>以下两项相等</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.two.dim$Pval</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.6839817</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> - pchisq(el.two.dim$`-2LLR`, df = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.6839817</span></span></span><br></pre></td></tr></table></figure>
+<p>以下三项相等</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.two.dim$`-2LLR`</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.7596482</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>*sum(log(<span class="number">1</span> + cbind(x,y) %*% el.two.dim$lambda))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.7596482</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="number">2</span>*log(prod(el.two.dim$wts))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.7596482</span></span></span><br></pre></td></tr></table></figure>
+<p>以下三项相等</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(el.two.dim$wts)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">50</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">length(x);length(y)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">50</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">50</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u4E09_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C"><a href="#u4E09_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C" class="headerlink" title="三维向量均值的经验似然假设检验"></a>三维向量均值的经验似然假设检验</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">3.14</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>)</span><br><span class="line">y &lt;- rnorm(<span class="number">100</span>)</span><br><span class="line">z &lt;- rnorm(<span class="number">100</span>)</span><br><span class="line">el.three.dim &lt;- el.test(cbind(x,y,z), mu = rep(<span class="number">0</span>,<span class="number">3</span>))</span><br></pre></td></tr></table></figure>
+<p>将三个向量按列合并为一个矩阵, mu也是一个长度为3的常数向量. 对<code>el.test</code>的返回结果, 我们也有一维情形下的等式</p>
+<p>以下两项相等</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.three.dim$Pval</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.7300348</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> - pchisq(el.three.dim$`-2LLR`, df = <span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.7300348</span></span></span><br></pre></td></tr></table></figure>
+<p>以下三项相等</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">el.three.dim$`-2LLR`</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1.296203</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2</span>*sum(log(<span class="number">1</span> + cbind(x,y,z) %*% el.three.dim$lambda))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1.296203</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-<span class="number">2</span>*log(prod(el.three.dim$wts))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">1.296203</span></span></span><br></pre></td></tr></table></figure>
+<p>以下四项相等</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sum(el.three.dim$wts)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">100</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">length(x);length(y);length(z)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">100</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">100</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">100</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="u5F53__24_5Cmu_24__u8FDC_u79BB__24_5Cmu_0_24__u65F6_2C_el-test__u7684_Pval__u4F1A_u53D8_u5C0F"><a href="#u5F53__24_5Cmu_24__u8FDC_u79BB__24_5Cmu_0_24__u65F6_2C_el-test__u7684_Pval__u4F1A_u53D8_u5C0F" class="headerlink" title="当 $\mu$ 远离 $\mu_0$ 时, el.test 的 Pval 会变小"></a>当 $\mu$ 远离 $\mu_0$ 时, el.test 的 Pval 会变小</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">3.141</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">100</span>) <span class="comment">## 生成服从标准正态分布的样本</span></span><br><span class="line">n &lt;- <span class="number">10</span> </span><br><span class="line">pval &lt;- numeric(n)        <span class="comment">## pval用来放检验的n个p值</span></span><br><span class="line">minus2LLR &lt;- numeric(n)   <span class="comment">## minus2LLR用来放检验的n个-2LLR值</span></span><br><span class="line">mu &lt;- seq(<span class="number">0</span>, by = <span class="number">0.02</span>, length.out = n) <span class="comment">## mu从真值0开始, 按步长0.02远离真值</span></span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:n)&#123;</span><br><span class="line">  el.x &lt;- el.test(x, mu = mu[i]) <span class="comment">## 对每个mu, 做el.test检验</span></span><br><span class="line">  pval[i] &lt;- el.x$Pval           <span class="comment">## 提取检验的p值</span></span><br><span class="line">  minus2LLR[i] &lt;- el.x$`-2LLR`   <span class="comment">## 提取检验的-2LLR值</span></span><br><span class="line">&#125;</span><br><span class="line">data.frame(mu,pval, minus2LLR)   <span class="comment">## 将mu, p值, -2LLR值组成数据框</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##      mu       pval  minus2LLR</span></span><br><span class="line"><span class="preprocessor">## <span class="number">1</span>  <span class="number">0.00</span> <span class="number">0.89697380</span> <span class="number">0.01676640</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">2</span>  <span class="number">0.02</span> <span class="number">0.91614625</span> <span class="number">0.01108584</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">3</span>  <span class="number">0.04</span> <span class="number">0.73346985</span> <span class="number">0.11594945</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">4</span>  <span class="number">0.06</span> <span class="number">0.56451728</span> <span class="number">0.33194288</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">5</span>  <span class="number">0.08</span> <span class="number">0.41670823</span> <span class="number">0.65958007</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">6</span>  <span class="number">0.10</span> <span class="number">0.29441724</span> <span class="number">1.09931157</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">7</span>  <span class="number">0.12</span> <span class="number">0.19875088</span> <span class="number">1.65152955</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">8</span>  <span class="number">0.14</span> <span class="number">0.12800203</span> <span class="number">2.31656962</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">9</span>  <span class="number">0.16</span> <span class="number">0.07854717</span> <span class="number">3.09470955</span></span></span><br><span class="line"><span class="preprocessor">## <span class="number">10</span> <span class="number">0.18</span> <span class="number">0.04587538</span> <span class="number">3.98616465</span></span></span><br></pre></td></tr></table></figure>
+<p>可以看出, 当 $\mu$ 离真值$\mu_0 = 0$ 越来越远时, p值(pval)越来越小, -2LLR 值越来越大</p>
+<h2 id="u7F6E_u4FE1_u533A_u95F4"><a href="#u7F6E_u4FE1_u533A_u95F4" class="headerlink" title="置信区间"></a>置信区间</h2><p>经验似然置信区间的求法:</p>
+<ol>
+<li>先定义一个函数(myfun)</li>
+<li>myfun的第一个参数应该是正在给哪个参数求置信区间</li>
+<li>myfun的返回值应该是一个列表, 并且其中含有一个元素名称为”-2LLR”</li>
+<li>findUL函数可以用来求置信区间的上下限, 通过level参数可以设置置信度</li>
+</ol>
+<p>具体使用方法如下:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">myfun &lt;- <span class="keyword">function</span>(theta, x)&#123;</span><br><span class="line">  el.test(x, mu = theta)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">findUL(step = <span class="number">0.1</span>, fun = myfun, MLE = mean(x), level = <span class="number">3.84</span>, x = x)</span><br></pre></td></tr></table></figure>
+<h3 id="u4E00_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u7F6E_u4FE1_u533A_u95F4"><a href="#u4E00_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u7F6E_u4FE1_u533A_u95F4" class="headerlink" title="一维向量均值的经验似然置信区间"></a>一维向量均值的经验似然置信区间</h3><figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">3</span>)</span><br><span class="line">x &lt;- rnorm(<span class="number">50</span>)</span><br><span class="line">findUL(step = <span class="number">0.1</span>, fun = myfun, MLE = mean(x), level = <span class="number">3.84</span>, x = x)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $Low</span></span><br><span class="line"><span class="preprocessor">## [1] -0.31201</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $Up</span></span><br><span class="line"><span class="preprocessor">## [1] 0.1799538</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $FstepL</span></span><br><span class="line"><span class="preprocessor">## [1] 1e-09</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $FstepU</span></span><br><span class="line"><span class="preprocessor">## [1] 1e-09</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $Lvalue</span></span><br><span class="line"><span class="preprocessor">## [1] 3.84</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $Uvalue</span></span><br><span class="line"><span class="preprocessor">## [1] 3.84</span></span><br></pre></td></tr></table></figure>
+<p>findUL函数返回结果是个列表, 其中的Low和Up分别是置信区间的下限和上限</p>
+<p>需要注意的是, findUL函数目前只能对一维参数进行求置信区间上下限, 而无法对多维参数求置信域</p>
+<h3 id="u7ECF_u9A8C_u4F3C_u7136_u548C_u6B63_u6001_u903C_u8FD1_u7684_u5BF9_u6BD4"><a href="#u7ECF_u9A8C_u4F3C_u7136_u548C_u6B63_u6001_u903C_u8FD1_u7684_u5BF9_u6BD4" class="headerlink" title="经验似然和正态逼近的对比"></a>经验似然和正态逼近的对比</h3><p>经验似然(<strong>Empirical likelihood</strong>)和正态逼近(<strong>Normal Approximation</strong>)在对参数进行区间估计时, 一般从置信区间的覆盖率(<strong>coverage probability, 简称cp</strong>)和区间平均长度(<strong>average length, 简称al</strong>)来进行比较. 这就需要生成多个置信区间取平均进行比较.</p>
+<h4 id="u7ECF_u9A8C_u4F3C_u7136_u65B9_u6CD5_u8BA1_u7B97_u7F6E_u4FE1_u533A_u95F4"><a href="#u7ECF_u9A8C_u4F3C_u7136_u65B9_u6CD5_u8BA1_u7B97_u7F6E_u4FE1_u533A_u95F4" class="headerlink" title="经验似然方法计算置信区间"></a>经验似然方法计算置信区间</h4><p>生成100组服从标准正态分布的随机样本, 每组样本的样本量为50, 可以得到100个置信区间的上下限</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">3.1415</span>)</span><br><span class="line">elci.up &lt;- numeric(<span class="number">100</span>) <span class="comment">## 用来放置100个置信区间的上限</span></span><br><span class="line">elci.low &lt;- numeric(<span class="number">100</span>)<span class="comment">## 用来放置100个置信区间的下限</span></span><br><span class="line">elci.length &lt;- numeric(<span class="number">100</span>)<span class="comment">## 用来放置100个置信区间的长度</span></span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">100</span>)&#123;</span><br><span class="line">  x &lt;- rnorm(<span class="number">50</span>)</span><br><span class="line">  elci &lt;- findUL(step = <span class="number">0.1</span>, fun = myfun, MLE = mean(x), x = x)</span><br><span class="line">  elci.up[i] &lt;- elci$Up</span><br><span class="line">  elci.low[i] &lt;- elci$Low</span><br><span class="line">  elci.length[i] &lt;- elci.up[i] - elci.low[i]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以计算这100个置信区间的平均长度(average length of empirical likelihood, 记为alel)</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(alel &lt;- mean(elci.length))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.5581938</span></span></span><br></pre></td></tr></table></figure>
+<p>还可以计算着100个置信区间的覆盖率(coverage probability of empirical likelihood, 记为cpel)</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(cpel &lt;- sum(elci.up &gt;= <span class="number">0</span> &amp; elci.low &lt;= <span class="number">0</span>)/<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.96</span></span></span><br></pre></td></tr></table></figure>
+<p>我们还可以把这100个置信区间作图, 并把没有覆盖到真值的置信区间用红色标注出来</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">plot(<span class="number">1</span>:<span class="number">100</span>, seq(-<span class="number">1</span>,<span class="number">1</span>,length.out = <span class="number">100</span>), type = <span class="string">"n"</span>,xlab = <span class="string">"x"</span>, ylab = <span class="string">"y"</span>)</span><br><span class="line">points(<span class="number">1</span>:<span class="number">100</span>, elci.low)</span><br><span class="line">points(<span class="number">1</span>:<span class="number">100</span>, elci.up)</span><br><span class="line">outofci &lt;- which(elci.up &lt; <span class="number">0</span> | elci.low &gt; <span class="number">0</span>)</span><br><span class="line">points(outofci, elci.low[outofci], pch = <span class="number">16</span>, col = <span class="string">"red"</span>)</span><br><span class="line">points(outofci, elci.up[outofci], pch = <span class="number">16</span>, col = <span class="string">"red"</span>)</span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">100</span>)&#123;</span><br><span class="line">  segments(i,elci.low[i],i,elci.up[i])</span><br><span class="line">&#125;</span><br><span class="line">segments(<span class="number">0</span>,<span class="number">0</span>,<span class="number">100</span>,<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="http://7xq8g9.com1.z0.glb.clouddn.com/unnamed-chunk-21-1.png" alt=""> </p>
+<h4 id="u6B63_u6001_u903C_u8FD1_u65B9_u6CD5_u8BA1_u7B97_u7F6E_u4FE1_u533A_u95F4"><a href="#u6B63_u6001_u903C_u8FD1_u65B9_u6CD5_u8BA1_u7B97_u7F6E_u4FE1_u533A_u95F4" class="headerlink" title="正态逼近方法计算置信区间"></a>正态逼近方法计算置信区间</h4><p>正态逼近使用t检验(t.test)来获取样本的置信区间上下限</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">3.1415</span>)</span><br><span class="line">naci.up &lt;- numeric(<span class="number">100</span>) <span class="comment">## 用来放置100个置信区间的上限</span></span><br><span class="line">naci.low &lt;- numeric(<span class="number">100</span>)<span class="comment">## 用来放置100个置信区间的下限</span></span><br><span class="line">naci.length &lt;- numeric(<span class="number">100</span>)<span class="comment">## 用来放置100个置信区间的长度</span></span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> <span class="number">1</span>:<span class="number">100</span>)&#123;</span><br><span class="line">  x &lt;- rnorm(<span class="number">50</span>)</span><br><span class="line">  naci.up[i] &lt;- t.test(x)$conf.int[<span class="number">2</span>]</span><br><span class="line">  naci.low[i] &lt;- t.test(x)$conf.int[<span class="number">1</span>]</span><br><span class="line">  naci.length[i] &lt;- naci.up[i] - naci.low[i]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以计算这100个置信区间的平均长度(average length of normal approximation, 记为alna)</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(alna &lt;- mean(naci.length))</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.5705212</span></span></span><br></pre></td></tr></table></figure>
+<p>还可以计算着100个置信区间的覆盖率(coverage probability of normal approximation, 记为cpna)</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(cpna &lt;- sum(naci.up &gt;= <span class="number">0</span> &amp; naci.low &lt;= <span class="number">0</span>)/<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## [<span class="number">1</span>] <span class="number">0.96</span></span></span><br></pre></td></tr></table></figure>
+<p>在目前的比较中, EL和NA的置信区间覆盖率均为0.96. 对于置信区间的平均长度, EL为0.5581938, 而NA为0.5705212.</p>
+<h3 id="EL_u548CNA_u7F6E_u4FE1_u533A_u95F4_u7EFC_u5408_u6BD4_u8F83"><a href="#EL_u548CNA_u7F6E_u4FE1_u533A_u95F4_u7EFC_u5408_u6BD4_u8F83" class="headerlink" title="EL和NA置信区间综合比较"></a>EL和NA置信区间综合比较</h3><p>将上述生成置信区间的方法写成函数elna, 并用apply函数替代循环</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## 以下的elul函数为辅助函数, 为了在apply中能顺利调用</span></span><br><span class="line">elul &lt;- <span class="keyword">function</span>(x)&#123;</span><br><span class="line">  findUL(step = <span class="number">0.1</span>, fun = myfun, MLE = mean(x), </span><br><span class="line">         level = <span class="number">3.84</span>, x = x)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">## repe是循环次数, size是每组样本量</span></span><br><span class="line">elna &lt;- <span class="keyword">function</span>(repe,size,seed)&#123;</span><br><span class="line">    set.seed(seed)  </span><br><span class="line">    time1.length &lt;- Sys.time()</span><br><span class="line">    x &lt;- matrix(rnorm(size*repe), nrow = size, ncol = repe)</span><br><span class="line">    na &lt;- unlist(apply(x, MARGIN = <span class="number">2</span>, t.test))</span><br><span class="line">    naci.up &lt;- as.numeric(na[seq(<span class="number">5</span>, by = <span class="number">10</span>, length.out = repe)])</span><br><span class="line">    naci.low &lt;- as.numeric(na[seq(<span class="number">4</span>, by = <span class="number">10</span>, length.out = repe)])</span><br><span class="line">    naci.length &lt;- naci.up - naci.low</span><br><span class="line">    el &lt;- unlist(apply(x, MARGIN = <span class="number">2</span>, FUN = elul))</span><br><span class="line">    elci.up &lt;- el[seq(<span class="number">2</span>, by = <span class="number">6</span>, length.out = repe)]</span><br><span class="line">    elci.low &lt;- el[seq(<span class="number">1</span>, by = <span class="number">6</span>, length.out = repe)]</span><br><span class="line">    elci.length &lt;- elci.up - elci.low</span><br><span class="line"><span class="comment">## naci.up, naci.low, naci.length以及对应elci的三组向量意义同上述</span></span><br><span class="line"><span class="comment">## 接下来将其保存为数据框compare, 并添加一列计算naci比elci长多少  </span></span><br><span class="line">    compare &lt;- data.frame(naci.up, naci.low, naci.length, </span><br><span class="line">                          elci.up, elci.low, elci.length, </span><br><span class="line">                          na_el = naci.length - elci.length)</span><br><span class="line">    </span><br><span class="line">    time2.length &lt;- Sys.time()</span><br><span class="line"><span class="comment">## 由于程序比较耗时, 所以把上述程序运行时间保存在time中, 并添加到返回结果列表中</span></span><br><span class="line">    list(na_el_num = sum(compare[<span class="string">"na_el"</span>] &gt; <span class="number">0</span>), <span class="comment">## 有多少个NACI比ELCI长</span></span><br><span class="line">         alna = mean(naci.length), </span><br><span class="line">         alel = mean(elci.length), </span><br><span class="line">         cpna = sum(naci.up &gt;= <span class="number">0</span> &amp; naci.low &lt;= <span class="number">0</span>)/repe, </span><br><span class="line">         cpel = sum(elci.up &gt;= <span class="number">0</span> &amp; elci.low &lt;= <span class="number">0</span>)/repe, </span><br><span class="line">         time = time2.length - time1.length)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>如果想构造100个置信区间, 每个置信区间是由样本量为30的样本产生的, 那么设置种子为3, 程序调用如下</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elna(<span class="number">100</span>, <span class="number">30</span>, <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">## $na_el_num</span></span><br><span class="line"><span class="preprocessor">## [1] 99</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $alna</span></span><br><span class="line"><span class="preprocessor">## [1] 0.7271278</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $alel</span></span><br><span class="line"><span class="preprocessor">## [1] 0.699543</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $cpna</span></span><br><span class="line"><span class="preprocessor">## [1] 0.96</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $cpel</span></span><br><span class="line"><span class="preprocessor">## [1] 0.96</span></span><br><span class="line"><span class="preprocessor">## </span></span><br><span class="line"><span class="preprocessor">## $time</span></span><br><span class="line"><span class="preprocessor">## Time difference of 50.82591 secs</span></span><br></pre></td></tr></table></figure>
+<p>可以看到, 程序耗时约为循环次数的三分之一. 在构造的100个置信区间中, 有99个的NACI都比ELCI要长, 而平均长度也能说明EL要优于NA. 从覆盖率角度来看, NACI的覆盖率与ELCI相当.</p>
+<p>事实上, 当样本量增大时, 无论是EL还是NA的置信区间长度都在缩短, 而覆盖率也都在提升. 此时两个方法的效果基本相当.</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+<div class="article-categories">
+  <span></span>
+  <a class="article-category-link" href="/categories/Empirical-Likelihood/">Empirical Likelihood</a>
+</div>
+
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://ripeconan.com/2016/01/18/empirical_likelihood/" data-title="经验似然方法的模拟验证 | ripeconan" data-tsina="null" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/01/05/2016todo/"  title="学习内容安排:2016">
+ <strong>下一篇：</strong><br/> 
+ <span>学习内容安排:2016
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目錄</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u51C6_u5907_u5DE5_u4F5C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5047_u8BBE_u68C0_u9A8C"><span class="toc-number">2.</span> <span class="toc-text">假设检验</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C"><span class="toc-number">2.1.</span> <span class="toc-text">一维向量均值的经验似然假设检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E8C_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C"><span class="toc-number">2.2.</span> <span class="toc-text">二维向量均值的经验似然假设检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E09_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u5047_u8BBE_u68C0_u9A8C"><span class="toc-number">2.3.</span> <span class="toc-text">三维向量均值的经验似然假设检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5F53__24_5Cmu_24__u8FDC_u79BB__24_5Cmu_0_24__u65F6_2C_el-test__u7684_Pval__u4F1A_u53D8_u5C0F"><span class="toc-number">2.4.</span> <span class="toc-text">当 $\mu$ 远离 $\mu_0$ 时, el.test 的 Pval 会变小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u7F6E_u4FE1_u533A_u95F4"><span class="toc-number">3.</span> <span class="toc-text">置信区间</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u7EF4_u5411_u91CF_u5747_u503C_u7684_u7ECF_u9A8C_u4F3C_u7136_u7F6E_u4FE1_u533A_u95F4"><span class="toc-number">3.1.</span> <span class="toc-text">一维向量均值的经验似然置信区间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7ECF_u9A8C_u4F3C_u7136_u548C_u6B63_u6001_u903C_u8FD1_u7684_u5BF9_u6BD4"><span class="toc-number">3.2.</span> <span class="toc-text">经验似然和正态逼近的对比</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#u7ECF_u9A8C_u4F3C_u7136_u65B9_u6CD5_u8BA1_u7B97_u7F6E_u4FE1_u533A_u95F4"><span class="toc-number">3.2.1.</span> <span class="toc-text">经验似然方法计算置信区间</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#u6B63_u6001_u903C_u8FD1_u65B9_u6CD5_u8BA1_u7B97_u7F6E_u4FE1_u533A_u95F4"><span class="toc-number">3.2.2.</span> <span class="toc-text">正态逼近方法计算置信区间</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EL_u548CNA_u7F6E_u4FE1_u533A_u95F4_u7EFC_u5408_u6BD4_u8F83"><span class="toc-number">3.3.</span> <span class="toc-text">EL和NA置信区间综合比较</span></a></li></ol></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">分類</p>
+		<ul>
+		
+		  
+			<li><a href="/categories/Empirical-Likelihood/" title="Empirical Likelihood">Empirical Likelihood<sup>1</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Learning/" title="Learning">Learning<sup>2</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/Machine-Learning/" title="Machine Learning">Machine Learning<sup>3</sup></a></li>
+		  
+		
+		  
+			<li><a href="/categories/R/" title="R">R<sup>8</sup></a></li>
+		  
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/R-programing/" title="R programing">R programing<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/To-Do/" title="To Do">To Do<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/data-mining/" title="data mining">data mining<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-package/" title="R package">R package<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-函数/" title="R 函数">R 函数<sup>2</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/algorithms/" title="algorithms">algorithms<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="http://zjdian.com/" target="_blank" title="中继点">中继点</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://blog.fens.me/" target="_blank" title="粉丝日志">粉丝日志</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	
+	<section class="info">
+		<p> Design your life, Build your dream. <br/>
+			     </p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2016 
+		
+		<a href="/about" target="_blank" title="ripeconan">ripeconan</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fe6d1f421bbc9962127a50488f9ed37d1' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
