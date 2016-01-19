@@ -12,23 +12,17 @@
 
     
     <meta name="description" content="准备工作支持向量机常用包
-1library(e1071)
-1## Warning: package &apos;e1071&apos; was built under R version 3.2.3
-1library(kernlab)
-1## Warning: package &apos;kernlab&apos; was built under R version 3.2.3
-1library(caret)
-1## Warning:">
+123library(e1071)library(kernlab)library(caret)
+二维情形下的支持向量机最简单的是对一个二维点列, 所有点分为两类, 构造支持向量机模型来进行分类预测
+1234567set.seed(3)n &amp;lt;- 30posi &amp;lt;- 2x &amp;lt;- c(rnorm(n,-posi), rnorm(n,posi))y &amp;lt;-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="支持向量机的kernlab::ksvm实现">
 <meta property="og:url" content="http://ripeconan.com/2016/01/19/svm/index.html">
 <meta property="og:site_name" content="ripeconan">
 <meta property="og:description" content="准备工作支持向量机常用包
-1library(e1071)
-1## Warning: package &apos;e1071&apos; was built under R version 3.2.3
-1library(kernlab)
-1## Warning: package &apos;kernlab&apos; was built under R version 3.2.3
-1library(caret)
-1## Warning:">
+123library(e1071)library(kernlab)library(caret)
+二维情形下的支持向量机最简单的是对一个二维点列, 所有点分为两类, 构造支持向量机模型来进行分类预测
+1234567set.seed(3)n &amp;lt;- 30posi &amp;lt;- 2x &amp;lt;- c(rnorm(n,-posi), rnorm(n,posi))y &amp;lt;-">
 <meta property="og:image" content="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-2-1.png">
 <meta property="og:image" content="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-4-1.png">
 <meta property="og:image" content="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-6-1.png">
@@ -51,16 +45,13 @@
 <meta property="og:image" content="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-13-1.png">
 <meta property="og:image" content="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-14-1.png">
 <meta property="og:image" content="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-15-1.png">
-<meta property="og:updated_time" content="2016-01-19T13:50:29.000Z">
+<meta property="og:updated_time" content="2016-01-19T14:00:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="支持向量机的kernlab::ksvm实现">
 <meta name="twitter:description" content="准备工作支持向量机常用包
-1library(e1071)
-1## Warning: package &apos;e1071&apos; was built under R version 3.2.3
-1library(kernlab)
-1## Warning: package &apos;kernlab&apos; was built under R version 3.2.3
-1library(caret)
-1## Warning:">
+123library(e1071)library(kernlab)library(caret)
+二维情形下的支持向量机最简单的是对一个二维点列, 所有点分为两类, 构造支持向量机模型来进行分类预测
+1234567set.seed(3)n &amp;lt;- 30posi &amp;lt;- 2x &amp;lt;- c(rnorm(n,-posi), rnorm(n,posi))y &amp;lt;-">
 
     
     <link rel="alternative" href="/atom.xml" title="ripeconan" type="application/atom+xml">
@@ -139,13 +130,7 @@
 		</div>
 		
 		<h2 id="u51C6_u5907_u5DE5_u4F5C"><a href="#u51C6_u5907_u5DE5_u4F5C" class="headerlink" title="准备工作"></a>准备工作</h2><p>支持向量机常用包</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(e1071)</span><br></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## Warnin<span class="variable">g:</span> package <span class="string">'e1071'</span> was built under R <span class="keyword">version</span> <span class="number">3.2</span>.<span class="number">3</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(kernlab)</span><br></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## Warnin<span class="variable">g:</span> package <span class="string">'kernlab'</span> was built under R <span class="keyword">version</span> <span class="number">3.2</span>.<span class="number">3</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(caret)</span><br></pre></td></tr></table></figure>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">## Warnin<span class="variable">g:</span> package <span class="string">'caret'</span> was built under R <span class="keyword">version</span> <span class="number">3.2</span>.<span class="number">3</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">## Loading <span class="keyword">required</span> <span class="keyword">package</span>: lattice</span><br><span class="line">## Loading <span class="keyword">required</span> <span class="keyword">package</span>: ggplot2</span><br></pre></td></tr></table></figure>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">library</span>(e1071)</span><br><span class="line"><span class="keyword">library</span>(kernlab)</span><br><span class="line"><span class="keyword">library</span>(caret)</span><br></pre></td></tr></table></figure>
 <h2 id="u4E8C_u7EF4_u60C5_u5F62_u4E0B_u7684_u652F_u6301_u5411_u91CF_u673A"><a href="#u4E8C_u7EF4_u60C5_u5F62_u4E0B_u7684_u652F_u6301_u5411_u91CF_u673A" class="headerlink" title="二维情形下的支持向量机"></a>二维情形下的支持向量机</h2><p>最简单的是对一个二维点列, 所有点分为两类, 构造支持向量机模型来进行分类预测</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">3</span>)</span><br><span class="line">n &lt;- <span class="number">30</span></span><br><span class="line">posi &lt;- <span class="number">2</span></span><br><span class="line">x &lt;- c(rnorm(n,-posi), rnorm(n,posi))</span><br><span class="line">y &lt;- c(rnorm(n,-posi), rnorm(n,posi))</span><br><span class="line">z &lt;- as.factor(rep(c(-<span class="number">1</span>,<span class="number">1</span>), each = n))</span><br><span class="line">plot(y,x,col = z)</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-2-1.png" alt=""> </p>
@@ -174,7 +159,6 @@
 <p>可以看到, 无论是从数值上, 还是图形上, 随着两类点的不断靠近, ksvm模型的回判率逐渐下降. </p>
 <h3 id="u4E0D_u540C_u7684kernel_u5BF9_u6A21_u578B_u7684_u5F71_u54CD"><a href="#u4E0D_u540C_u7684kernel_u5BF9_u6A21_u578B_u7684_u5F71_u54CD" class="headerlink" title="不同的kernel对模型的影响"></a>不同的kernel对模型的影响</h3><p>在ksvm函数中可以使用的kernel有很多, 最简单的线性核为<strong>vanilladot</strong></p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set.seed(<span class="number">3.141</span>)</span><br><span class="line">n &lt;- <span class="number">20</span></span><br><span class="line">posi &lt;- <span class="number">2</span></span><br><span class="line">x &lt;- c(rnorm(n,-posi), rnorm(n,posi))</span><br><span class="line">y &lt;- c(rnorm(n,-posi), rnorm(n,posi))</span><br><span class="line">z &lt;- as.factor(rep(c(-<span class="number">1</span>,<span class="number">1</span>), each = n))</span><br><span class="line">data.kernel &lt;- data.frame(x,y,z)</span><br><span class="line">ksvm.kernel &lt;- ksvm(z~x+y, data = data.kernel, kernel = <span class="string">"vanilladot"</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  Setting default kernel parameters</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(ksvm.kernel, data = data.kernel)</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-8-1.png" alt=""> </p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table(predict(ksvm.kernel, data.kernel), data.kernel$z)</span><br></pre></td></tr></table></figure>
@@ -183,17 +167,11 @@
 <p>对上述数据, 可以使用其他核来依次建模, 可以比较出不同的核的区别.</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">kernelselect &lt;- c(<span class="string">"rbfdot"</span>,<span class="string">"polydot"</span>,<span class="string">"vanilladot"</span>,<span class="string">"tanhdot"</span>,</span><br><span class="line">                  <span class="string">"laplacedot"</span>,<span class="string">"besseldot"</span>,<span class="string">"anovadot"</span>,<span class="string">"splinedot"</span>)</span><br><span class="line"><span class="keyword">for</span>(i <span class="keyword">in</span> kernelselect)&#123;</span><br><span class="line">  ksvm.diff.kernel &lt;- ksvm(z ~ x + y, data = data.kernel, kernel = i)</span><br><span class="line">  plot(ksvm.diff.kernel, data = data.kernel)</span><br><span class="line">  text(-<span class="number">2</span>,<span class="number">2</span>,as.character(i), cex = <span class="number">2</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-9-1.png" alt=""> </p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  Setting default kernel parameters</span></span><br></pre></td></tr></table></figure>
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-9-2.png" alt=""> </p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  Setting default kernel parameters</span></span><br></pre></td></tr></table></figure>
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-9-3.png" alt=""> </p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  Setting default kernel parameters</span></span><br></pre></td></tr></table></figure>
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-9-4.png" alt=""> <img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-9-5.png" alt=""> </p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  Setting default kernel parameters</span></span><br></pre></td></tr></table></figure>
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-9-6.png" alt=""> </p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  Setting default kernel parameters</span></span><br></pre></td></tr></table></figure>
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-9-7.png" alt=""> </p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  Setting default kernel parameters</span></span><br></pre></td></tr></table></figure>
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-9-8.png" alt=""> </p>
 <h2 id="u60E9_u7F5A_u56E0_u5B50C"><a href="#u60E9_u7F5A_u56E0_u5B50C" class="headerlink" title="惩罚因子C"></a>惩罚因子C</h2><p>对于不同的实际问题, 误判的后果有时严重, 有时问题不大. 所以根据处理的问题不同, 我们对惩罚因子C的选择也不同. 当C变化时, 模型也会有所变化.</p>
 <p>下例展示了调节惩罚因子导致模型变化, 最终将误判率降低的情况.</p>
@@ -201,14 +179,12 @@
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-10-1.png" alt=""> </p>
 <p>上面两类点中, 靠近中间的一个红色点距离黑色点类比较近, 如果使用默认的C = 1, 可能会将其误判为黑色点类.</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ksvm.c &lt;- ksvm(z~x+y, data = data.c, kernel = <span class="string">"vanilladot"</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  Setting default kernel parameters</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(ksvm.c, data = data.c)</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-11-1.png" alt=""> </p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table(predict(ksvm.c, data.c), data.c$z)</span><br></pre></td></tr></table></figure>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##     </span></span><br><span class="line"><span class="preprocessor">##      -<span class="number">1</span>  <span class="number">1</span></span></span><br><span class="line"><span class="preprocessor">##   -<span class="number">1</span> <span class="number">15</span>  <span class="number">1</span></span></span><br><span class="line"><span class="preprocessor">##   <span class="number">1</span>   <span class="number">0</span> <span class="number">14</span></span></span><br></pre></td></tr></table></figure>
 <p>通过使用线性核以及默认的惩罚因子, 我们看到的确有一个点误判了, 此点就是我们刚提到的标注为”错误点”的那个.</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ksvm.c &lt;- ksvm(z~x+y, data = data.c, C = <span class="number">2</span>, kernel = <span class="string">"vanilladot"</span>)</span><br></pre></td></tr></table></figure>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">##  Setting default kernel parameters</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">plot(ksvm.c, data = data.c)</span><br></pre></td></tr></table></figure>
 <p><img src="http://7xq9vi.com1.z0.glb.clouddn.com/ksvmunnamed-chunk-12-1.png" alt=""> </p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">table(predict(ksvm.c, data.c), data.c$z)</span><br></pre></td></tr></table></figure>
