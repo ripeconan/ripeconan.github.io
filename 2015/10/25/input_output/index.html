@@ -75,7 +75,7 @@ R的内置数据集1library(help = datasets)
 				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -89,7 +89,7 @@ R的内置数据集1library(help = datasets)
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:ripeconan.com">
 					</form>
 					
@@ -112,14 +112,14 @@ R的内置数据集1library(help = datasets)
 		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
 		
   <p class="article-time">
-    <time datetime="2015-10-24T16:00:00.000Z" itemprop="datePublished"> Published 2015-10-25</time>
+    <time datetime="2015-10-24T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-10-25</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u63D0_u8981"><span class="toc-number">1.</span> <span class="toc-text">内容提要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u7684_u5185_u7F6E_u6570_u636E_u96C6"><span class="toc-number">2.</span> <span class="toc-text">R的内置数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u67E5_u770B_u672C_u673A_u5B89_u88C5_u7684_u6570_u636E_u96C6"><span class="toc-number">2.1.</span> <span class="toc-text">查看本机安装的数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684_u5E38_u7528_u5185_u7F6E_u6570_u636E_u96C6"><span class="toc-number">2.2.</span> <span class="toc-text">R的常用内置数据集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u672C_u6587_u6863_u7684_u8BFB_u53D6read-table"><span class="toc-number">3.</span> <span class="toc-text">文本文档的读取read.table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#txt_u6587_u4EF6"><span class="toc-number">3.1.</span> <span class="toc-text">txt文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#read-table_u51FD_u6570_u7684_u53C2_u6570"><span class="toc-number">3.2.</span> <span class="toc-text">read.table函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528read-table_u8BBE_u5B9A_u53C2_u6570_u8BFB_u53D6txt_u6587_u6863"><span class="toc-number">3.3.</span> <span class="toc-text">使用read.table设定参数读取txt文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6csv_u6587_u4EF6"><span class="toc-number">3.4.</span> <span class="toc-text">读取csv文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5176_u4ED6_u7684read-table_u7C7B_u51FD_u6570"><span class="toc-number">3.5.</span> <span class="toc-text">其他的read.table类函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5199_u5165_u51FD_u6570write-table"><span class="toc-number">3.6.</span> <span class="toc-text">写入函数write.table</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E8C_u8FDB_u5236_u6587_u6863_u7684_u8BFB_u53D6"><span class="toc-number">4.</span> <span class="toc-text">二进制文档的读取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6Excel_u6587_u4EF6"><span class="toc-number">4.1.</span> <span class="toc-text">读取Excel文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6_u5176_u4ED6_u5E38_u7528_u7EDF_u8BA1_u8F6F_u4EF6_u7684_u6570_u636E"><span class="toc-number">4.2.</span> <span class="toc-text">读取其他常用统计软件的数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web_u6570_u636E"><span class="toc-number">4.3.</span> <span class="toc-text">Web数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u811A_u672C_u64CD_u4F5C"><span class="toc-number">5.</span> <span class="toc-text">脚本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528source_u51FD_u6570_u6267_u884CR_u811A_u672C"><span class="toc-number">5.1.</span> <span class="toc-text">使用source函数执行R脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528sink_u91CD_u5B9A_u5411_u6587_u672C_u8F93_u51FA"><span class="toc-number">5.2.</span> <span class="toc-text">使用sink重定向文本输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat"><span class="toc-number">5.3.</span> <span class="toc-text">cat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA"><span class="toc-number">5.4.</span> <span class="toc-text">重定向图像输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA_u4F8B_u5B50"><span class="toc-number">5.5.</span> <span class="toc-text">重定向图像输出例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6279_u91CF_u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA"><span class="toc-number">5.6.</span> <span class="toc-text">批量重定向图像输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E601"><span class="toc-number">5.7.</span> <span class="toc-text">练习1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E601_u7B54_u6848"><span class="toc-number">5.8.</span> <span class="toc-text">练习1答案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E602"><span class="toc-number">5.9.</span> <span class="toc-text">练习2</span></a></li></ol></li></ol>
 		
@@ -288,17 +288,17 @@ R的内置数据集1library(help = datasets)
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目錄</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u5185_u5BB9_u63D0_u8981"><span class="toc-number">1.</span> <span class="toc-text">内容提要</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#R_u7684_u5185_u7F6E_u6570_u636E_u96C6"><span class="toc-number">2.</span> <span class="toc-text">R的内置数据集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u67E5_u770B_u672C_u673A_u5B89_u88C5_u7684_u6570_u636E_u96C6"><span class="toc-number">2.1.</span> <span class="toc-text">查看本机安装的数据集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#R_u7684_u5E38_u7528_u5185_u7F6E_u6570_u636E_u96C6"><span class="toc-number">2.2.</span> <span class="toc-text">R的常用内置数据集</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u6587_u672C_u6587_u6863_u7684_u8BFB_u53D6read-table"><span class="toc-number">3.</span> <span class="toc-text">文本文档的读取read.table</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#txt_u6587_u4EF6"><span class="toc-number">3.1.</span> <span class="toc-text">txt文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#read-table_u51FD_u6570_u7684_u53C2_u6570"><span class="toc-number">3.2.</span> <span class="toc-text">read.table函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528read-table_u8BBE_u5B9A_u53C2_u6570_u8BFB_u53D6txt_u6587_u6863"><span class="toc-number">3.3.</span> <span class="toc-text">使用read.table设定参数读取txt文档</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6csv_u6587_u4EF6"><span class="toc-number">3.4.</span> <span class="toc-text">读取csv文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5176_u4ED6_u7684read-table_u7C7B_u51FD_u6570"><span class="toc-number">3.5.</span> <span class="toc-text">其他的read.table类函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u5199_u5165_u51FD_u6570write-table"><span class="toc-number">3.6.</span> <span class="toc-text">写入函数write.table</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E8C_u8FDB_u5236_u6587_u6863_u7684_u8BFB_u53D6"><span class="toc-number">4.</span> <span class="toc-text">二进制文档的读取</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6Excel_u6587_u4EF6"><span class="toc-number">4.1.</span> <span class="toc-text">读取Excel文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8BFB_u53D6_u5176_u4ED6_u5E38_u7528_u7EDF_u8BA1_u8F6F_u4EF6_u7684_u6570_u636E"><span class="toc-number">4.2.</span> <span class="toc-text">读取其他常用统计软件的数据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web_u6570_u636E"><span class="toc-number">4.3.</span> <span class="toc-text">Web数据</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u811A_u672C_u64CD_u4F5C"><span class="toc-number">5.</span> <span class="toc-text">脚本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528source_u51FD_u6570_u6267_u884CR_u811A_u672C"><span class="toc-number">5.1.</span> <span class="toc-text">使用source函数执行R脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528sink_u91CD_u5B9A_u5411_u6587_u672C_u8F93_u51FA"><span class="toc-number">5.2.</span> <span class="toc-text">使用sink重定向文本输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat"><span class="toc-number">5.3.</span> <span class="toc-text">cat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA"><span class="toc-number">5.4.</span> <span class="toc-text">重定向图像输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA_u4F8B_u5B50"><span class="toc-number">5.5.</span> <span class="toc-text">重定向图像输出例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6279_u91CF_u91CD_u5B9A_u5411_u56FE_u50CF_u8F93_u51FA"><span class="toc-number">5.6.</span> <span class="toc-text">批量重定向图像输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E601"><span class="toc-number">5.7.</span> <span class="toc-text">练习1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E601_u7B54_u6848"><span class="toc-number">5.8.</span> <span class="toc-text">练习1答案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u7EC3_u4E602"><span class="toc-number">5.9.</span> <span class="toc-text">练习2</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
@@ -306,7 +306,7 @@ R的内置数据集1library(help = datasets)
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
 		  
@@ -331,7 +331,7 @@ R的内置数据集1library(help = datasets)
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -363,7 +363,7 @@ R的内置数据集1library(help = datasets)
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -385,7 +385,7 @@ R的内置数据集1library(help = datasets)
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
 </aside>
@@ -600,7 +600,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

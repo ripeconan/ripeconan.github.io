@@ -114,7 +114,7 @@ seg">
 				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -128,7 +128,7 @@ seg">
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:ripeconan.com">
 					</form>
 					
@@ -151,14 +151,14 @@ seg">
 		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
 		
   <p class="article-time">
-    <time datetime="2015-12-20T16:00:00.000Z" itemprop="datePublished"> Published 2015-12-21</time>
+    <time datetime="2015-12-20T16:00:00.000Z" itemprop="datePublished"> 發表於 2015-12-21</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F5C_u56FE_u7CFB_u7EDF"><span class="toc-number">1.</span> <span class="toc-text">作图系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u7840_u5305graphics_u4F5C_u56FE"><span class="toc-number">2.</span> <span class="toc-text">基础包graphics作图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5355_u4E2A_u53D8_u91CF"><span class="toc-number">3.</span> <span class="toc-text">单个变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_barplot__u6761_u5F62_u56FE"><span class="toc-number">3.1.</span> <span class="toc-text">一个定类或定序向量: barplot 条形图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_pie__u997C_u56FE"><span class="toc-number">3.2.</span> <span class="toc-text">一个定类或定序向量: pie 饼图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_hist__u76F4_u65B9_u56FE"><span class="toc-number">3.3.</span> <span class="toc-text">一个数值型向量: hist 直方图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_boxplot__u7BB1_u7EBF_u56FE"><span class="toc-number">3.4.</span> <span class="toc-text">一个数值型向量: boxplot 箱线图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E24_u4E2A_u53D8_u91CF"><span class="toc-number">4.</span> <span class="toc-text">两个变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_plot__u6563_u70B9_u56FE"><span class="toc-number">4.1.</span> <span class="toc-text">两个数值型向量: plot 散点图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#plot__u51FD_u6570_u7684_u53C2_u6570"><span class="toc-number">4.1.1.</span> <span class="toc-text">plot 函数的参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#plot_u51FD_u6570_u6DFB_u52A0_u53C2_u6570_u7684_u4F8B_u5B50"><span class="toc-number">4.1.2.</span> <span class="toc-text">plot函数添加参数的例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F4E_u7EA7_u56FE_u5F62_u51FD_u6570"><span class="toc-number">5.</span> <span class="toc-text">低级图形函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528points_u6DFB_u52A0_u70B9"><span class="toc-number">5.1.</span> <span class="toc-text">使用points添加点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528lines_u6DFB_u52A0_u7EBF"><span class="toc-number">5.2.</span> <span class="toc-text">使用lines添加线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528text_u6DFB_u52A0_u6587_u5B57"><span class="toc-number">5.3.</span> <span class="toc-text">使用text添加文字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5176_u4ED6_u56FE_u5F62"><span class="toc-number">6.</span> <span class="toc-text">其他图形</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6B63_u6001_u6982_u7387_u56FE_uFF1Aqqnorm_28x_29"><span class="toc-number">6.1.</span> <span class="toc-text">正态概率图：qqnorm(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528curve_u7ED8_u5236_u51FD_u6570"><span class="toc-number">6.2.</span> <span class="toc-text">使用curve绘制函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u56FE_u5F62_u6392_u7248_3A__u5728_u4E00_u9875_u4E2D_u663E_u793AN_u884CM_u5217_u4E2A_u56FE_u5F62"><span class="toc-number">6.3.</span> <span class="toc-text">图形排版: 在一页中显示N行M列个图形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E9B_u53EF_u80FD_u7528_u5F97_u5230_u7684_u57FA_u7840_u4F5C_u56FE_u51FD_u6570"><span class="toc-number">6.4.</span> <span class="toc-text">一些可能用得到的基础作图函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ggplot2_u5305"><span class="toc-number">7.</span> <span class="toc-text">ggplot2包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ggplot2_u5305_u7684_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">8.</span> <span class="toc-text">ggplot2包的主要内容</span></a></li></ol>
 		
@@ -303,17 +303,17 @@ seg">
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目錄</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F5C_u56FE_u7CFB_u7EDF"><span class="toc-number">1.</span> <span class="toc-text">作图系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u57FA_u7840_u5305graphics_u4F5C_u56FE"><span class="toc-number">2.</span> <span class="toc-text">基础包graphics作图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5355_u4E2A_u53D8_u91CF"><span class="toc-number">3.</span> <span class="toc-text">单个变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_barplot__u6761_u5F62_u56FE"><span class="toc-number">3.1.</span> <span class="toc-text">一个定类或定序向量: barplot 条形图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u5B9A_u7C7B_u6216_u5B9A_u5E8F_u5411_u91CF_3A_pie__u997C_u56FE"><span class="toc-number">3.2.</span> <span class="toc-text">一个定类或定序向量: pie 饼图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_hist__u76F4_u65B9_u56FE"><span class="toc-number">3.3.</span> <span class="toc-text">一个数值型向量: hist 直方图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_boxplot__u7BB1_u7EBF_u56FE"><span class="toc-number">3.4.</span> <span class="toc-text">一个数值型向量: boxplot 箱线图</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E24_u4E2A_u53D8_u91CF"><span class="toc-number">4.</span> <span class="toc-text">两个变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u6570_u503C_u578B_u5411_u91CF_3A_plot__u6563_u70B9_u56FE"><span class="toc-number">4.1.</span> <span class="toc-text">两个数值型向量: plot 散点图</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#plot__u51FD_u6570_u7684_u53C2_u6570"><span class="toc-number">4.1.1.</span> <span class="toc-text">plot 函数的参数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#plot_u51FD_u6570_u6DFB_u52A0_u53C2_u6570_u7684_u4F8B_u5B50"><span class="toc-number">4.1.2.</span> <span class="toc-text">plot函数添加参数的例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F4E_u7EA7_u56FE_u5F62_u51FD_u6570"><span class="toc-number">5.</span> <span class="toc-text">低级图形函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528points_u6DFB_u52A0_u70B9"><span class="toc-number">5.1.</span> <span class="toc-text">使用points添加点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528lines_u6DFB_u52A0_u7EBF"><span class="toc-number">5.2.</span> <span class="toc-text">使用lines添加线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528text_u6DFB_u52A0_u6587_u5B57"><span class="toc-number">5.3.</span> <span class="toc-text">使用text添加文字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5176_u4ED6_u56FE_u5F62"><span class="toc-number">6.</span> <span class="toc-text">其他图形</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6B63_u6001_u6982_u7387_u56FE_uFF1Aqqnorm_28x_29"><span class="toc-number">6.1.</span> <span class="toc-text">正态概率图：qqnorm(x)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528curve_u7ED8_u5236_u51FD_u6570"><span class="toc-number">6.2.</span> <span class="toc-text">使用curve绘制函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u56FE_u5F62_u6392_u7248_3A__u5728_u4E00_u9875_u4E2D_u663E_u793AN_u884CM_u5217_u4E2A_u56FE_u5F62"><span class="toc-number">6.3.</span> <span class="toc-text">图形排版: 在一页中显示N行M列个图形</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E00_u4E9B_u53EF_u80FD_u7528_u5F97_u5230_u7684_u57FA_u7840_u4F5C_u56FE_u51FD_u6570"><span class="toc-number">6.4.</span> <span class="toc-text">一些可能用得到的基础作图函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ggplot2_u5305"><span class="toc-number">7.</span> <span class="toc-text">ggplot2包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ggplot2_u5305_u7684_u4E3B_u8981_u5185_u5BB9"><span class="toc-number">8.</span> <span class="toc-text">ggplot2包的主要内容</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
@@ -321,7 +321,7 @@ seg">
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
 		  
@@ -346,7 +346,7 @@ seg">
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -378,7 +378,7 @@ seg">
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -400,7 +400,7 @@ seg">
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
 </aside>
@@ -615,7 +615,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 

@@ -50,7 +50,7 @@
 				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -64,7 +64,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
 						<input type="hidden" name="q" value="site:ripeconan.com">
 					</form>
 					
@@ -87,14 +87,14 @@
 		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
 		
   <p class="article-time">
-    <time datetime="2014-11-10T16:00:00.000Z" itemprop="datePublished"> Published 2014-11-11</time>
+    <time datetime="2014-11-10T16:00:00.000Z" itemprop="datePublished"> 發表於 2014-11-11</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">Contents</strong>
+			<strong class="toc-title">文章目錄</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#knn__u7B97_u6CD5_u4ECB_u7ECD"><span class="toc-number">1.</span> <span class="toc-text">knn 算法介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_u81EA_u5DF1_u7F16_u5199_u7684_u4EE3_u7801_u5B9E_u73B0_knn__u7B97_u6CD5"><span class="toc-number">2.</span> <span class="toc-text">使用自己编写的代码实现 knn 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u96C6_u4ECB_u7ECD"><span class="toc-number">2.1.</span> <span class="toc-text">数据集介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8DDD_u79BB_u77E9_u9635_u5B9A_u4E49"><span class="toc-number">2.2.</span> <span class="toc-text">距离矩阵定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#knn__u51FD_u6570_u7684_u5B9A_u4E49"><span class="toc-number">2.3.</span> <span class="toc-text">knn 函数的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6B63_u786E_u7387_u7684_u8BA1_u7B97"><span class="toc-number">2.4.</span> <span class="toc-text">正确率的计算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_class__u5305_u5B9E_u73B0_knn__u7B97_u6CD5"><span class="toc-number">3.</span> <span class="toc-text">使用 class 包实现 knn 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u51C6_u5907"><span class="toc-number">3.1.</span> <span class="toc-text">数据准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_class_3A_3Aknn__u548C_class_3A_3Aknn1__u8FDB_u884C_u5206_u7C7B"><span class="toc-number">3.2.</span> <span class="toc-text">使用 class::knn 和 class::knn1 进行分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_class_3A_3Aknn-cv__u8FDB_u884C_u5206_u7C7B"><span class="toc-number">3.3.</span> <span class="toc-text">使用 class::knn.cv 进行分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_caret__u5305_u5B9E_u73B0_knn__u7B97_u6CD5"><span class="toc-number">4.</span> <span class="toc-text">使用 caret 包实现 knn 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_createDataPartition__u51FD_u6570_u5212_u5206_u8BAD_u7EC3_u96C6_u548C_u6D4B_u8BD5_u96C6"><span class="toc-number">4.1.</span> <span class="toc-text">使用 createDataPartition 函数划分训练集和测试集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_knn3__u51FD_u6570_u8FDB_u884C_u5206_u7C7B_u9884_u6D4B"><span class="toc-number">4.2.</span> <span class="toc-text">使用 knn3 函数进行分类预测</span></a></li></ol></li></ol>
 		
@@ -251,17 +251,17 @@
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">Contents</strong>
+  <strong class="toc-title">文章目錄</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#knn__u7B97_u6CD5_u4ECB_u7ECD"><span class="toc-number">1.</span> <span class="toc-text">knn 算法介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_u81EA_u5DF1_u7F16_u5199_u7684_u4EE3_u7801_u5B9E_u73B0_knn__u7B97_u6CD5"><span class="toc-number">2.</span> <span class="toc-text">使用自己编写的代码实现 knn 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u96C6_u4ECB_u7ECD"><span class="toc-number">2.1.</span> <span class="toc-text">数据集介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u8DDD_u79BB_u77E9_u9635_u5B9A_u4E49"><span class="toc-number">2.2.</span> <span class="toc-text">距离矩阵定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#knn__u51FD_u6570_u7684_u5B9A_u4E49"><span class="toc-number">2.3.</span> <span class="toc-text">knn 函数的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u6B63_u786E_u7387_u7684_u8BA1_u7B97"><span class="toc-number">2.4.</span> <span class="toc-text">正确率的计算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_class__u5305_u5B9E_u73B0_knn__u7B97_u6CD5"><span class="toc-number">3.</span> <span class="toc-text">使用 class 包实现 knn 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u6570_u636E_u51C6_u5907"><span class="toc-number">3.1.</span> <span class="toc-text">数据准备</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_class_3A_3Aknn__u548C_class_3A_3Aknn1__u8FDB_u884C_u5206_u7C7B"><span class="toc-number">3.2.</span> <span class="toc-text">使用 class::knn 和 class::knn1 进行分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_class_3A_3Aknn-cv__u8FDB_u884C_u5206_u7C7B"><span class="toc-number">3.3.</span> <span class="toc-text">使用 class::knn.cv 进行分类</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4F7F_u7528_caret__u5305_u5B9E_u73B0_knn__u7B97_u6CD5"><span class="toc-number">4.</span> <span class="toc-text">使用 caret 包实现 knn 算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_createDataPartition__u51FD_u6570_u5212_u5206_u8BAD_u7EC3_u96C6_u548C_u6D4B_u8BD5_u96C6"><span class="toc-number">4.1.</span> <span class="toc-text">使用 createDataPartition 函数划分训练集和测试集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4F7F_u7528_knn3__u51FD_u6570_u8FDB_u884C_u5206_u7C7B_u9884_u6D4B"><span class="toc-number">4.2.</span> <span class="toc-text">使用 knn3 函数进行分类预测</span></a></li></ol></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
 <aside class="clearfix">
 
   
@@ -269,7 +269,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">Categories</p>
+	<p class="asidetitle">分類</p>
 		<ul>
 		
 		  
@@ -294,7 +294,7 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">Tags</p>
+	<p class="asidetitle">標簽</p>
 		<ul class="clearfix">
 		
 			
@@ -326,7 +326,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">Links</p>
+  <p class="asidetitle">友情鏈接</p>
     <ul>
         
           <li>
@@ -348,7 +348,7 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
 </div>
 
 </aside>
@@ -563,7 +563,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
