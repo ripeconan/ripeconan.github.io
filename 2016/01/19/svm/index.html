@@ -79,7 +79,7 @@
 				<h1 class="site-name"><a href="/" title="ripeconan">ripeconan</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -93,7 +93,7 @@
  					
 					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
 						<label>Search</label>
-						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
 						<input type="hidden" name="q" value="site:ripeconan.com">
 					</form>
 					
@@ -116,14 +116,14 @@
 		<a href="/about" title="ripeconan" target="_blank" itemprop="author">ripeconan</a>
 		
   <p class="article-time">
-    <time datetime="2016-01-18T16:00:00.000Z" itemprop="datePublished"> 發表於 2016-01-19</time>
+    <time datetime="2016-01-18T16:00:00.000Z" itemprop="datePublished"> Published 2016-01-19</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		<div id="toc" class="toc-article">
-			<strong class="toc-title">文章目錄</strong>
+			<strong class="toc-title">Contents</strong>
 		
 			<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u51C6_u5907_u5DE5_u4F5C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E8C_u7EF4_u60C5_u5F62_u4E0B_u7684_u652F_u6301_u5411_u91CF_u673A"><span class="toc-number">2.</span> <span class="toc-text">二维情形下的支持向量机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u9AD8_u7EF4_u60C5_u5F62_u4E0B_u7684_u652F_u6301_u5411_u91CF_u673A"><span class="toc-number">3.</span> <span class="toc-text">高维情形下的支持向量机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5BF9_u6A21_u578B_u7684_u5404_u79CD_u6D4B_u8BD5"><span class="toc-number">4.</span> <span class="toc-text">对模型的各种测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u5206_u7C7B_u70B9_u9760_u8FD1_u65F6_2C__u56DE_u5224_u7387_u7684_u53D8_u5316"><span class="toc-number">4.1.</span> <span class="toc-text">两个分类点靠近时, 回判率的变化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0D_u540C_u7684kernel_u5BF9_u6A21_u578B_u7684_u5F71_u54CD"><span class="toc-number">4.2.</span> <span class="toc-text">不同的kernel对模型的影响</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u60E9_u7F5A_u56E0_u5B50C"><span class="toc-number">5.</span> <span class="toc-text">惩罚因子C</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#specc_u805A_u7C7B"><span class="toc-number">6.</span> <span class="toc-text">specc聚类</span></a></li></ol>
 		
@@ -261,17 +261,17 @@
 	
 
 </div>  
-      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
 
   <div id="toc" class="toc-aside">
-  <strong class="toc-title">文章目錄</strong>
+  <strong class="toc-title">Contents</strong>
  
  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#u51C6_u5907_u5DE5_u4F5C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u4E8C_u7EF4_u60C5_u5F62_u4E0B_u7684_u652F_u6301_u5411_u91CF_u673A"><span class="toc-number">2.</span> <span class="toc-text">二维情形下的支持向量机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u9AD8_u7EF4_u60C5_u5F62_u4E0B_u7684_u652F_u6301_u5411_u91CF_u673A"><span class="toc-number">3.</span> <span class="toc-text">高维情形下的支持向量机</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u5BF9_u6A21_u578B_u7684_u5404_u79CD_u6D4B_u8BD5"><span class="toc-number">4.</span> <span class="toc-text">对模型的各种测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E24_u4E2A_u5206_u7C7B_u70B9_u9760_u8FD1_u65F6_2C__u56DE_u5224_u7387_u7684_u53D8_u5316"><span class="toc-number">4.1.</span> <span class="toc-text">两个分类点靠近时, 回判率的变化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#u4E0D_u540C_u7684kernel_u5BF9_u6A21_u578B_u7684_u5F71_u54CD"><span class="toc-number">4.2.</span> <span class="toc-text">不同的kernel对模型的影响</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#u60E9_u7F5A_u56E0_u5B50C"><span class="toc-number">5.</span> <span class="toc-text">惩罚因子C</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#specc_u805A_u7C7B"><span class="toc-number">6.</span> <span class="toc-text">specc聚类</span></a></li></ol>
  
   </div>
 
 <div id="asidepart">
-<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
   
@@ -279,7 +279,7 @@
 
   
 <div class="categorieslist">
-	<p class="asidetitle">分類</p>
+	<p class="asidetitle">Categories</p>
 		<ul>
 		
 		  
@@ -295,7 +295,7 @@
 		  
 		
 		  
-			<li><a href="/categories/R/" title="R">R<sup>9</sup></a></li>
+			<li><a href="/categories/R/" title="R">R<sup>10</sup></a></li>
 		  
 		
 		</ul>
@@ -304,11 +304,15 @@
 
   
 <div class="tagslist">
-	<p class="asidetitle">標簽</p>
+	<p class="asidetitle">Tags</p>
 		<ul class="clearfix">
 		
 			
 				<li><a href="/tags/R-programing/" title="R programing">R programing<sup>7</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/R-package/" title="R package">R package<sup>3</sup></a></li>
 			
 		
 			
@@ -324,10 +328,6 @@
 			
 		
 			
-				<li><a href="/tags/R-package/" title="R package">R package<sup>2</sup></a></li>
-			
-		
-			
 				<li><a href="/tags/algorithms/" title="algorithms">algorithms<sup>1</sup></a></li>
 			
 		
@@ -336,7 +336,7 @@
 
 
   <div class="linkslist">
-  <p class="asidetitle">友情鏈接</p>
+  <p class="asidetitle">Links</p>
     <ul>
         
           <li>
@@ -358,7 +358,7 @@
 
 
   <div class="rsspart">
-	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
 </div>
 
 </aside>
@@ -573,7 +573,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 <!-- Totop Begin -->
 
 	<div id="totop">
-	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
 	</div>
 	<script src="/js/totop.js"></script>
 
