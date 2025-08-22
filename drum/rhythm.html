@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>伯克利节奏小助手 · 修复版（上方双横线）</title>
+  <style>
+    :root{
+      --note-size: 22px;   /* 你已改为 22 */
+      --stem-h:   42px;
+      --beam-gap: 7px;
+      --group-gap: 40px;
+      --note-gap: 22px;    /* 新增：音符之间的水平间距 */
+      --stem-w:   2px;     /* 新增：符干宽度（粗细） */
+      --beam-inset: 3%;  /* 横线左右缩进，防止两端冒头（可调 0%~12%） */
+    }
+
+    *{box-sizing:border-box}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,Helvetica Neue,sans-serif;background:#eee;margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;gap:28px;padding:24px}
+    h1{margin:8px 0 0;color:#333;font-weight:800;letter-spacing:.02em}
+
+    .score-container{width:min(1000px,92vw);background:#fff;border-radius:14px;padding:36px 28px;box-shadow:0 10px 30px rgba(0,0,0,.08);position:relative}
+    .stave{height:140px;position:relative}
+    .stave-line{position:absolute;left:0;right:0;height:2px;background:#000}
+    .stave-line:nth-child(1){top:26px}
+    .stave-line:nth-child(2){top:46px}
+    .stave-line:nth-child(3){top:66px}
+    .stave-line:nth-child(4){top:86px}
+    .stave-line:nth-child(5){top:106px}
+
+    .note-group-wrapper{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;gap:var(--group-gap);align-items:flex-end}
+
+    /* 一个小节（四个十六分音符） */
+    .note-bar{display:flex;flex-direction:column;align-items:center;gap:12px;min-width:180px}
+    .beam-group{position:relative;display:flex;gap: var(--note-gap);align-items:flex-end;padding:0 6px}
+
+    /* 两条横线：位置与符干长度精确耦合；并可左右缩短 */
+    .beam{
+      position:absolute;
+      height:5px;
+      background:#000;
+      border-radius:2px;
+      z-index:2;
+      left: 27px;
+      right: var(--beam-inset);
+    }
+    .beam.top{
+      /* 顶横线位于：符头正中往上 var(--stem-h) */
+      top: calc(50% - var(--stem-h));
+    }
+    .beam.bottom{
+      /* 第二条横线在顶横线下方 beam-gap */
+      top: calc(50% - var(--stem-h) + var(--beam-gap));
+    }
+
+
+    /* 符头（黑色椭圆） */
+    .note{position:relative;width:var(--note-size);height:var(--note-size);background:#000;border-radius:50%;z-index:3}
+
+    /* 符干（向上），从符头的“右侧正中”出发 */
+    .note::after{
+      content:"";
+      position:absolute;
+
+      /* 锚点移到符头右侧；不再水平居中 */
+      left: calc(100% - var(--stem-w) / 2);
+      transform: none;
+
+      /* 起点 = 符头垂直正中；高度 = 到双横线的距离 */
+      top:    calc(50% - var(--stem-h) );
+      height: var(--stem-h);
+
+      width:  var(--stem-w);
+      background:#000;
+    }
+
+
+
+
+
+    /* 防止旧版 .stem 干扰（如果HTML里还在） */
+    .stem{display:none}
+
+    /* 播放时高亮当前音符 */
+    .note.active{background:#e91e63;box-shadow:0 0 0 4px rgba(233,30,99,.15)}
+
+    /* 让 4 个文字形成 4 列，列宽=符头宽，列间距=音符间距 */
+    .syllable{
+      display: grid;
+      grid-template-columns: repeat(4, var(--note-size));
+      column-gap: var(--note-gap);
+      justify-content: center;  /* 居中以对齐上方音符组 */
+      margin-top: 20px;
+      font-size: .92rem;
+      color: #333;
+      font-weight: 700;
+      letter-spacing: 0;        /* 避免字符间距干扰对齐 */
+      text-align: center;
+    }
+    .syllable span{
+      display: block;           /* 每个文字占一列并居中 */
+    }
+
+
+    .bar{position:absolute;top:24px;bottom:24px;border-right:2px solid #000;border-left:2px solid transparent}
+    .bar.left{left:14px}
+    .bar.right{right:14px}
+
+    .controls{display:flex;align-items:center;gap:18px;background:#fff;padding:18px 22px;border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+    .controls button{padding:10px 22px;border:0;border-radius:10px;color:#fff;font-weight:800;cursor:pointer;transition:.15s}
+    #playBtn{background:#28a745}
+    #playBtn:hover{filter:brightness(.95)}
+    #stopBtn{background:#dc3545}
+    #stopBtn:hover{filter:brightness(.95)}
+    .bpm-label{font-weight:700;color:#333}
+    #status{font-size:.9rem;color:#666}
+  </style>
+</head>
+<body>
+  <h1>伯克利节奏小助手</h1>
+
+  <div class="score-container">
+    <div class="stave">
+      <div class="stave-line"></div>
+      <div class="stave-line"></div>
+      <div class="stave-line"></div>
+      <div class="stave-line"></div>
+      <div class="stave-line"></div>
+    </div>
+
+    <div class="note-group-wrapper" aria-label="4组·每组四个十六分音符">
+      <!-- 1 -->
+      <div class="note-bar">
+        <div class="beam-group">
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="beam top"></div>
+          <div class="beam bottom"></div>
+        </div>
+        <div class="syllable"><span>one</span><span>e</span><span>and</span><span>a</span></div>
+      </div>
+      <!-- 2 -->
+      <div class="note-bar">
+        <div class="beam-group">
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="beam top"></div>
+          <div class="beam bottom"></div>
+        </div>
+        <div class="syllable"><span>two</span><span>e</span><span>and</span><span>a</span></div>
+      </div>
+      <!-- 3 -->
+      <div class="note-bar">
+        <div class="beam-group">
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="beam top"></div>
+          <div class="beam bottom"></div>
+        </div>
+        <div class="syllable"><span>three</span><span>e</span><span>and</span><span>a</span></div>
+      </div>
+      <!-- 4 -->
+      <div class="note-bar">
+        <div class="beam-group">
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="note"><div class="stem"></div></div>
+          <div class="beam top"></div>
+          <div class="beam bottom"></div>
+        </div>
+        <div class="syllable"><span>four</span><span>e</span><span>and</span><span>a</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button id="playBtn">播放</button>
+    <button id="stopBtn">停止</button>
+    <span class="bpm-label">BPM: <span id="bpmValue">15</span></span>
+    <input type="range" id="bpmSlider" min="5" max="40" value="15" />
+    <span id="status"></span>
+  </div>
+
+  <!-- audio 元素，兼容本地 file:// 直接打开 -->
+  <div id="audio-bank" style="display:none">
+    <audio id="snd-one"   src="music/one.mp3"   preload="auto"></audio>
+    <audio id="snd-two"   src="music/two.mp3"   preload="auto"></audio>
+    <audio id="snd-three" src="music/three.mp3" preload="auto"></audio>
+    <audio id="snd-four"  src="music/four.mp3"  preload="auto"></audio>
+    <audio id="snd-e"     src="music/e.mp3"     preload="auto"></audio>
+    <audio id="snd-and"   src="music/and.mp3"   preload="auto"></audio>
+    <audio id="snd-a"     src="music/da.mp3"    preload="auto"></audio>
+  </div>
+
+  <script>
+    const notes = Array.from(document.querySelectorAll('.note'));
+    const playBtn = document.getElementById('playBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const bpmSlider = document.getElementById('bpmSlider');
+    const bpmValueSpan = document.getElementById('bpmValue');
+    const statusSpan = document.getElementById('status');
+
+    const BEAT_WORDS = ['one', 'two', 'three', 'four'];
+    const SUBDIV    = ['e', 'and', 'a'];
+
+    let currentBPM = 15;
+    let isPlaying = false;
+    let timerId = null;
+    let noteIndex = 0; // 0..15
+
+    function sixteenthMs(){
+      return (60_000 / currentBPM) / 4;
+    }
+
+    function getSyllable(i){
+      const beat = Math.floor(i / 4);   // 0..3 => 1..4
+      const sub  = i % 4;               // 0,1,2,3
+      if (sub === 0) return BEAT_WORDS[beat];
+      return SUBDIV[sub - 1];
+    }
+
+    function playSound(name){
+      const base = document.getElementById('snd-' + (name === 'a' ? 'a' : name));
+      if(!base){
+        statusSpan.textContent = '缺少音频：' + name + '.mp3';
+        return;
+      }
+      const node = base.cloneNode(true);
+      node.play().catch(()=>{});
+    }
+
+    function highlight(i){
+      notes.forEach(n => n.classList.remove('active'));
+      if(notes[i]) notes[i].classList.add('active');
+    }
+
+    function tick(){
+      const s = getSyllable(noteIndex);
+      playSound(s);
+      highlight(noteIndex);
+      noteIndex = (noteIndex + 1) % 16;
+    }
+
+    function start(){
+      if(isPlaying) return;
+      isPlaying = true;
+      noteIndex = 0;
+      statusSpan.textContent = '';
+      tick();
+      timerId = setInterval(tick, sixteenthMs());
+    }
+
+    function stop(){
+      isPlaying = false;
+      clearInterval(timerId);
+      timerId = null;
+      notes.forEach(n => n.classList.remove('active'));
+    }
+
+    playBtn.addEventListener('click', start);
+    stopBtn.addEventListener('click', stop);
+
+    bpmSlider.addEventListener('input', () => {
+      currentBPM = parseInt(bpmSlider.value, 10);
+      bpmValueSpan.textContent = currentBPM;
+      if(isPlaying){
+        clearInterval(timerId);
+        timerId = setInterval(tick, sixteenthMs());
+      }
+    });
+  </script>
+</body>
+</html>
